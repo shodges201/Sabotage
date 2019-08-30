@@ -8,12 +8,44 @@ class Hangman extends React.Component {
     input: "",
     key: 5,
     encrypt: "",
-    word: "swerve"
+    word: "swerve",
+    alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+    mixed: []
+  }
+
+  shuffle = (a) => {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+  componentDidMount(){
+    let copy = this.state.alphabet.slice();
+    copy = this.shuffle(copy);
+    console.log(copy);
+    this.setState({mixed: copy})
+  }
+
+  convertToEncypted = (str) => {
+    let newStr = '';
+    str = str.split('');
+    console.log(str);
+    str.forEach((letter) => {
+      newStr += this.state.mixed[this.state.alphabet.indexOf(letter.toLowerCase())];
+    })
+    return newStr;
   }
 
   handleInputChange = (event) => {
     const {name,value} = event.target;
-    let cipher = CipherJS.Caesar.encrypt(value.toUpperCase(), this.state.key);
+    console.log(value.toLowerCase());
+    let cipher = this.convertToEncypted(value).toUpperCase();
+    console.log(cipher);
 
     this.setState({
       [name]: value,
