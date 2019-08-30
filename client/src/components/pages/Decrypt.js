@@ -39,6 +39,7 @@ class Decrypt extends React.Component {
             value={this.state.input} 
             placeholder="coded message" 
             onChange={this.handleInputChange}
+            autocomplete="off"
           />
           <input  
             type="number" 
@@ -46,6 +47,7 @@ class Decrypt extends React.Component {
             value={this.state.key} 
             placeholder="secret key" 
             onChange={this.handleInputChange}
+            autocomplete="off"
           />
           <p id="shadow-live">{this.state.decrypt}</p>
           <div className="goodbye">
