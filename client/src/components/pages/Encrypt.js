@@ -39,6 +39,7 @@ class Encrypt extends React.Component {
             value={this.state.input} 
             placeholder="your message" 
             onChange={this.handleInputChange}
+            autocomplete="off"
           />
           <input 
             type="number" 
@@ -46,6 +47,7 @@ class Encrypt extends React.Component {
             value={this.state.key} 
             placeholder="secret key" 
             onChange={this.handleInputChange}
+            autocomplete="off"
           />
           <p id="shadow-live">{this.state.encrypt}</p>
           <div className="hello">
