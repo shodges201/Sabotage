@@ -36,7 +36,11 @@ class Hangman extends React.Component {
     str = str.split('');
     console.log(str);
     str.forEach((letter) => {
-      newStr += this.state.mixed[this.state.alphabet.indexOf(letter)];
+      let ascii = letter.charCodeAt(0);
+      if(ascii <= 122 && ascii >= 97)
+        newStr += this.state.mixed[this.state.alphabet.indexOf(letter)];
+      else
+        newStr += letter;
     })
     return newStr;
   }
@@ -44,11 +48,8 @@ class Hangman extends React.Component {
   handleInputChange = (event) => {
     const {name,value} = event.target;
     console.log(value.toLowerCase());
-    let ascii = value.charCodeAt(value.length-1);
     let cipher = value;
-    if(ascii <= 122 && ascii >= 97){
-      cipher = this.convertToEncypted(value.toLowerCase()).toUpperCase();
-    }
+    cipher = this.convertToEncypted(value.toLowerCase()).toUpperCase();
     console.log(cipher);
     this.setState({
       [name]: value,
