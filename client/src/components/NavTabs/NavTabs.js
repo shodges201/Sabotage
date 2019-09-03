@@ -14,6 +14,11 @@ function NavTabs(props) {
           sabotage
         </Link>
       </li>
+      <li className="nav-item">
+        <Link to="/leaderboard" className={props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
+          leaderboard
+        </Link>
+      </li>
     </ul>
   );
 }

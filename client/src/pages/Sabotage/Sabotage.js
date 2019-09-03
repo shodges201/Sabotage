@@ -1,7 +1,7 @@
 import React from "react";
-import NavTabs from "../../NavTabs";
+import NavTabs from "../../components/NavTabs/NavTabs";
 import './Sabotage.css';
-import API from '../../../utils/API.js';
+import API from '../../utils/API.js';
 
 class Sabotage extends React.Component {
 
