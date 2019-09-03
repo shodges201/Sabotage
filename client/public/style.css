@@ -56,12 +56,23 @@
 
 a {
     text-decoration: none;
-    color:rgb(47, 255, 99);
+    /* color:rgb(47, 255, 99); */
+    color: black;
 }
 
 a:hover {
-    text-decoration: none;
-    color:rgb(35, 124, 57);
+    /* text-decoration: none;
+    color:rgb(35, 124, 57); */
+    -webkit-background-clip: text;
+	color: white;
+	-webkit-text-fill-color: transparent;
+  	background-image: -webkit-gradient(linear, left top, right top, from(#ea8711), to(#d96363));
+	background-image: -webkit-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79); 
+	background-image:    -moz-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79);
+	background-image:     -ms-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79); 
+    background-image:      -o-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79);
+    font-style: italic;
+    text-decoration: underline;
 }
 
 .current-page {
