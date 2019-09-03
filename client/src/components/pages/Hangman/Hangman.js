@@ -9,7 +9,7 @@ class Hangman extends React.Component {
     input: "",
     key: 5,
     encrypt: "",
-    word: "",
+    word: ["the","of","and","a","to","in","is","you","that","it","he","was","for","on","are","as","with","his","they","I","at","be","this","have","from","or","one","had","by","word","but","not","what","all","were","we","when","your","can","said","there","use","an","each","which","she","do","how","their","if","will","up","other","about","out","many","then","them","these","so","some","her","would","make","like","him","into","time","has","look","two","more","write","go","see","number","no","way","could","people","my","than","first","water","been","call","who","oil","its","now","find","long","down","day","did","get","come","made","may","part"],
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
     timeLeft:10,
@@ -30,13 +30,9 @@ class Hangman extends React.Component {
 
   randomStringGenerate = () => {
     //length of string is random number between 5 and 30
-    let length = Math.floor((Math.random() * 10) + 1);
-    let str = '';
-    for (let i = 0; i < length; i++) {
-      let randNum = Math.floor((Math.random() * this.state.alphabet.length));
-      str += this.state.alphabet[randNum];
-    }
-    return str;
+    let str = this.state.word[Math.floor((Math.random() * this.state.word.length))];
+    
+    return str.toLocaleUpperCase();
   }
 
   pad = (str, max) => {
@@ -133,7 +129,7 @@ class Hangman extends React.Component {
           
 
           <div id="hangman">
-            answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>
+            answer: <span id="hangman-word">{this.state.word}</span>
           </div>
 
           <p id="shadow-live">{this.state.encrypt}</p>
@@ -143,8 +139,8 @@ class Hangman extends React.Component {
           </div>
         </div>  
       </div>
-    )
-  }
+  )}
+
 }
 
 export default Hangman;
