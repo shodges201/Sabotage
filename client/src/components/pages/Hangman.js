@@ -123,6 +123,7 @@ class Hangman extends React.Component {
         </div>  
       </div>
   )}
+
 }
 
 export default Hangman;
