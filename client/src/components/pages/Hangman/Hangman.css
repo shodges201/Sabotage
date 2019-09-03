@@ -20,7 +20,7 @@
     background: none;
     border-color: white;
     outline: none !important;
-    position: absolute;
-    bottom: -50;
+    position: fixed;
+    bottom: -100;
 }
 
