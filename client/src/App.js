@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./components/pages/Home";
-import Sabotage from "./components/pages/Sabotage/Sabotage";
+import Home from "./pages/Home/Home";
+import Sabotage from "./pages/Sabotage/Sabotage";
+import Leaderboard from "./pages/Leaderboard/Leaderboard";
 
 function App() {
   console.log("zubin")
@@ -11,6 +12,7 @@ function App() {
       <div className="wrapper">
         <Route exact path="/" component={Home} />
         <Route exact path="/sabotage" component={Sabotage} />
+        <Route exact path="/leaderboard" component={Leaderboard} />
       </div>
     </Router>
   );
