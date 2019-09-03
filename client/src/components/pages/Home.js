@@ -4,17 +4,17 @@ import NavTabs from "../NavTabs";
 class Home extends React.Component {
 
   state = {
-    title: "TGJP ROGIS®"
+    title: "ZOBEJXKQ®"
   }
   
   decrypt_title = event => {
     event.preventDefault()
-    this.setState({title:"TRUE NORTH®"})
+    this.setState({title:"SABOTAGE®"})
   }
   
   encrypt_title = event => {
     event.preventDefault()
-    this.setState({title:"TGJP ROGIS®"})
+    this.setState({title:"ZOBEJXKQ®"})
   }
 
 

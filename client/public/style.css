@@ -103,3 +103,11 @@ input{
     transition-duration:2s;
 }
 
+
+.instructions {
+    position: absolute;
+    top:100px;
+    left: 100px;
+    font-style: italic;
+    color: gray;
+}

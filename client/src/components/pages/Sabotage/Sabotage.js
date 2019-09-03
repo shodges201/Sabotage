@@ -1,9 +1,9 @@
 import React from "react";
 import NavTabs from "../../NavTabs";
-import './Hangman.css';
+import './Sabotage.css';
 import API from '../../../utils/API.js';
 
-class Hangman extends React.Component {
+class Sabotage extends React.Component {
 
   state = {
     input: "",
@@ -48,7 +48,10 @@ class Hangman extends React.Component {
     //let rand = API.randomWord();
     //console.log(rand);
     let rand = this.randomStringGenerate();
-    this.setState({ mixed: copy, word: rand })
+    this.setState({ 
+      mixed: copy, 
+      word: rand 
+    })
   }
 
   componentWillUnmount() {
@@ -104,10 +107,11 @@ class Hangman extends React.Component {
     console.log(this.state.timerColor)
     return (
       <div>
-        <NavTabs location="/hangman" />
+        <NavTabs location="/sabotage" />
         <div className="content">
 
-          <h1>hangman</h1>
+          <h1>sabotage</h1>
+          <span className="instructions">type the given word before time runs out...</span>
           <input
             ref={(input) => { this.userInput = input; }} 
             id="userInput"
@@ -143,4 +147,4 @@ class Hangman extends React.Component {
 
 }
 
-export default Hangman;
+export default Sabotage;
