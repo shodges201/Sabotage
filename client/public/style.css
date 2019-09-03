@@ -1,0 +1,100 @@
+.content {
+    padding:20px;
+    position: relative;
+}
+
+.hello {
+    position: fixed;
+    padding: 30px;
+    z-index: 3;
+    right: 30px;
+    bottom: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.goodbye {
+    position: fixed;
+    padding: 30px;
+    z-index: 3;
+    right: 30px;
+    top: 300px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#encrypt-live,#decrypt-live {
+    font-size: 50px;
+    /* height: 80px; */
+    /* white-space: nowrap; */
+    color:rgb(47, 255, 99);
+    text-align: right;
+}
+
+#decrypt-live {
+    color: rgb(255, 0, 55);
+}
+
+
+
+#shadow-live {
+    font-size: 23rem;
+    position: fixed;
+    z-index: 2;
+    right: 30px;
+    bottom: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /* height: 80px; */
+    white-space: nowrap;
+    color:rgba(175, 175, 175, 0.479);
+    font-style:italic;
+}
+
+#true-north {
+    color:rgb(47, 255, 99);
+}
+
+a {
+    text-decoration: none;
+    color:rgb(47, 255, 99);
+}
+
+a:hover {
+    text-decoration: none;
+    color:rgb(35, 124, 57);
+}
+
+.current-page {
+    color:black;
+}
+
+input{
+    margin-right: 10px;
+    border:1px lightgray solid;
+    border-radius: 4px;
+    padding-left:5px;
+}
+
+#hangman {
+    position: absolute;
+    top:200px;
+    right:400px;
+}
+
+#hangman-word {
+    color:red;
+}
+
+
+#time-left {
+    color:white;
+    /* font-size:60px; */
+    position:fixed;
+    top: 0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    transition-property:background;
+    transition-duration:2s;
+}
