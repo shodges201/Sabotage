@@ -1,0 +1,26 @@
+/* all */
+::-webkit-input-placeholder { /* Webkit */
+   color: white;
+}
+ 
+:-moz-placeholder { /* Firefox 18-4 */
+   color: white;  
+}
+ 
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+ 
+:-ms-input-placeholder {  /*  IE10+  */
+   color: white;  
+}
+
+#userInput, #userInput:focus{
+    color: white;
+    background: none;
+    border-color: white;
+    outline: none !important;
+    position: fixed;
+    bottom: -100;
+}
+

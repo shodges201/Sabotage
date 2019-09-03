@@ -1,14 +1,15 @@
 import React from "react";
-import NavTabs from "../NavTabs";
-// const CipherJS = require('cipherjs');
+import NavTabs from "../../NavTabs";
+import './Hangman.css';
+import API from '../../../utils/API.js';
 
 class Hangman extends React.Component {
-  
+
   state = {
     input: "",
     key: 5,
     encrypt: "",
-    word: "lmao",
+    word: ["the","of","and","a","to","in","is","you","that","it","he","was","for","on","are","as","with","his","they","I","at","be","this","have","from","or","one","had","by","word","but","not","what","all","were","we","when","your","can","said","there","use","an","each","which","she","do","how","their","if","will","up","other","about","out","many","then","them","these","so","some","her","would","make","like","him","into","time","has","look","two","more","write","go","see","number","no","way","could","people","my","than","first","water","been","call","who","oil","its","now","find","long","down","day","did","get","come","made","may","part"],
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
     timeLeft:10,
@@ -19,12 +20,19 @@ class Hangman extends React.Component {
   shuffle = (a) => {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
     }
     return a;
+  }
+
+  randomStringGenerate = () => {
+    //length of string is random number between 5 and 30
+    let str = this.state.word[Math.floor((Math.random() * this.state.word.length))];
+    
+    return str.toLocaleUpperCase();
   }
 
   pad = (str, max) => {
@@ -34,10 +42,13 @@ class Hangman extends React.Component {
 
   componentDidMount(){
     this.interval = setInterval(() => this.tick(), 100);
+    this.userInput.focus();
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
-    console.log(copy);
-    this.setState({mixed: copy})
+    //let rand = API.randomWord();
+    //console.log(rand);
+    let rand = this.randomStringGenerate();
+    this.setState({ mixed: copy, word: rand })
   }
 
   componentWillUnmount() {
@@ -45,6 +56,7 @@ class Hangman extends React.Component {
   }
 
   tick() {
+    this.userInput.focus();
     this.setState(state => ({
       timePass: state.timePass+1,
       timerColor: `linear-gradient(0deg, red ${state.timePass/state.timeLeft}%, white 0%)`
@@ -58,19 +70,23 @@ class Hangman extends React.Component {
     console.log(str);
     str.forEach((letter) => {
       let ascii = letter.charCodeAt(0);
-      if(ascii <= 122 && ascii >= 97)
+      if (ascii <= 122 && ascii >= 97)
         newStr += this.state.mixed[this.state.alphabet.indexOf(letter)];
       else
         newStr += letter;
-    })
+    });
     return newStr;
   }
 
   handleInputChange = (event) => {
-    const {name,value} = event.target;
+    const { name, value } = event.target;
     console.log(value.toLowerCase());
     let cipher = value;
     cipher = this.convertToEncypted(value.toLowerCase()).toUpperCase();
+    console.log(cipher);
+    if(cipher.toUpperCase() === this.state.word.toUpperCase()){
+      document.location.reload();
+    }
     console.log(`cipher ${cipher}`);
     console.log(`word ${this.state.word}`);
     this.setState({
@@ -88,15 +104,17 @@ class Hangman extends React.Component {
     console.log(this.state.timerColor)
     return (
       <div>
-        <NavTabs location="/hangman"/>
+        <NavTabs location="/hangman" />
         <div className="content">
 
           <h1>hangman</h1>
-          <input 
-            type="text" 
-            name="input" 
-            value={this.state.input.toUpperCase()} 
-            placeholder="your message" 
+          <input
+            ref={(input) => { this.userInput = input; }} 
+            id="userInput"
+            type="text"
+            name="input"
+            value={this.state.input.toUpperCase()}
+            placeholder="your message"
             onChange={this.handleInputChange}
             autoComplete="off"
           />
@@ -111,7 +129,7 @@ class Hangman extends React.Component {
           
 
           <div id="hangman">
-            answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>          
+            answer: <span id="hangman-word">{this.state.word}</span>
           </div>
 
           <p id="shadow-live">{this.state.encrypt}</p>
@@ -119,10 +137,10 @@ class Hangman extends React.Component {
           <div className="hello">
             <p id="encrypt-live">{this.state.encrypt}</p>
           </div>
-
         </div>  
       </div>
   )}
+
 }
 
 export default Hangman;
