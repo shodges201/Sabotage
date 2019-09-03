@@ -1,6 +1,6 @@
 import React from "react";
 import NavTabs from "../NavTabs";
-const CipherJS = require('cipherjs');
+// const CipherJS = require('cipherjs');
 
 class Hangman extends React.Component {
   
@@ -8,9 +8,11 @@ class Hangman extends React.Component {
     input: "",
     key: 5,
     encrypt: "",
-    word: "swerve",
+    word: "lmao",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
-    mixed: []
+    mixed: [],
+    timeLeft:0,
+    timerColor:"red"
   }
 
   shuffle = (a) => {
@@ -22,14 +24,31 @@ class Hangman extends React.Component {
         a[j] = x;
     }
     return a;
-}
+  }
+
+  pad = (str, max) => {
+    str = str.toString();
+    return str.length < max ? this.pad("0" + str, max) : str;
+  }
 
   componentDidMount(){
+    this.interval = setInterval(() => this.tick(), 100);
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
     console.log(copy);
     this.setState({mixed: copy})
   }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  tick() {
+    this.setState(state => ({
+      timeLeft: state.timeLeft+1,
+    }));
+  }
+  
 
   convertToEncypted = (str) => {
     let newStr = '';
@@ -50,12 +69,16 @@ class Hangman extends React.Component {
     console.log(value.toLowerCase());
     let cipher = value;
     cipher = this.convertToEncypted(value.toLowerCase()).toUpperCase();
-    console.log(cipher);
+    console.log(`cipher ${cipher}`);
+    console.log(`word ${this.state.word}`);
     this.setState({
       [name]: value,
       encrypt: cipher
     });
-
+    if(cipher.toLowerCase()===this.state.word){
+      clearInterval(this.interval);
+      this.setState({timerColor:"rgb(47,255,99)"})
+    }
   };
 
   
@@ -64,6 +87,7 @@ class Hangman extends React.Component {
       <div>
         <NavTabs location="/hangman"/>
         <div className="content">
+
           <h1>hangman</h1>
           <input 
             type="text" 
@@ -71,15 +95,23 @@ class Hangman extends React.Component {
             value={this.state.input.toUpperCase()} 
             placeholder="your message" 
             onChange={this.handleInputChange}
-            autocomplete="off"
+            autoComplete="off"
           />
+
+          <div id="time-left" style={{color: this.state.timerColor}}>
+            {`-${this.pad(this.state.timeLeft,10)}`}
+          </div>
+
           <div id="hangman">
             answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>          
           </div>
+
           <p id="shadow-live">{this.state.encrypt}</p>
+
           <div className="hello">
             <p id="encrypt-live">{this.state.encrypt}</p>
           </div>
+
         </div>  
       </div>
   )}
