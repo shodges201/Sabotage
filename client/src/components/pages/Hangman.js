@@ -11,8 +11,9 @@ class Hangman extends React.Component {
     word: "lmao",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
-    timeLeft:0,
-    timerColor:"red"
+    timeLeft:10,
+    timePass:0,
+    timerColor:"linear-gradient(0deg, red 0%, white 0%)"
   }
 
   shuffle = (a) => {
@@ -45,7 +46,8 @@ class Hangman extends React.Component {
 
   tick() {
     this.setState(state => ({
-      timeLeft: state.timeLeft+1,
+      timePass: state.timePass+1,
+      timerColor: `linear-gradient(0deg, red ${state.timePass/state.timeLeft}%, white 0%)`
     }));
   }
   
@@ -83,6 +85,7 @@ class Hangman extends React.Component {
 
   
   render(){
+    console.log(this.state.timerColor)
     return (
       <div>
         <NavTabs location="/hangman"/>
@@ -98,9 +101,14 @@ class Hangman extends React.Component {
             autoComplete="off"
           />
 
-          <div id="time-left" style={{color: this.state.timerColor}}>
-            {`-${this.pad(this.state.timeLeft,10)}`}
+          {/* <div id="time-left" style={{color: this.state.timerColor}}>
+            {`-${this.pad(this.state.timePass,10)}`}
+          </div> */}
+          
+          <div id="time-left" style={{background: this.state.timerColor}}>
           </div>
+
+          
 
           <div id="hangman">
             answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>          

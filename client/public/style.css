@@ -87,11 +87,14 @@ input{
 
 
 #time-left {
-    /* color:red; */
-    font-size:60px;
+    color:white;
+    /* font-size:60px; */
     position:fixed;
-    top: 70px;
-    right:600px;
-    transition-property:color;
+    top: 0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    transition-property:background;
     transition-duration:2s;
 }
