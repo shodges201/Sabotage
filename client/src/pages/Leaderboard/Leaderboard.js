@@ -1,7 +1,7 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import Table from "../../components/Table/Table";
-import Entry from "../../components/Entry/Entry";
+import TableEntry from "../../components/TableEntry/TableEntry";
 import './Leaderboard.css';
 
 import users from "../../fakeUsers.json";
@@ -29,7 +29,7 @@ class Leaderboard extends React.Component {
             <Table>
               {this.state.users.map(user => {
                 return(
-                  <Entry
+                  <TableEntry
                     position={user.id}
                     username={user.username}
                     score={user.score}
