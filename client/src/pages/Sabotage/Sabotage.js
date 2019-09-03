@@ -9,7 +9,7 @@ class Sabotage extends React.Component {
     input: "",
     key: 5,
     encrypt: "",
-    words: ["wooden","grace","elephant","twelve","starbucks","quiet","climate","president","penguin","javascript"],
+    words: ["wood","grace","left","feet","group","quiet","climb","skip","pen","java"],
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],

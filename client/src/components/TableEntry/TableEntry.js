@@ -1,6 +1,6 @@
 import React from "react";
 
-function Entry(props){
+function TableEntry(props){
     return(
         <tr className="table-entry">
             <th scope="row">{props.position}</th>
@@ -10,4 +10,4 @@ function Entry(props){
     )
 }
 
-export default Entry;
+export default TableEntry;
