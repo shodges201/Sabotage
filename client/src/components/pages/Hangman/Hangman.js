@@ -32,7 +32,7 @@ class Hangman extends React.Component {
     //length of string is random number between 5 and 30
     let str = this.state.word[Math.floor((Math.random() * this.state.word.length))];
     
-    return str;
+    return str.toLocaleUpperCase();
   }
 
   pad = (str, max) => {
