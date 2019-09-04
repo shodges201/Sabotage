@@ -6,7 +6,9 @@ import API from '../../utils/API.js';
 class Sabotage extends React.Component {
 
   state = {
+    //actual user input, before mixing it up
     input: "",
+    //switched user input
     encrypt: "",
     words: ["wood","grace","left","feet","group","quiet","climb","skip","pen","java"],
     word:"",
@@ -31,7 +33,7 @@ class Sabotage extends React.Component {
   }
 
   randomStringGenerate = () => {
-    //length of string is random number between 5 and 30
+    //gets random word from this.state.words
     let str = this.state.words[Math.floor((Math.random() * this.state.words.length))];
     return str.toLocaleUpperCase();
   }
@@ -127,9 +129,18 @@ class Sabotage extends React.Component {
   };
 
   guessedCorrect = () => {
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
     clearInterval(this.wordInterval);
     this.setState({timerColor:"rgb(47,255,99)", wins: this.state.wins + 1})
+  }
+
+  formatSeconds = (seconds) => {
+    if(seconds < 60){
+      return seconds;
+    }
+    else{
+      return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
+    }
   }
 
   
@@ -165,7 +176,7 @@ class Sabotage extends React.Component {
           {/* <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}> */}
           <div id="hangman"></div>
             answer: <span id="hangman-word" >{this.state.word.toUpperCase()}</span>{" "}
-            Time passed: <span id="time-passed" > {this.state.timePass}</span> {" "}
+            Time passed: <span id="time-passed" > {this.formatSeconds(this.state.timePass)}</span> {" "}
             Time Left to Guess: <span id="time" > {this.state.timeLeft}</span>{" "}
             Wins: <span id="time" > {this.state.wins}</span>{" "}
           </div>
