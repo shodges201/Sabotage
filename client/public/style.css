@@ -30,6 +30,8 @@
     text-align: right;
 }
 
+
+
 #decrypt-live {
     color: rgb(255, 0, 55);
 }
@@ -66,6 +68,7 @@ a:hover {
 
 .current-page {
     color:black;
+    /* color:white; */
 }
 
 input{
@@ -73,6 +76,7 @@ input{
     border:1px lightgray solid;
     border-radius: 4px;
     padding-left:5px;
+    background: none;
 }
 
 #hangman {
@@ -82,7 +86,7 @@ input{
 }
 
 #hangman-word {
-    color:red;
+    color:blue;
 }
 
 
@@ -97,4 +101,13 @@ input{
     z-index:-1;
     transition-property:background;
     transition-duration:2s;
+}
+
+
+.instructions {
+    position: absolute;
+    top:100px;
+    left: 100px;
+    font-style: italic;
+    color: gray;
 }

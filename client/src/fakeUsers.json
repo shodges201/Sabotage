@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "username":"shodges",
+        "score":-1000
+    },
+    {
+        "id":2,
+        "username":"lance",
+        "score":-2000
+    },
+    {
+        "id":3,
+        "username":"10ssless",
+        "score":-9000
+    },
+    {
+        "id":4,
+        "username":"fred",
+        "score":-100
+    }
+]
