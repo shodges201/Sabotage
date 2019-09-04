@@ -1,24 +1,24 @@
 /* all */
 ::-webkit-input-placeholder { /* Webkit */
-   color: white;
+   color: transparent;
 }
  
 :-moz-placeholder { /* Firefox 18-4 */
-   color: white;  
+   color: transparent;  
 }
  
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: white;  
+   color: transparent;  
 }
  
 :-ms-input-placeholder {  /*  IE10+  */
-   color: white;  
+   color: transparent;  
 }
 
 #userInput, #userInput:focus{
-    color: white;
+    color: transparent;
     background: none;
-    border-color: white;
+    border-color: transparent;
     outline: none !important;
     position: fixed;
     bottom: -100;

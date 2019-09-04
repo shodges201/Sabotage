@@ -9,11 +9,11 @@ class Sabotage extends React.Component {
     input: "",
     key: 5,
     encrypt: "",
-    words: ["wood","grace","left","feet","group","quiet","climb","skip","pen","java"],
+    words: ["wood","grace","left","feet","group","quiet","climb","skip","pen","java","core","tram","eagle","nine","xray","zebra"],
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
-    timeLeft:10,
+    timeLeft:5,
     timePass:0,
     timerColor:"linear-gradient(0deg, red 0%, white 0%)"
   }
@@ -59,11 +59,19 @@ class Sabotage extends React.Component {
   }
 
   tick() {
-    this.userInput.focus();
-    this.setState(state => ({
-      timePass: state.timePass+1,
-      timerColor: `linear-gradient(0deg, red ${state.timePass/state.timeLeft}%, white 0%)`
-    }));
+    let perc = this.state.timePass / this.state.timeLeft
+    if(perc < 100) {
+      this.userInput.focus();
+      this.setState(state => ({
+        timePass: state.timePass + 1,
+        timerColor: `linear-gradient(0deg, red ${state.timePass/state.timeLeft}%, white 0%)`
+      }));
+    }
+    else {
+      this.setState(state => ({
+        timerColor: "red"
+      }));
+    }
   }
   
 
