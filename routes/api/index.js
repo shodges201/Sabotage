@@ -5,11 +5,11 @@ const words = require("./words");
 // Book routes
 // router.use("/words", words);
 
+
+
 router.get("/users", (req,res) => {
-    User.find({})
-        .sort({
-            score:-1
-    }), (err, dbUsers) => {
+    // res.send("success")
+    User.find({}), (err, dbUsers) => {
         if(err) {
             console.log('CREATE Error: ' + err);
             res.status(500).send('Error');

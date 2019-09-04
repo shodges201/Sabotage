@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', api);
+// app.use('/api', api);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -58,6 +58,12 @@ db.once('open', () => {
   const userCollection = db.collection('users');
   const changeStream = userCollection.watch();
 
+  userCollection.find({}, (err,data) => {
+    console.log(data)
+  })
+
+  // changeStream.on("load")
+
   changeStream.on('change', (change) => {
     console.log(change);
 
@@ -83,7 +89,7 @@ db.once('open', () => {
 
 
 
-// // Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+// // // Start the API server
+// app.listen(PORT, function() {
+//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+// });

@@ -32,7 +32,7 @@ class Leaderboard extends React.Component {
 
     this.channel.bind('inserted', this.addUser);
     this.channel.bind('deleted', this.removeUser);
-    // this.getUsers()
+    this.getUsers()
   }
 
   getUsers() {
