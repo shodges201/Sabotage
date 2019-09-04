@@ -4,6 +4,16 @@ import { Link } from "react-router-dom";
 function NavTabs(props) {
   return (
     <ul className="nav nav-tabs">
+            <li className="nav-item">
+        <Link to="/login" className={props.location === "/login" ? "nav-link active" : "nav-link"}>
+          login
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link to="/signup" className={props.location === "/signup" ? "nav-link active" : "nav-link"}>
+          signup
+        </Link>
+      </li>
       <li className="nav-item">
         <Link to="/" className={props.location === "/" ? "nav-link active" : "nav-link"}>
           home
