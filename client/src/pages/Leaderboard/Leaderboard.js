@@ -32,7 +32,8 @@ class Leaderboard extends React.Component {
 
     this.channel.bind('inserted', this.addUser);
     this.channel.bind('deleted', this.removeUser);
-    this.getUsers()
+    this.channel.bind('updated', this.updatedUser);
+    this.getUsers();
   }
 
   getUsers() {
@@ -41,17 +42,30 @@ class Leaderboard extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(data => {
+    }).then(res => res.json()).then(data => {
       console.log(data)
-      // this.setState({
-      //   users: data
-      // });
+      this.setState({
+        users: data
+      });
     });
   }
 
   updateUser(e) {
+    const updated = this.state.users.map(user => {
+      if(user._id===e.id){
+        user.score=e.score
+        return user
+      } else {
+        return user
+      }
+    })
+
+    function compare(a, b) {
+      return b.score-a.score
+    }
+
     this.setState({
-      user: e.target.value
+      user: updated.sort(compare)
     });
   }
 
@@ -90,6 +104,7 @@ class Leaderboard extends React.Component {
       users: prevState.users.filter(el => el.id !== id)
     }));
   }
+
 
   
   render(){

@@ -21,6 +21,18 @@
     border-color: transparent;
     outline: none !important;
     position: fixed;
-    bottom: -100;
+    bottom: -100px;
 }
+
+#hangman-word{
+    color:green;
+}
+
+/* #hangman{
+    transform: rotate(180deg);
+} */
+
+/* #outer{
+    transform: rotate(120deg);
+} */
 

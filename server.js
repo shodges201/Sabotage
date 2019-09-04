@@ -5,7 +5,8 @@ const api = require('./routes/api');
 const Pusher = require('pusher');
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+
+//const PORT = process.env.PORT || 3001;
 
 // Pusher module used to set up live mongoDB listen
 const pusher = new Pusher({
@@ -28,11 +29,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('/api', api);
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -43,7 +41,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pointless", { useNewUrlParser: true });
-mongoose.connect('mongodb://localhost/saboDB?replicaSet=rs');
+mongoose.connect('mongodb://localhost/saboDB?replicaSet=rs', { useNewUrlParser: true });
 
 
 const db = mongoose.connection;
@@ -52,15 +50,15 @@ db.on('error', console.error.bind(console, 'Connection Error:'));
 
 db.once('open', () => {
   app.listen(9000, () => {
-    console.log('Node server running on port '+9000);
+    console.log('Node server running on port ' + 9000);
   });
 
   const userCollection = db.collection('users');
   const changeStream = userCollection.watch();
 
-  userCollection.find({}, (err,data) => {
-    console.log(data)
-  })
+  // userCollection.find({}, (err,data) => {
+  //   console.log(data)
+  // })
 
   // changeStream.on("load")
 
@@ -69,6 +67,7 @@ db.once('open', () => {
 
     if (change.operationType === 'insert') {
       const user = change.fullDocument;
+      console.log('inserted');
       pusher.trigger(
         channel,
         'inserted', {
@@ -83,13 +82,23 @@ db.once('open', () => {
         'deleted',
         change.documentKey._id
       );
+    } else if (change.operationType === 'update') {
+      const user = change;
+      console.log('updated');
+      pusher.trigger(
+        channel,
+        'updated', {
+          id: user.documentKey._id,
+          score: user.updateDescription.updatedFields.score
+        }
+      );
     }
   });
 });
 
 
 
-// // // Start the API server
-// app.listen(PORT, function() {
+// // Start the API server
+// secondApp.listen(PORT, function() {
 //   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 // });
