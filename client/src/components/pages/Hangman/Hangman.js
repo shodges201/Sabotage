@@ -14,7 +14,8 @@ class Hangman extends React.Component {
     mixed: [],
     timeLeft:10,
     timePass:0,
-    timerColor:"linear-gradient(0deg, red 0%, white 0%)"
+    timerColor:"linear-gradient(0deg, red 0%, white 0%)",
+    rotate: 0,
   }
 
   shuffle = (a) => {
@@ -45,26 +46,53 @@ class Hangman extends React.Component {
   }
 
   componentDidMount(){
-    this.interval = setInterval(() => this.tick(), 100);
+    this.interval = setInterval(() => this.constantTick(), 1000);
+    this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
     this.userInput.focus();
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
-    //let rand = API.randomWord();
-    //console.log(rand);
     let rand = this.randomStringGenerate();
     this.setState({ mixed: copy, word: rand })
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    clearInterval(this.wordInterval);
   }
 
-  tick() {
+  constantTick = () => {
     this.userInput.focus();
     this.setState(state => ({
       timePass: state.timePass+1,
-      timerColor: `linear-gradient(0deg, red ${state.timePass/state.timeLeft}%, white 0%)`
+      rotate: state.rotate + .5
     }));
+  }
+
+  eachWordTick = () => {
+    console.log(10 - this.state.timeLeft);
+    if(this.state.timeLeft === 0){
+      let copy = this.state.alphabet.slice();
+      copy = this.shuffle(copy);
+      let rand = this.randomStringGenerate();
+      this.setState(state => ({ 
+        timerColor: `linear-gradient(0deg, red 0%, white 0%)`,
+        timeLeft: 10,
+        mixed: copy, 
+        word: rand
+      }));
+    }
+    else{
+      console.log('not zero time left');
+      this.setState(state => ({ 
+        timerColor: `linear-gradient(0deg, red ${10 * (10 - state.timeLeft)}%, white 0%)`,
+        timeLeft: this.state.timeLeft - 1
+      }));
+    }
+    
+  }
+
+  degreesToRadians = (num) => {
+    return num/Math.PI;
   }
   
 
@@ -107,7 +135,7 @@ class Hangman extends React.Component {
   render(){
     console.log(this.state.timerColor)
     return (
-      <div>
+      <div id="outer">
         <NavTabs location="/hangman" />
         <div className="content">
 
@@ -132,8 +160,8 @@ class Hangman extends React.Component {
 
           
 
-          <div id="hangman">
-            answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>
+          <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}>
+            answer: <span id="hangman-word" >{this.state.word.toUpperCase()}</span>
           </div>
 
           <p id="shadow-live">{this.state.encrypt}</p>
