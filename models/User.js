@@ -21,4 +21,5 @@ const User = mongoose.model("User", userSchema);
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     console.log(user.password);
   });
+  
 module.exports = User;
