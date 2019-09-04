@@ -5,8 +5,19 @@
     top:200px;
     border-top:none;
     border-radius: 10px;
+    color:white;
+    height:300px;
+    width:400px;
 }
 
 .table-score {
     color: red;
+}
+
+#time-left {
+    background:blue;
+}
+
+.instructions {
+    color:lightgray;
 }

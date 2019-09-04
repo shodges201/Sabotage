@@ -8,6 +8,7 @@ function Table(props){
                     <th scope="col">POSITION</th>
                     <th scope="col">USER</th>
                     <th scope="col">SCORE</th>
+                    <th scope="col">x</th>
                 </tr>
             </thead>
             <tbody>
