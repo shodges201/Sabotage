@@ -6,9 +6,9 @@ const words = require("./words");
 // router.use("/words", words);
 
 router.get("/users", (req,res) => {
-    User.find({}, (err, dbUsers) => {
+    User.find().sort({score:-1}).then((dbUsers, err) => {
         if(err) {
-            console.log('CREATE Error: ' + err);
+            console.log('Error: ' + err);
             res.status(500).send('Error');
         } else {
             res.status(200).json(dbUsers);
@@ -43,6 +43,18 @@ router.route('/:id')
             dbUser.remove( () => {
               res.status(200).json(dbUser);
             });
+         } else {
+            res.status(404).send('Not found');
+          }
+        });
+    })
+    .put((req, res) => {
+        User.updateOne({_id : req.params.id}, {$set: {score: req.body.score}}, (err, dbUser) => {
+          if (err) { 
+            console.log('CHANGE USER Error: ' + err);
+            res.status(500).send('Error');
+          } else if (dbUser) {
+              res.status(200).json(dbUser);
          } else {
             res.status(404).send('Not found');
           }

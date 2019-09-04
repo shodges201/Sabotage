@@ -82,14 +82,15 @@ db.once('open', () => {
       );
     }
     else if (change.operationType === 'update') {
-      const user = change.fullDocument;
+      const user = change;
+      console.log('user: ');
+      console.log(user);
       console.log('updated');
       pusher.trigger(
         channel,
         'updated', {
-          id: user._id,
-          username: user.username,
-          score: user.score
+          id: user.documentKey._id,
+          score: user.updateDescription.updatedFields.score
         }
       );
     }
