@@ -14,8 +14,7 @@ class Sabotage extends React.Component {
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
-    timeLeft:30,
-    timePass:0,
+    timeLeft:29,
     timerColor:"linear-gradient(0deg, red 0%, white 0%)",
     rotate: 0,
     wins: 0
@@ -44,7 +43,6 @@ class Sabotage extends React.Component {
   }
 
   componentDidMount(){
-    this.interval = setInterval(() => this.constantTick(), 1000);
     this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
     this.userInput.focus();
     let copy = this.state.alphabet.slice();
@@ -57,19 +55,11 @@ class Sabotage extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
     clearInterval(this.wordInterval);
   }
 
-  constantTick = () => {
-    this.userInput.focus();
-    this.setState(state => ({
-      timePass: state.timePass + 1,
-      rotate: state.rotate + .5
-    }));
-  }
-
   eachWordTick = () => {
+    this.userInput.focus();
     if(this.state.timeLeft === 0){
       let copy = this.state.alphabet.slice();
       copy = this.shuffle(copy);
@@ -129,20 +119,13 @@ class Sabotage extends React.Component {
   };
 
   guessedCorrect = () => {
-    // clearInterval(this.interval);
     clearInterval(this.wordInterval);
+    //5th win while playing in a row
+    if(this.state.wins % 5 === 4){
+      //Do something
+    }
     this.setState({timerColor:"rgb(47,255,99)", wins: this.state.wins + 1})
   }
-
-  formatSeconds = (seconds) => {
-    if(seconds < 60){
-      return seconds;
-    }
-    else{
-      return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
-    }
-  }
-
   
   render(){
     console.log(this.state.timerColor)
@@ -176,7 +159,7 @@ class Sabotage extends React.Component {
           {/* <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}> */}
           <div id="hangman"></div>
             answer: <span id="hangman-word" >{this.state.word.toUpperCase()}</span>{" "}
-            Time passed: <span id="time-passed" > {this.formatSeconds(this.state.timePass)}</span> {" "}
+            Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}
             Time Left to Guess: <span id="time" > {this.state.timeLeft}</span>{" "}
             Wins: <span id="time" > {this.state.wins}</span>{" "}
           </div>
