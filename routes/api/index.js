@@ -8,9 +8,9 @@ const words = require("./words");
 
 
 router.get("/users", (req,res) => {
-    User.find().sort({score:-1}).then((dbUsers,err) => {
+    User.find().sort({score:-1}).then((dbUsers, err) => {
         if(err) {
-            console.log('CREATE Error: ' + err);
+            console.log('Error: ' + err);
             res.status(500).send('Error');
         } else {
             res.status(200).json(dbUsers);
@@ -50,24 +50,18 @@ router.route('/:id')
           }
         });
     })
-    .put((req,res) => {
-        User.updateOne(
-            {_id:req.params.id}, 
-            {$set: {score:req.body.score}}
-    ), (err, dbUser) => {
-        if(err) {
-            console.log('DELETE Error: ' + err);
+    .put((req, res) => {
+        User.updateOne({_id : req.params.id}, {$set: {score: req.body.score}}, (err, dbUser) => {
+          if (err) { 
+            console.log('CHANGE USER Error: ' + err);
             res.status(500).send('Error');
-        } else if (dbUser) {
-            res.status(200).json(dbUser)
-        } else {
+          } else if (dbUser) {
+              res.status(200).json(dbUser);
+         } else {
             res.status(404).send('Not found');
-        }
-    }
-})
-
-    
-
+          }
+        });
+    });
 
 
 module.exports = router;

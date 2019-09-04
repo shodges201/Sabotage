@@ -82,8 +82,11 @@ db.once('open', () => {
         'deleted',
         change.documentKey._id
       );
-    } else if (change.operationType === 'update') {
+    }
+    else if (change.operationType === 'update') {
       const user = change;
+      // console.log('user: ');
+      // console.log(user);
       console.log('updated');
       pusher.trigger(
         channel,

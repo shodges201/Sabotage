@@ -32,7 +32,7 @@ class Leaderboard extends React.Component {
 
     this.channel.bind('inserted', this.addUser);
     this.channel.bind('deleted', this.removeUser);
-    this.channel.bind('updated', this.updatedUser);
+    this.channel.bind('updated', this.updateUser);
     this.getUsers();
   }
 
@@ -50,22 +50,42 @@ class Leaderboard extends React.Component {
     });
   }
 
-  updateUser(e) {
-    const updated = this.state.users.map(user => {
-      if(user._id===e.id){
-        user.score=e.score
-        return user
-      } else {
-        return user
-      }
-    })
+  // insertionSort(unsortedList, copyList) {
+  //   var len = unsortedList.length;
+  //   for (var i = 1; i < len; i++) {
+  //     var tmp = unsortedList[i]; //Copy of the current element. 
+  //     /*Check through the sorted part and compare with the number in tmp. If large, shift the number*/
+  //     for (var j = i - 1; j >= 0 && (unsortedList[j] > tmp); j--) {
+  //       //Shift the number
+  //       unsortedList[j + 1] = unsortedList[j];
+  //     }
+  //     //Insert the copied number at the correct position
+  //     //in sorted part. 
+  //     unsortedList[j + 1] = tmp;
+  //   }
+  // }
 
+
+
+  updateUser(e) {
     function compare(a, b) {
-      return b.score-a.score
+      return b.score - a.score;
     }
 
+    let newList = this.state.users.map((user) => {
+      if(user._id === e.id){
+        user.score = e.score;
+        return user;
+      }
+      else{
+        return user;
+      }
+    });
+
+    let l = newList.sort(compare);
+    console.log(l);
     this.setState({
-      user: updated.sort(compare)
+      users: l
     });
   }
 
@@ -123,7 +143,7 @@ class Leaderboard extends React.Component {
               {this.state.users.map(user => {
                 return(
                   <TableEntry
-                    key={user.id}
+                    key={user._id}
                     position={this.state.users.indexOf(user)+1}
                     username={user.username}
                     score={user.score}
