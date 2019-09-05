@@ -30,3 +30,7 @@
 #leaderboard-header {
     color:white;
 }
+
+a {
+    text-shadow: 2px 2px 0px rgba(175, 175, 175, 0.233);
+}
