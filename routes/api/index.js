@@ -51,7 +51,7 @@ router.route('/:id')
         });
     })
     .put((req, res) => {
-        User.updateOne({_id : req.params.id}, {$set: {score: req.body.score}}, (err, dbUser) => {
+        User.updateOne({_id : req.params.id}, {$inc: {score: req.body.deduct}}, (err, dbUser) => {
           if (err) { 
             console.log('CHANGE USER Error: ' + err);
             res.status(500).send('Error');
