@@ -31,7 +31,7 @@ class Roulette extends React.Component {
     static defaultProps = {
       options:  ['Lose Points', 'Gain Points', 'Steal Points', 'Give Points', 'Wild'],
       // baseSize: 275,
-      baseSize: 400,
+      baseSize: 350,
       spinAngleStart: Math.random() * 10 + 10,
       spinTimeTotal: Math.random() * 3 + 4 * 1000,
     };
