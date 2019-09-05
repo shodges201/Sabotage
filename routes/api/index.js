@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const User = require("../../models/User");
-const words = require("./words");
+const db = require("../../models");
+// const words = require("./words");
+const bcrypt = require("bcrypt-nodejs");
+const passport = require("../../config/passport");
 
 // Book routes
 // router.use("/words", words);
@@ -8,7 +10,7 @@ const words = require("./words");
 
 
 router.get("/users", (req,res) => {
-    User.find().sort({score:-1}).then((dbUsers, err) => {
+    db.User.find().sort({score:-1}).then((dbUsers, err) => {
         if(err) {
             console.log('Error: ' + err);
             res.status(500).send('Error');
@@ -21,8 +23,10 @@ router.get("/users", (req,res) => {
 
 // test NEW USER
 router.post('/new', (req, res) => {
-    User.create({
+  let password =  bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null);
+    db.User.create({
         username: req.body.username,
+        password: password,
         score: req.body.score
     }, (err, dbUser) => {
         if (err) {
@@ -32,12 +36,19 @@ router.post('/new', (req, res) => {
             res.status(200).json(dbUser);
         }
     });
+    res.redirect("/login")
+});
+
+router.post('/login', passport.authenticate("local"), (req,res) => {
+  console.log('tried to login');
+  console.log(req.user);
+  res.end();
 });
 
 // test DELETE USER
 router.route('/:id')
     .delete((req, res) => {
-        User.findById(req.params.id, (err, dbUser) => {
+        db.User.findById(req.params.id, (err, dbUser) => {
           if (err) { 
             console.log('DELETE Error: ' + err);
             res.status(500).send('Error');
@@ -51,7 +62,7 @@ router.route('/:id')
         });
     })
     .put((req, res) => {
-        User.updateOne({_id : req.params.id}, {$inc: {score: req.body.deduct}}, (err, dbUser) => {
+        db.User.updateOne({_id : req.params.id}, {$inc: {score: req.body.deduct}}, (err, dbUser) => {
           if (err) { 
             console.log('CHANGE USER Error: ' + err);
             res.status(500).send('Error');
