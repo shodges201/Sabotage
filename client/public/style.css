@@ -81,8 +81,8 @@ input{
 
 #hangman {
     position: absolute;
-    top:200px;
-    right:400px;
+    top:150px;
+    right:300px;
 }
 
 #hangman-word {
