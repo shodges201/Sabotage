@@ -5,6 +5,7 @@ import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 const API_URL = '/api/';
 const deduct = -10;
+
 class App extends React.Component{
   state = {
     timePass: 0,
