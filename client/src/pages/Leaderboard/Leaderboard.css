@@ -1,13 +1,13 @@
 .leaderboard {
     width: 30%;
-    position: absolute;
-    left:600px;
-    top:200px;
+    float:left;
+    margin-top:10%;
+    margin-left:33%;
     border-top:none;
     border-radius: 10px;
     color:white;
-    height:300px;
-    width:400px;
+    width:600px;
+    font-size:24px;
 }
 
 .table-score {
@@ -20,4 +20,9 @@
 
 .instructions {
     color:lightgray;
+}
+
+.table-entry {
+    height:80px;
+    line-height:2.1em;
 }

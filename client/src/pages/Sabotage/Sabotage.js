@@ -1,7 +1,7 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import './Sabotage.css';
-import API from '../../utils/API.js';
+// import API from '../../utils/API.js';
 
 class Sabotage extends React.Component {
 
@@ -119,9 +119,9 @@ class Sabotage extends React.Component {
   };
 
   guessedCorrect = () => {
-    clearInterval(this.wordInterval);
     //5th win while playing in a row
     if(this.state.wins % 5 === 4){
+      clearInterval(this.wordInterval);
       //Do something
     }
     this.setState({timerColor:"rgb(47,255,99)", wins: this.state.wins + 1})
