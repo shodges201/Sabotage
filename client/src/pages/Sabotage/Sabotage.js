@@ -198,8 +198,8 @@ class Sabotage extends React.Component {
           <div id="hangman">
             answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br/>
             {/* Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}<br/> */}
-            Time Left: <span id="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
-            Wins: <span id="time" > {this.state.wins}</span>{" "}
+            time left: <span id="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
+            wins: <span id="time" > {this.state.wins}</span>{" "}
           </div>
 
           <p id="shadow-live">{this.state.encrypt}</p>
