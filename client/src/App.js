@@ -25,26 +25,22 @@ class App extends React.Component{
     }));
   }
 
-  formatSeconds = (seconds) => {
-    if(seconds < 60){
-      return seconds;
-    }
-    else{
-      return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
-    }
-  }
+  
 
   render(){
     return (
       <div>
       <Router>
         <div className="wrapper">
-          <Route exact path="/" component={Home} />
-          <Route exact path="/sabotage" 
-          render={(routeProps) => (
-            <Sabotage timePass={this.formatSeconds(this.state.timePass)}/>
+          <Route exact path="/" render={() => (
+            <Home timePass={this.state.timePass}/>
+          )} /> 
+          <Route exact path="/sabotage" render={() => (
+            <Sabotage timePass={this.state.timePass}/>
           )} />
-          <Route exact path="/leaderboard" component={Leaderboard} />
+          <Route exact path="/leaderboard" render={() => (
+            <Leaderboard timePass={this.state.timePass}/>
+          )} /> 
         </div>
       </Router>
       </div>

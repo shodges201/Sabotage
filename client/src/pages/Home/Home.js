@@ -17,11 +17,13 @@ class Home extends React.Component {
     this.setState({title:"ZOBEJXKQ®"})
   }
 
+  
+
 
   render() {
     return (
       <div>
-        <NavTabs location="/"/>
+        <NavTabs location="/" timePass={this.props.timePass}/>
         <div className="content">
           <h1> WELCOME TO <span id="true-north" onMouseEnter={this.decrypt_title} onMouseLeave={this.encrypt_title}>{this.state.title}</span></h1>
         </div>
