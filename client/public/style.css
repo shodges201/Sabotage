@@ -152,13 +152,14 @@ input{
     width:300px;
 }
 
-.form-submit {
+.form-button {
     background: none;
     border:none;
     color:rgb(47, 255, 99);
     margin-left:-9px;
+    font-size: 18px;
 }
 
-.form-submit:hover {
+.form-button:hover {
     color:white;
 }
