@@ -1,12 +1,36 @@
 .leaderboard {
     width: 30%;
-    position: absolute;
-    left:600px;
-    top:200px;
+    float:right;
+    margin-top:7%;
+    margin-right:29%;
     border-top:none;
     border-radius: 10px;
+    color:white;
+    width:600px;
+    font-size:24px;
 }
 
 .table-score {
     color: red;
+}
+
+#time-left {
+    background:blue;
+}
+
+.instructions {
+    color:lightgray;
+}
+
+.table-entry {
+    height:80px;
+    line-height:2.1em;
+}
+
+#leaderboard-header {
+    color:white;
+}
+
+a {
+    text-shadow: 2px 2px 0px rgba(175, 175, 175, 0.233);
 }

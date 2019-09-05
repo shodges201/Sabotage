@@ -1,13 +1,24 @@
 import React from "react";
 
-function TableEntry(props){
-    return(
-        <tr className="table-entry">
-            <th scope="row">{props.position}</th>
-            <td className="table-user">{props.username}</td>
-            <td className="table-score">{props.score}</td>
-        </tr>
-    )
+class TableEntry extends React.Component {
+    constructor(props){
+        super(props)
+        this._onClick = this._onClick.bind(this)
+    }
+
+    _onClick(){
+        console.log(`you sabotaged ${this.props.username}`)
+    }
+
+    render(){
+        return(
+            <tr className="table-entry">
+                <th scope="row">{this.props.position}</th>
+                <td className="table-user">{this.props.username}</td>
+                <td className="table-score">{this.props.score}</td>
+                <td className="table-del" onClick={this._onClick}>X</td>
+            </tr>
+    )}
 }
 
 export default TableEntry;
