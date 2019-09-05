@@ -4,7 +4,7 @@ import Table from "../../components/Table/Table";
 import TableEntry from "../../components/TableEntry/TableEntry";
 import './Leaderboard.css';
 import Pusher from 'pusher-js';
-const API_URL = 'http://localhost:9000/api/';
+const API_URL = '/api/';
 // import users from "../../fakeUsers.json"
 const compare = (a, b) =>  b.score - a.score;
 const commas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -118,7 +118,6 @@ class Leaderboard extends React.Component {
           <h1 id="leaderboard-header">leaderboard</h1>
           <span className="memo-w">check in on your friends...</span>
             
-
           <div>
             <Table>
               {this.state.users.map(user => {
@@ -134,12 +133,10 @@ class Leaderboard extends React.Component {
               })}
             </Table>
           </div>
-          
 
           <div id="time-left">
           </div>
 
-          
         </div>  
       </div>
   )}

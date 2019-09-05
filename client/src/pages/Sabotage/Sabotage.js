@@ -1,7 +1,7 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import './Sabotage.css';
-const API_URL = 'http://localhost:9000/api/';
+const API_URL = '/api/';
 
 class Sabotage extends React.Component {
 

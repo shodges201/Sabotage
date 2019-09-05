@@ -137,3 +137,28 @@ input{
     color: white;
 }
 
+
+
+#home-form {
+    float: left;
+    margin-left: 30%;
+    margin-top: 10%;
+}
+
+.form-input {
+    border:white solid 1px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width:300px;
+}
+
+.form-submit {
+    background: none;
+    border:none;
+    color:rgb(47, 255, 99);
+    margin-left:-9px;
+}
+
+.form-submit:hover {
+    color:white;
+}
