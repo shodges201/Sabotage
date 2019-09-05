@@ -9,7 +9,8 @@ class App extends React.Component{
   state = {
     timePass: 0,
     deduct:0,
-    currentUser: "5d705563194719d72b9fc334"
+    // currentUser: "5d705563194719d72b9fc334" //zubin
+    currentUser: "5d705688194719d72b9fc335" //izzy
   }
 
   componentDidMount(){
@@ -23,9 +24,11 @@ class App extends React.Component{
   constantTick = () => {
     this.setState(state => ({
       timePass: state.timePass + 1,
-      deduct: state.timePass % 10 ? state.deduct : state.deduct-1,
+      deduct: state.timePass % 10 ? 0 : -10,
       rotate: state.rotate + .5
     }));
+
+    // uncomment this line to turn on live leaderboard
     // this.updateScores()
   }
 
