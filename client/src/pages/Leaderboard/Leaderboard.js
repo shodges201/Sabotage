@@ -6,6 +6,7 @@ import './Leaderboard.css';
 import Pusher from 'pusher-js';
 const API_URL = 'http://localhost:9000/api/';
 // import users from "../../fakeUsers.json"
+const compare = (a, b) =>  b.score - a.score;
 
 class Leaderboard extends React.Component {
   constructor(props) {
@@ -65,13 +66,7 @@ class Leaderboard extends React.Component {
   //   }
   // }
 
-
-
   updateUser(e) {
-    function compare(a, b) {
-      return b.score - a.score;
-    }
-
     let newList = this.state.users.map((user) => {
       if(user._id === e.id){
         user.score = e.score;
@@ -114,16 +109,17 @@ class Leaderboard extends React.Component {
 
   addUser(newUser) {
     this.setState(prevState => ({
-      users: prevState.users.concat(newUser),
+      users: prevState.users.concat(newUser).sort(compare),
       user: ''
     }));
   }
 
   removeUser(id) {
     this.setState(prevState => ({
-      users: prevState.users.filter(el => el.id !== id)
+      users: prevState.users.filter(el => el.id !== id).sort(compare)
     }));
   }
+
 
   
   render(){
@@ -142,7 +138,7 @@ class Leaderboard extends React.Component {
               {this.state.users.map(user => {
                 return(
                   <TableEntry
-                    key={user.id}
+                    key={user._id}
                     position={this.state.users.indexOf(user)+1}
                     username={user.username}
                     score={user.score}

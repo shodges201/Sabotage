@@ -7,7 +7,7 @@ class TableEntry extends React.Component {
     }
 
     _onClick(){
-        this.props.onUserClick(this.props.key)
+        console.log(`you sabotaged ${this.props.username}`)
     }
 
     render(){
@@ -16,7 +16,7 @@ class TableEntry extends React.Component {
                 <th scope="row">{this.props.position}</th>
                 <td className="table-user">{this.props.username}</td>
                 <td className="table-score">{this.props.score}</td>
-                <td className="table-del" onClick={this._onClick}>x</td>
+                <td className="table-del" onClick={this._onClick}>X</td>
             </tr>
     )}
 }

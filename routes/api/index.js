@@ -5,6 +5,8 @@ const words = require("./words");
 // Book routes
 // router.use("/words", words);
 
+
+
 router.get("/users", (req,res) => {
     User.find().sort({score:-1}).then((dbUsers, err) => {
         if(err) {

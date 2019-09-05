@@ -56,9 +56,11 @@ db.once('open', () => {
   const userCollection = db.collection('users');
   const changeStream = userCollection.watch();
 
-  userCollection.find({userName: 'shodges'}, (err, data) => {
-    console.log(data);
-  });
+  // userCollection.find({}, (err,data) => {
+  //   console.log(data)
+  // })
+
+  // changeStream.on("load")
 
   changeStream.on('change', (change) => {
     console.log(change);
@@ -83,8 +85,8 @@ db.once('open', () => {
     }
     else if (change.operationType === 'update') {
       const user = change;
-      console.log('user: ');
-      console.log(user);
+      // console.log('user: ');
+      // console.log(user);
       console.log('updated');
       pusher.trigger(
         channel,
