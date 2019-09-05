@@ -14,7 +14,7 @@ class Sabotage extends React.Component {
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
-    timeLeft:29,
+    timeLeft:30,
     timerColor:"linear-gradient(0deg, red 0%, white 0%)",
     rotate: 0,
     wins: 0
@@ -43,7 +43,8 @@ class Sabotage extends React.Component {
   }
 
   componentDidMount(){
-    this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
+    // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
+    this.wordInterval = setInterval(() => this.eachWordTick(), 100);
     this.userInput.focus();
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
@@ -60,25 +61,28 @@ class Sabotage extends React.Component {
 
   eachWordTick = () => {
     this.userInput.focus();
-    if(this.state.timeLeft === 0){
-      let copy = this.state.alphabet.slice();
-      copy = this.shuffle(copy);
-      let rand = this.randomStringGenerate();
-      this.setState(state => ({ 
-        timerColor: `linear-gradient(0deg, red 0%, white 0%)`,
-        timeLeft: 30,
-        mixed: copy, 
-        word: rand
-      }));
-    }
-    else{
+    if (this.state.timeLeft > 0) {
       console.log(`${100 * (((30 - this.state.timeLeft) + 1) / 30)}`);
       console.log(((30 - this.state.timeLeft) + 1));
-      this.setState(state => ({ 
+      this.setState(state => ({
         timerColor: `linear-gradient(0deg, red ${100 * (((30 - state.timeLeft) + 1) / 30)}%, white 0%)`,
-        timeLeft: this.state.timeLeft - 1
+        // timerColor: `linear-gradient(0deg, red ${(100*(30-state.timeLeft)/30)}%, white 0%)`,
+        timeLeft: this.state.timeLeft - .1
+      }));
+    } else {
+      console.log("time out")
+      clearInterval(this.wordInterval);
+      // let copy = this.state.alphabet.slice();
+      // copy = this.shuffle(copy);
+      // let rand = this.randomStringGenerate();
+      this.setState(state => ({ 
+        // timerColor: `red`,
+        timeLeft:0
+        // mixed: copy, 
+        // word: rand
       }));
     }
+    
     
   }
 
@@ -119,12 +123,23 @@ class Sabotage extends React.Component {
   };
 
   guessedCorrect = () => {
+    clearInterval(this.wordInterval);
     //5th win while playing in a row
+    this.setState({
+      timerColor:"rgb(47,255,99)", 
+      wins: this.state.wins + 1
+    })
     if(this.state.wins % 5 === 4){
-      clearInterval(this.wordInterval);
       //Do something
     }
-    this.setState({timerColor:"rgb(47,255,99)", wins: this.state.wins + 1})
+    else{
+      // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
+      this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+      this.setState({
+        timerLeft: 30,
+        
+      })
+    }
   }
   
   render(){
@@ -157,10 +172,10 @@ class Sabotage extends React.Component {
           
 
           {/* <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}> */}
-          <div id="hangman"></div>
-            answer: <span id="hangman-word" >{this.state.word.toUpperCase()}</span>{" "}
-            Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}
-            Time Left to Guess: <span id="time" > {this.state.timeLeft}</span>{" "}
+          <div id="hangman">
+            answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br/>
+            Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}<br/>
+            Time Left to Guess: <span id="time" > {this.state.timeLeft.toFixed(1)}</span>{" "}<br/>
             Wins: <span id="time" > {this.state.wins}</span>{" "}
           </div>
 
@@ -169,7 +184,9 @@ class Sabotage extends React.Component {
           <div className="hello">
             <p id="encrypt-live">{this.state.encrypt}</p>
           </div>
-      </div>  
+        </div>
+      </div>
+
     )}
 
 }
