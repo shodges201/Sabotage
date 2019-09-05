@@ -134,10 +134,16 @@ class Sabotage extends React.Component {
     }
     else{
       // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
-      this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+      this.wordInterval = setInterval(() => this.eachWordTick(), 100); 
+      let copy = this.state.alphabet.slice();
+      copy = this.shuffle(copy);
+      let rand = this.randomStringGenerate();
       this.setState({
-        timerLeft: 30,
-        
+        timerColor: `"linear-gradient(0deg, red 0%, white 0%)"`,
+        timeLeft: 30,
+        mixed: copy, 
+        word: rand,
+        encrypt:""
       })
     }
   }
