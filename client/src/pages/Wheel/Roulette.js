@@ -1,5 +1,5 @@
 import React from "react";
-import NavTabs from "../../NavTabs";
+import NavTabs from "../../components/NavTabs/NavTabs";
 import PropTypes from 'prop-types';
 
 import './Roulette.css';
