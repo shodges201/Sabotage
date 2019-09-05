@@ -157,6 +157,18 @@ class Roulette extends React.Component {
       const text = options[index]
       ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
       ctx.restore();
+      console.log(text)
+      if (text === "Lose Points") {
+        console.log("111");
+      } else if (text === "Gain Points") {
+        console.log("222");
+      } else if (text === "Steal Points") {
+        console.log("333");
+      } else if (text === "Give Points") {
+        console.log("444");
+      } else if (text === "Wild") {
+        console.log("555")
+      }
       // this.props.onComplete(text);
     }
   
