@@ -9,8 +9,8 @@ const deduct = -10;
 class App extends React.Component{
   state = {
     timePass: 0,
-    currentUser: "5d7014a083aacbc2d669d4a8" //zubin
-    // currentUser: "5d705688194719d72b9fc335" //izzy
+    // currentUser: "5d7014a083aacbc2d669d4a8" //zubin
+    currentUser: "5d705688194719d72b9fc335" //izzy
   }
 
   componentDidMount(){
@@ -22,7 +22,7 @@ class App extends React.Component{
   }
 
   constantTick = () => {
-    console.log(this.state.timePass % 10);
+    // console.log(this.state.timePass % 10);
     if(this.state.timePass % 10 === 0){
       //uncomment line to turn on live leaderboard
       //this.updateScores(deduct);
@@ -46,8 +46,6 @@ class App extends React.Component{
       body: JSON.stringify(data)
     })
   }
-
-  
 
   render(){
     return (
