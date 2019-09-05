@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
-const API_URL = 'http://localhost:9000/api/';
+const API_URL = '/api/';
 
 class App extends React.Component{
   state = {
     timePass: 0,
     deduct:0,
-    // currentUser: "5d705563194719d72b9fc334" //zubin
-    currentUser: "5d705688194719d72b9fc335" //izzy
+    currentUser: "5d705563194719d72b9fc334" //zubin
+    // currentUser: "5d705688194719d72b9fc335" //izzy
   }
 
   componentDidMount(){
@@ -29,7 +29,7 @@ class App extends React.Component{
     }));
 
     // uncomment this line to turn on live leaderboard
-    // this.updateScores()
+    this.updateScores()
   }
 
   updateScores() {
