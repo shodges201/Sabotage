@@ -32,18 +32,34 @@ router.post('/new', (req, res) => {
         if (err) {
             console.log('CREATE Error: ' + err);
             res.status(500).send('Error');
-        } else {
-            res.status(200).json(dbUser);
+        }
+        else{
+          res.redirect("/login");
         }
     });
-    res.redirect("/login")
+    
 });
 
 router.post('/login', passport.authenticate("local"), (req,res) => {
   console.log('tried to login');
   console.log(req.user);
-  res.end();
+  res.json(req.user);
 });
+
+router.put('/score', (req, res) => {
+    //console.log(req);
+    console.log(req.user);
+    db.User.updateOne({_id : req.user._id}, {$inc: {score: req.body.deduct}}, (err, dbUser) => {
+      if (err) { 
+        console.log('CHANGE USER Error: ' + err);
+        res.status(500).send('Error');
+      } else if (dbUser) {
+          res.status(200).json(dbUser);
+    } else {
+        res.status(404).send('Not found');
+      }
+    });
+  });
 
 // test DELETE USER
 router.route('/:id')
@@ -61,18 +77,6 @@ router.route('/:id')
           }
         });
     })
-    .put((req, res) => {
-        db.User.updateOne({_id : req.params.id}, {$inc: {score: req.body.deduct}}, (err, dbUser) => {
-          if (err) { 
-            console.log('CHANGE USER Error: ' + err);
-            res.status(500).send('Error');
-          } else if (dbUser) {
-              res.status(200).json(dbUser);
-         } else {
-            res.status(404).send('Not found');
-          }
-        });
-    });
 
 
 module.exports = router;

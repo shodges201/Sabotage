@@ -10,8 +10,11 @@ class Home extends React.Component {
     title: "ZOBEJXKQ®",
     username: "",
     password: "",
-    loggedIn: false,
     formType: "sign up"
+  }
+
+  componentDidMount(){
+    
   }
   
   decrypt_title = event => {
@@ -55,7 +58,13 @@ class Home extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newUser)
-    }).then((data) => console.log(data));
+    }).then((data) => {
+        console.log(data)
+        this.props.userState(true,data);
+      })
+      .catch(err => {
+        throw err;
+    });
   }
   
   oldUser = (event) => {
@@ -77,7 +86,13 @@ class Home extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(oldUser)
-    }).then((data) => console.log(data));
+    }).then(data => data.json()).then((data) => {
+        console.log("data")
+        console.log(data)
+        this.props.userState(true,data);
+    }).catch(err => {
+        throw err;
+    })
   }
 
   formRender = () => {
@@ -105,6 +120,7 @@ class Home extends React.Component {
       }
     }
     else{
+      return;
       //add instructions component
     }
   }
@@ -113,14 +129,14 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <NavTabs location="/" timePass={this.props.timePass}/>
+        <NavTabs location="/" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender}/>
         <div className="content">
           <h1> WELCOME TO <span id="true-north" onMouseEnter={this.decrypt_title} onMouseLeave={this.encrypt_title}>{this.state.title}</span></h1>
           {/* <h1> WELCOME TO <Scrambler>{this.state.title}</Scrambler></h1> */}
           {this.formRender()}
         </div>
       </div>
-  )}
+  )};
 }
 
 export default Home;
