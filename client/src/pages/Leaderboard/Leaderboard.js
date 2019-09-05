@@ -122,13 +122,12 @@ class Leaderboard extends React.Component {
     }));
   }
 
-
   
   render(){
     // console.log(this.state.timerColor)
     return (
       <div>
-        <NavTabs location="/leaderboard" />
+        <NavTabs location="/leaderboard" timePass={this.props.timePass}/>
         <div className="content">
 
           <h1 id="leaderboard-header">leaderboard</h1>
