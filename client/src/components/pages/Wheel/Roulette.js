@@ -29,7 +29,7 @@ class Roulette extends React.Component {
     };
   
     static defaultProps = {
-      options:  ['item1', 'item2', 'item3', 'item4', 'item5'],
+      options:  ['Lose Points', 'Gain Points', 'Steal Points', 'Give Points', 'Wild'],
       baseSize: 275,
       spinAngleStart: Math.random() * 10 + 10,
       spinTimeTotal: Math.random() * 3 + 4 * 1000,
@@ -97,7 +97,7 @@ class Roulette extends React.Component {
           ctx.fill();
   
           ctx.save();
-          ctx.fillStyle = 'white';
+          ctx.fillStyle = 'black';
           ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
                         baseSize + Math.sin(angle + arc / 2) * textRadius);
           ctx.rotate(angle + arc / 2 + Math.PI / 2);
@@ -155,7 +155,7 @@ class Roulette extends React.Component {
       const text = options[index]
       ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
       ctx.restore();
-      this.props.onComplete(text);
+      // this.props.onComplete(text);
     }
   
     easeOut(t, b, c, d) {

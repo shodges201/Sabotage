@@ -4,6 +4,18 @@ import Home from "./components/pages/Home";
 import Hangman from "./components/pages/Hangman/Hangman";
 import Roulette from "./components/pages/Wheel/Roulette";
 
+const handleOnComplete = (value) => {
+  console.log(value);
+};
+
+const options = [
+  "war",
+  "pain",
+  "words",
+  "love",
+  "life",
+];
+
 function App() {
   console.log("zubin")
   console.log(window.location.pathname)
@@ -12,7 +24,7 @@ function App() {
       <div className="wrapper">
         <Route exact path="/" component={Home} />
         <Route exact path="/hangman" component={Hangman} />
-        <Route exact path="/roulette" component={Roulette} />
+        <Route options={options} baseSize={300} onComplete={handleOnComplete} exact path="/roulette" component={Roulette} />
       </div>
     </Router>
   );
