@@ -56,7 +56,7 @@ class App extends React.Component{
             <Home timePass={this.state.timePass} />
           )} /> 
           <Route exact path="/sabotage" render={() => (
-            <Sabotage timePass={this.state.timePass} />
+            <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser}/>
           )} />
           <Route exact path="/leaderboard" render={() => (
             <Leaderboard timePass={this.state.timePass} />

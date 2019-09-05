@@ -109,12 +109,16 @@ input{
 }
 
 
-.memo {
+.memo,.memo-w {
     position: absolute;
     top:100px;
     left: 100px;
     font-style: italic;
     color: black;
+}
+
+.memo-w {
+    color: white;
 }
 
 
