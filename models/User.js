@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcrypt-nodejs");
 
 // const userSchema = new Schema({
 //   userName: { type: String, required: true },
@@ -15,20 +15,29 @@ const Schema = mongoose.Schema;
   // User.prototype.validPassword = function(password) {
   //   return bcrypt.compareSync(password, this.password);
   // };
+
   // // Hooks are automatic methods that run during various phases of the User Model lifecycle
   // // In this case, before a User is created, we will automatically hash their password
-  // User.addHook("beforeCreate", function(user) {
-  //   console.log('before create');
-  //   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-  //   console.log(user.password);
-  // });
+//   User.addHook("beforeCreate", function(user) {
+//     console.log('before create');
+//     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+//     console.log(user.password);
+//   });
 
 const userSchema = new Schema({
     username: {
-        type: String
+        type: String,
+        required: true
     },
+
+    password: {
+        type: String,
+        required: true
+    },
+
     score: {
-        type: Number
+        type: Number,
+        default: 0,
     }
 })
 
