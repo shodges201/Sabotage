@@ -4,12 +4,11 @@ import Home from "./pages/Home/Home";
 import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 const API_URL = '/api/';
-
+const deduct = -10;
 class App extends React.Component{
   state = {
     timePass: 0,
-    deduct:0,
-    currentUser: "5d705563194719d72b9fc334" //zubin
+    currentUser: "5d7014a083aacbc2d669d4a8" //zubin
     // currentUser: "5d705688194719d72b9fc335" //izzy
   }
 
@@ -22,19 +21,21 @@ class App extends React.Component{
   }
 
   constantTick = () => {
+    console.log(this.state.timePass % 10);
+    if(this.state.timePass % 10 === 0){
+      //uncomment line to turn on live leaderboard
+      //this.updateScores(deduct);
+    }
     this.setState(state => ({
       timePass: state.timePass + 1,
-      deduct: state.timePass % 10 ? 0 : -10,
       rotate: state.rotate + .5
     }));
-
-    // uncomment this line to turn on live leaderboard
-    this.updateScores()
   }
 
-  updateScores() {
+  updateScores(amount) {
+    console.log('hitting api');
     const data = {
-      deduct:this.state.deduct
+      deduct: amount
     }
     fetch(API_URL+this.state.currentUser,{
       method:'put',
