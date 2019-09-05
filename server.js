@@ -6,7 +6,7 @@ const Pusher = require('pusher');
 const routes = require("./routes");
 const app = express();
 
-//const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
 
 // Pusher module used to set up live mongoDB listen
 const pusher = new Pusher({
