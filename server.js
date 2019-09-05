@@ -6,6 +6,7 @@ const Pusher = require('pusher');
 const routes = require("./routes");
 const app = express();
 const passport = require("passport");
+const session = require("express-session");
 
 // const PORT = process.env.PORT || 3001;
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -112,7 +112,7 @@ class Leaderboard extends React.Component {
     // console.log(this.state.timerColor)
     return (
       <div>
-        <NavTabs location="/leaderboard" timePass={this.props.timePass}/>
+        <NavTabs location="/leaderboard" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender}/>
         <div className="content">
 
           <h1 id="leaderboard-header">leaderboard</h1>
