@@ -40,7 +40,7 @@ class App extends React.Component{
   }
 
   updateScores(amount) {
-    console.log('hitting api');
+    //console.log('hitting api');
     const data = {
       deduct: amount
     }
@@ -63,7 +63,7 @@ class App extends React.Component{
     }
   }
 
-  userState = (setState,data) => {
+  userState = (setState,data, cb) => {
     if(setState){
       this.interval = setInterval(() => this.constantTick(), 1000);
     }
@@ -74,10 +74,10 @@ class App extends React.Component{
       loggedIn: setState,
       currentUser: data.username
     });
+    return cb;
   }
 
   render(){
-    console.log(this.state)
     return (
       <div>
       <Router>

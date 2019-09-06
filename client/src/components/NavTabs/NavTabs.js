@@ -20,7 +20,6 @@ class NavTabs extends React.Component {
   render() {
     return (
       <div>
-          {console.log(this.props)}
           {this.props.conditionalRender(
             (<ul className="nav nav-tabs">
             <li className="nav-item">
