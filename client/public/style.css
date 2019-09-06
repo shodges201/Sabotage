@@ -1,12 +1,8 @@
 body{
-<<<<<<< HEAD
-    background: lightgray;
-=======
     /* background: rgb(10, 146, 187); */
     background: rgb(0, 128, 128);
     /* background: rgb(144, 184, 186); */
     /* background: rgb(175, 51, 59); */
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
 }
 
 .content {
@@ -59,11 +55,7 @@ body{
     overflow-y: hidden;
     /* height: 80px; */
     white-space: nowrap;
-<<<<<<< HEAD
-    color:rgba(175, 175, 175, 0.7);
-=======
     color:rgba(41, 41, 41, 0.247);
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
     font-style:italic;
 }
 
@@ -73,25 +65,6 @@ body{
 
 a {
     text-decoration: none;
-<<<<<<< HEAD
-    /* color:rgb(47, 255, 99); */
-    color: black;
-}
-
-a:hover {
-    /* text-decoration: none;
-    color:rgb(35, 124, 57); */
-    -webkit-background-clip: text;
-	color: white;
-	-webkit-text-fill-color: transparent;
-  	background-image: -webkit-gradient(linear, left top, right top, from(#ea8711), to(#d96363));
-	background-image: -webkit-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79); 
-	background-image:    -moz-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79);
-	background-image:     -ms-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79); 
-    background-image:      -o-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79);
-    font-style: italic;
-    text-decoration: underline;
-=======
     color:rgb(47, 255, 99);
     
 }
@@ -100,10 +73,6 @@ a:hover {
     text-decoration: none;
     /* color:rgb(35, 124, 57); */
     color:white;
-<<<<<<< HEAD
->>>>>>> bba6bda8cce4dc53b5df117ba639e3446736a583
-=======
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
 }
 
 .current-page {
@@ -171,8 +140,6 @@ input{
     color: white;
 }
 
-<<<<<<< HEAD
-=======
 
 
 #home-form {
@@ -205,4 +172,3 @@ input{
 .switch-button {
     margin-left: 110px;
 }
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
