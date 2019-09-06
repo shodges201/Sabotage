@@ -7,7 +7,7 @@ import Pusher from 'pusher-js';
 const API_URL = '/api/';
 // import users from "../../fakeUsers.json"
 const compare = (a, b) =>  b.score - a.score;
-const commas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 
 
 class Leaderboard extends React.Component {
@@ -126,7 +126,7 @@ class Leaderboard extends React.Component {
                     key={user._id}
                     position={this.state.users.indexOf(user)+1}
                     username={user.username}
-                    score={commas(user.score)}
+                    score={user.score}
                     onUserClick={this.deleteUser}
                   />
                 )

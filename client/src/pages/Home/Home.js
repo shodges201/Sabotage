@@ -98,18 +98,20 @@ class Home extends React.Component {
   formRender = () => {
     if(!this.state.loggedIn){
       if(this.state.formType === "sign up"){
-        return (<Form 
-              title={this.state.formType}
-              notTitle={"login"}
-              text={"already a member? "} 
-              submitForm={this.newUser}
-              handleInputChange={this.handleInputChange}
-              changeFormType={this.changeFormType}
-              
-            ></Form>)
+        return (
+          <Form 
+            title={this.state.formType}
+            notTitle={"login"}
+            text={"already a member? "} 
+            submitForm={this.newUser}
+            handleInputChange={this.handleInputChange}
+            changeFormType={this.changeFormType}
+            
+          ></Form>)
       }
       else{
-        return (<Form 
+        return (
+          <Form 
               title={this.state.formType} 
               notTitle={"sign up"} 
               text={"not a member? "} 
@@ -122,6 +124,7 @@ class Home extends React.Component {
     else{
       return;
       //add instructions component
+      
     }
   }
   
