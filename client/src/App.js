@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
@@ -12,7 +12,8 @@ class App extends React.Component{
     timePass: 0,
     // currentUser: "5d7014a083aacbc2d669d4a8" //zubin
     currentUser: "", //izzy,
-    loggedIn: false
+    loggedIn: false,
+    redirect: false
   }
 
   constructor(props) {
@@ -76,6 +77,22 @@ class App extends React.Component{
     });
   }
 
+  setRedirect = () => {
+    this.setState({
+      username:"",
+      loggedIn: false,
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+        console.log(this.state.username)
+        console.log(this.state.loggedIn)
+      return <Redirect to='/' />
+    }
+  }
+
+
   render(){
     console.log(this.state)
     return (
@@ -97,12 +114,18 @@ class App extends React.Component{
               <Route exact path="/leaderboard" render={() => (
                 <Leaderboard timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
               )} />
+        {this.renderRedirect()}
+        <button onClick={this.setRedirect}>Logout</button>
             </div>))}
         </div>
       </Router>
       </div>
     );
   }
+
+
+
+
 }
 
 export default App;

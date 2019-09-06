@@ -46,6 +46,11 @@ router.post('/login', passport.authenticate("local"), (req,res) => {
   res.json(req.user);
 });
 
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+
 router.put('/score', (req, res) => {
     //console.log(req);
     console.log(req.user);

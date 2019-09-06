@@ -48,6 +48,7 @@ class NavTabs extends React.Component {
               </li>
             </ul>
           ))}
+        
         <span id="time-passed">{this.formatSeconds(this.props.timePass)}</span>
       </div>
   )};
