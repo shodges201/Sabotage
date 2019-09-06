@@ -172,3 +172,25 @@ input{
 .switch-button {
     margin-left: 110px;
 }
+
+
+.welcome-mat {
+    padding: 20px;
+    float: left;
+    margin-left: 30%;
+    margin-top: 10%;
+    font-size:24px;
+    
+    color:white;
+}
+
+.keywords {
+    color:rgb(47, 255, 99, 0.7);
+    /* font-weight: bold; */
+    font-style: italic;
+}
+
+.only-way {
+    font-size:30px;
+
+}

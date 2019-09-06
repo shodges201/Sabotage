@@ -115,7 +115,7 @@ class Leaderboard extends React.Component {
         <div className="content">
 
           <h1 id="leaderboard-header">leaderboard</h1>
-          <span className="memo-w">check in on your friends...</span>
+          <span className="memo-w">check in on the top scorers or just your friends...</span>
             
           <div>
             <Table>

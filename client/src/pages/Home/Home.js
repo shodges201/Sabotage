@@ -96,7 +96,7 @@ class Home extends React.Component {
   }
 
   formRender = () => {
-    if(!this.state.loggedIn){
+    if(!this.props.loggedIn){
       if(this.state.formType === "sign up"){
         return (
           <Form 
@@ -123,12 +123,16 @@ class Home extends React.Component {
     }
     else{
       return(
-        <div>
-          
+        //add instructions component
+        <div className="welcome-mat">
+          <p className="only-way">the only way to win is <i>not to play...</i></p>
+          <p>win points by playing <span className="keywords">sabotage</span></p>
+          <p><span className="keywords">spin the wheel</span> for a bonus</p>
+          <p>check the <span className="keywords">leaderboard</span> to see who else is playing</p>
+          <p><span className="keywords">add friends</span> and sabotage them!</p>
         </div>
       );
-      //add instructions component
-      
+
     }
   }
   
@@ -139,7 +143,7 @@ class Home extends React.Component {
         <NavTabs location="/" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender}/>
         <div className="content">
           <h1> WELCOME TO <span id="true-north" onMouseEnter={this.decrypt_title} onMouseLeave={this.encrypt_title}>{this.state.title}</span></h1>
-          {/* <h1> WELCOME TO <Scrambler>{this.state.title}</Scrambler></h1> */}
+          <span className="memo-w">don't waste your time...</span>
           {this.formRender()}
         </div>
       </div>
