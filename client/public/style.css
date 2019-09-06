@@ -1,5 +1,8 @@
 body{
-    background: lightgray;
+    /* background: rgb(10, 146, 187); */
+    background: rgb(0, 128, 128);
+    /* background: rgb(144, 184, 186); */
+    /* background: rgb(175, 51, 59); */
 }
 
 .content {
@@ -52,7 +55,7 @@ body{
     overflow-y: hidden;
     /* height: 80px; */
     white-space: nowrap;
-    color:rgba(175, 175, 175, 0.7);
+    color:rgba(41, 41, 41, 0.247);
     font-style:italic;
 }
 
@@ -162,4 +165,10 @@ input{
 
 .form-button:hover {
     color:white;
+}
+
+
+
+.switch-button {
+    margin-left: 110px;
 }
