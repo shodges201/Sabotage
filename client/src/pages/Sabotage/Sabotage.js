@@ -79,24 +79,10 @@ class Sabotage extends React.Component {
     }
   }
 
-  // updateScores(incr) {
-  //   const data = {
-  //     deduct: incr
-  //   }
-  //   fetch(API_URL + "score", {
-  //     method: 'put',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  // }
-
   degreesToRadians = (num) => {
     return num/Math.PI;
   }
   
-
   convertToEncypted = (str) => {
     let newStr = '';
     str = str.split('');
@@ -173,7 +159,12 @@ class Sabotage extends React.Component {
         <div className="content">
 
           <h1>sabotage</h1>
-          <span className="memo">type the given word before time runs out...</span>
+          <span className="memo">
+            try to type the given word before time runs out<br/>
+            unscramble the keyboard,
+            find the pattern<br/>
+            use <span className="keywords">ARROW KEYS</span> and <span className="keywords">BACKSPACE</span> to add letters where you need<br/>
+          </span>
           <input
             ref={(input) => { this.userInput = input; }} 
             id="userInput"
