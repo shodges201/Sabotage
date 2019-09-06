@@ -91,7 +91,7 @@ class Home extends React.Component {
         console.log(data)
         this.props.userState(true,data);
     }).catch(err => {
-        throw err;
+        console.log(err);
     })
   }
 

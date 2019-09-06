@@ -34,7 +34,7 @@ router.post('/new', (req, res) => {
             res.status(500).send('Error');
         }
         else{
-          res.redirect("/login");
+          res.redirect(307, "login");
         }
     });
     
