@@ -9,10 +9,10 @@ function Form(props){
               <label>username</label><br/>
               <input type="text" className="form-input" name="username" onChange={props.handleInputChange} required/><br/>
               <label>password</label><br/>
-              < input type = "password" className = "form-input" name = "password" onChange={props.handleInputChange} required/><br/>
+              <input type="password" className="form-input" name="password" onChange={props.handleInputChange} required/><br/>
               <button type="submit" className="form-button">{props.title}</button>
             </form>
-            <span className="switch-link">{props.text}<button onClick={props.changeFormType} className="form-button">{props.notTitle}</button></span>
+            <span className="switch-link">{props.text}<button onClick={props.changeFormType} className="form-button switch-button">{props.notTitle}</button></span>
         </div>
     );
 }

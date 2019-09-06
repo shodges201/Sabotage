@@ -10,8 +10,12 @@
     font-size:24px;
 }
 
-.table-score {
+.table-score-neg {
     color: red;
+}
+
+.table-score-pos {
+    color: rgb(47, 255, 99);
 }
 
 #time-left {

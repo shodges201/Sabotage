@@ -15,7 +15,7 @@ class Sabotage extends React.Component {
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
     timeLeft:45,
-    timerColor: "linear-gradient(0deg, red 0%, lightgray 0%)",
+    timerColor: "linear-gradient(0deg, red 0%, gray 0%)",
     rotate: 0,
     wins: 0
   }
@@ -65,7 +65,7 @@ class Sabotage extends React.Component {
       console.log(`${100 * (((45 - this.state.timeLeft) + 1) / 45)}`);
       console.log(((45 - this.state.timeLeft) + 1));
       this.setState(state => ({
-        timerColor: `linear-gradient(0deg, red ${100 * (((45 - state.timeLeft) + 1) / 45)}%, lightgray 0%)`,
+        timerColor: `linear-gradient(0deg, red ${100 * (((45 - state.timeLeft) + 1) / 45)}%, gray 0%)`,
         // timerColor: `linear-gradient(0deg, red ${(100*(45-state.timeLeft)/45)}%, lightgray 0%)`,
         timeLeft: this.state.timeLeft - .1
       }));
@@ -146,7 +146,7 @@ class Sabotage extends React.Component {
         copy = this.shuffle(copy);
         let rand = this.randomStringGenerate();
         this.setState({
-          timerColor: `"linear-gradient(0deg, red 0%, lightgray 0%)"`,
+          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
           timeLeft: 45,
           mixed: copy, 
           word: rand,

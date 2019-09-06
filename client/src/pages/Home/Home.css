@@ -2,3 +2,8 @@ a {
     text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
+.switch-button {
+    position: absolute;
+    right: 100px;
+    bottom: 100px;
+}
