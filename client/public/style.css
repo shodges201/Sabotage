@@ -1,5 +1,12 @@
 body{
+<<<<<<< HEAD
     background: lightgray;
+=======
+    /* background: rgb(10, 146, 187); */
+    background: rgb(0, 128, 128);
+    /* background: rgb(144, 184, 186); */
+    /* background: rgb(175, 51, 59); */
+>>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
 }
 
 .content {
@@ -52,7 +59,11 @@ body{
     overflow-y: hidden;
     /* height: 80px; */
     white-space: nowrap;
+<<<<<<< HEAD
     color:rgba(175, 175, 175, 0.7);
+=======
+    color:rgba(41, 41, 41, 0.247);
+>>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
     font-style:italic;
 }
 
@@ -89,7 +100,10 @@ a:hover {
     text-decoration: none;
     /* color:rgb(35, 124, 57); */
     color:white;
+<<<<<<< HEAD
 >>>>>>> bba6bda8cce4dc53b5df117ba639e3446736a583
+=======
+>>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
 }
 
 .current-page {
@@ -157,3 +171,38 @@ input{
     color: white;
 }
 
+<<<<<<< HEAD
+=======
+
+
+#home-form {
+    float: left;
+    margin-left: 30%;
+    margin-top: 10%;
+}
+
+.form-input {
+    border:white solid 1px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width:300px;
+}
+
+.form-button {
+    background: none;
+    border:none;
+    color:rgb(47, 255, 99);
+    margin-left:-9px;
+    font-size: 18px;
+}
+
+.form-button:hover {
+    color:white;
+}
+
+
+
+.switch-button {
+    margin-left: 110px;
+}
+>>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca

@@ -20,16 +20,21 @@ const options = [
 ];
 
 
-
 class App extends React.Component{
+
   state = {
     timePass: 0,
-    currentUser: "5d7014a083aacbc2d669d4a8" //zubin
-    // currentUser: "5d705688194719d72b9fc335" //izzy
+    // currentUser: "5d7014a083aacbc2d669d4a8" //zubin
+    currentUser: "", //izzy,
+    loggedIn: false
+  }
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.conditionalRender;
   }
 
   componentDidMount(){
-    this.interval = setInterval(() => this.constantTick(), 1000);
   }
 
   componentWillUnmount(){
@@ -37,10 +42,10 @@ class App extends React.Component{
   }
 
   constantTick = () => {
-    console.log(this.state.timePass % 10);
+    // console.log(this.state.timePass % 10);
     if(this.state.timePass % 10 === 0){
       //uncomment line to turn on live leaderboard
-      //this.updateScores(deduct);
+      this.updateScores(deduct);
     }
     this.setState(state => ({
       timePass: state.timePass + 1,
@@ -53,7 +58,7 @@ class App extends React.Component{
     const data = {
       deduct: amount
     }
-    fetch(API_URL+this.state.currentUser,{
+    fetch(API_URL+"score",{
       method:'put',
       headers: {
         'Content-Type': 'application/json'
@@ -62,25 +67,51 @@ class App extends React.Component{
     })
   }
 
-  
+  conditionalRender = (option1, option2) => {
+    //console.log(this.state.loggedIn);
+    if(!this.state.loggedIn){
+      return option1;
+    }
+    else{
+      return option2;
+    }
+  }
+
+  userState = (setState,data) => {
+    if(setState){
+      this.interval = setInterval(() => this.constantTick(), 1000);
+    }
+    else{
+      clearInterval(this.interval);
+    }
+    this.setState({
+      loggedIn: setState,
+      currentUser: data.username
+    });
+  }
 
   render(){
+    console.log(this.state)
     return (
       <div>
       <Router>
         <div className="wrapper">
-          <Route exact path="/" render={() => (
-            <Home timePass={this.state.timePass} />
-          )} /> 
-          <Route exact path="/sabotage" render={() => (
-            <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser}/>
-          )} />
-          <Route exact path="/leaderboard" render={() => (
-            <Leaderboard timePass={this.state.timePass} />
-          )} /> 
-          <Route options={options} baseSize={300} onComplete={handleOnComplete} exact path="/roulette" render={() => (
-            <Roulette timePass={this.state.timePass} />
-          )} />
+          {this.conditionalRender(
+            <Route exact path="/" render={() => (
+              <Home timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState}/>
+            )} />, 
+
+            (<div>
+              <Route exact path="/" render={() => (
+                <Home timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState}/>
+              )} /> 
+              <Route exact path="/sabotage" render={() => (
+                <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser} conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} userState={this.userState} updateScores={this.updateScores}/>
+              )} />
+              <Route exact path="/leaderboard" render={() => (
+                <Leaderboard timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
+              )} />
+            </div>))}
         </div>
       </Router>
       </div>

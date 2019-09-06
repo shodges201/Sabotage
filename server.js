@@ -5,6 +5,8 @@ const api = require('./routes/api');
 const Pusher = require('pusher');
 const routes = require("./routes");
 const app = express();
+const passport = require("passport");
+const session = require("express-session");
 
 // const PORT = process.env.PORT || 3001;
 
@@ -19,7 +21,6 @@ const pusher = new Pusher({
 const channel = 'users';
 
 
-
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -29,6 +30,10 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Serve up static assets (usually on heroku)
