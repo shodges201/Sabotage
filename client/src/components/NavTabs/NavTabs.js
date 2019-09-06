@@ -10,6 +10,7 @@ class NavTabs extends React.Component {
       return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
     }
   }
+  
 
   componentDidMount(){
     console.log(this.props.conditionalRender(1, 2));
@@ -40,6 +41,11 @@ class NavTabs extends React.Component {
                   sabotage
                 </Link>
               </li>
+              <li className="nav-item">
+              <Link to="/roulette" className={this.props.location === "/roulette" ? "nav-link active" : "nav-link"}>
+                roulette
+              </Link>
+            </li>
               <li className="nav-item">
                 <Link to="/leaderboard" className={this.props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
                   leaderboard
