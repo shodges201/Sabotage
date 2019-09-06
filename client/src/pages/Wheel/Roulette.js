@@ -189,7 +189,7 @@ class Roulette extends React.Component {
   
       return (
           <div>
-              <NavTabs location="/roulette" />
+              <NavTabs location="/roulette" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender} />
         <div className="roulette">
           <div className="roulette-container">
             <canvas ref="canvas" width={baseSize * 2} height={baseSize * 2} className="roulette-canvas"></canvas>

@@ -12,11 +12,11 @@ const handleOnComplete = (value) => {
 };
 
 const options = [
-  "war",
-  "pain",
-  "words",
-  "love",
-  "life",
+  "Lose Points",
+  "Gain Points",
+  "Steal Points",
+  "Give Ponts",
+  "Wild",
 ];
 
 
@@ -109,7 +109,7 @@ class App extends React.Component{
                 <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser} conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} userState={this.userState} updateScores={this.updateScores}/>
               )} />
               <Route exact path="/roulette" render={() => (
-                <Roulette options={options} baseSize={300} onComplete={handleOnComplete}/>
+                <Roulette options={options} baseSize={300} onComplete={handleOnComplete} timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
               )} />
               <Route exact path="/leaderboard" render={() => (
                 <Leaderboard timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
