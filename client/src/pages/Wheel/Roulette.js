@@ -1,8 +1,10 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import PropTypes from 'prop-types';
-
 import './Roulette.css';
+const API_URL = '/api/'
+
+
 
 class Roulette extends React.Component {
     constructor(props) {

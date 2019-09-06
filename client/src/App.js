@@ -108,6 +108,9 @@ class App extends React.Component{
               <Route exact path="/sabotage" render={() => (
                 <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser} conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} userState={this.userState} updateScores={this.updateScores}/>
               )} />
+              <Route exact path="/roulette" render={() => (
+                <Roulette options={options} baseSize={300} onComplete={handleOnComplete}/>
+              )} />
               <Route exact path="/leaderboard" render={() => (
                 <Leaderboard timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
               )} />
