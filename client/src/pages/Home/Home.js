@@ -52,7 +52,7 @@ class Home extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    fetch(API_URL + 'new', {
+    fetch('/api/new', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ class Home extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    fetch(API_URL + 'login', {
+    fetch('/api/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -122,7 +122,11 @@ class Home extends React.Component {
       }
     }
     else{
-      return;
+      return(
+        <div>
+          
+        </div>
+      );
       //add instructions component
       
     }

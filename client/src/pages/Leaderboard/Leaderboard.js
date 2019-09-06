@@ -5,7 +5,6 @@ import TableEntry from "../../components/TableEntry/TableEntry";
 import './Leaderboard.css';
 import Pusher from 'pusher-js';
 const API_URL = '/api/';
-// import users from "../../fakeUsers.json"
 const compare = (a, b) =>  b.score - a.score;
 
 

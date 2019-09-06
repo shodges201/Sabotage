@@ -14,7 +14,17 @@ const userSchema = new Schema({
     score: {
         type: Number,
         default: 0
-    }
+    },
+    lastLogin: {
+        type: Date,
+        default: Date.now
+    },
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    
+
 })
 
 

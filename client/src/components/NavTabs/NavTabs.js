@@ -12,7 +12,7 @@ class NavTabs extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props.conditionalRender(1, 2));
+    // console.log(this.props.conditionalRender(1, 2));
   }
 
   

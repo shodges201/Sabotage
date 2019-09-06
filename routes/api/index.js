@@ -7,17 +7,19 @@ const passport = require("../../config/passport");
 // Book routes
 // router.use("/words", words);
 
-
+router.get("/user", (req,res) => {
+  res.json(req.user || "")
+})
 
 router.get("/users", (req,res) => {
-    db.User.find().sort({score:-1}).then((dbUsers, err) => {
-        if(err) {
-            console.log('Error: ' + err);
-            res.status(500).send('Error');
-        } else {
-            res.status(200).json(dbUsers);
-        }
-    })
+  db.User.find().sort({score:-1}).then((dbUsers, err) => {
+      if(err) {
+          console.log('Error: ' + err);
+          res.status(500).send('Error');
+      } else {
+          res.status(200).json(dbUsers);
+      }
+  })
 })
 
 
@@ -34,16 +36,28 @@ router.post('/new', (req, res) => {
             res.status(500).send('Error');
         }
         else{
-          res.redirect("/login");
+          res.redirect(307,"/api/login");
         }
     });
-    
 });
 
 router.post('/login', passport.authenticate("local"), (req,res) => {
   console.log('tried to login');
   console.log(req.user);
-  res.json(req.user);
+
+  db.User.findOneAndUpdate({
+    _id: req.user._id
+  }, {
+    lastLogin: new Date
+  }, (err, dbUser) => {
+    if (err) {
+      console.log('CREATE Error: ' + err);
+      res.status(500).send('Error');
+    } else {
+      res.json(req.user);
+    }
+  });
+
 });
 
 router.put('/score', (req, res) => {
