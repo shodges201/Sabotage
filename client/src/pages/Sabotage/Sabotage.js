@@ -10,7 +10,7 @@ class Sabotage extends React.Component {
     input: "",
     //switched user input
     encrypt: "",
-    words: ["wood","grace","left","feet","group","quiet","climb","skip","pen","java","core","tram","eagle","nine","xray","zebra"],
+    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine","xray","zebra","rabbit","lair","curse","bend","swap","open","ankle","cold","four","top","reset","lapel","apple","bird","mist","drift","ultra","laser","grand","zipper","piano","crispy","auto","random"],
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
@@ -49,11 +49,11 @@ class Sabotage extends React.Component {
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
     let rand = this.randomStringGenerate();
-    let deg = Math.floor(Math.random() * 20);
+    // let deg = Math.floor(Math.random() * 20);
     this.setState({ 
       mixed: copy, 
-      word: rand,
-      rotate: deg
+      word: rand
+      // rotate: deg
     })
 
   }
@@ -168,7 +168,7 @@ class Sabotage extends React.Component {
             try to type the given word before time runs out<br/>
             unscramble the keyboard,
             find the pattern<br/>
-            <i>pro tip:</i> use <span className="keywords">ARROW KEYS</span> and <span className="keywords">BACKSPACE</span> to insert / remove letters where you need<br/>
+            <i>pro tip:</i> use <span className="keywords">ARROW KEYS</span> and <span className="keywords">BACKSPACE</span> to insert / remove letters where you want<br/>
             <br/>
             time left: <span className="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
             wins: <span className="time" > {this.state.wins}</span>{" "}
