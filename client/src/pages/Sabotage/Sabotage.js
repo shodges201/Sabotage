@@ -76,10 +76,28 @@ class Sabotage extends React.Component {
       console.log("time out")
       clearInterval(this.wordInterval);
       this.props.updateScores(-100);
-      this.setState(state => ({ 
-        timeLeft:0
-      }));
+      // this.setState(state => ({ 
+      //   timeLeft:0
+      // }));
+      let reset = setTimeout(() => {
+        this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+        let copy = this.state.alphabet.slice();
+        copy = this.shuffle(copy);
+        let rand = this.randomStringGenerate();
+        this.setState({
+          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+          timeLeft: 45,
+          mixed: copy,
+          word: rand,
+          input: "",
+          encrypt: ""
+        })
+      }, 3000)
     }
+
+
+
+
   }
 
   degreesToRadians = (num) => {

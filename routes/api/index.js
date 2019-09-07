@@ -3,7 +3,7 @@ const db = require("../../models");
 // const words = require("./words");
 const bcrypt = require("bcrypt-nodejs");
 const passport = require("../../config/passport");
-
+const moment = require("moment")
 // Book routes
 // router.use("/words", words);
 
@@ -48,7 +48,7 @@ router.post('/login', passport.authenticate("local"), (req,res) => {
   db.User.findOneAndUpdate({
     _id: req.user._id
   }, {
-    lastLogin: new Date
+    lastLogin: moment()
   }, (err, dbUser) => {
     if (err) {
       console.log('CREATE Error: ' + err);

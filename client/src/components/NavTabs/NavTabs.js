@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Moment from "react-moment"
+import 'moment-timezone';
 
 class NavTabs extends React.Component {
   
@@ -53,7 +55,9 @@ class NavTabs extends React.Component {
               </li>
             </ul>
           ))}
-        <span id="time-passed">{this.formatSeconds(this.props.timePass)}</span>
+        <span id="time-passed">
+          <Moment parse="mm:ss" format="HH:mm:ss" tz="America/New_York">{this.formatSeconds(this.props.timePass)}</Moment>
+        </span>
       </div>
   )};
 }
