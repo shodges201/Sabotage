@@ -98,8 +98,8 @@ class NavTabs extends React.Component {
         <span id="time-passed">
           {/* <Moment parse="ss" format="HH:mm:ss" tz="America/New_York" interval={1000}>{this.props.timePass}</Moment> */}
           <Moment parse="HH:mm:ss" format="HH:mm:ss" tz="America/New_York">{this.formatSeconds(this.props.timePass)}</Moment>
-          {/* {this.formatSeconds(this.props.timePass)} */}<br/><br/>
-          {this.props.timePass}
+          {/* {this.formatSeconds(this.props.timePass)} */}
+          {/* <br/><br/>{this.props.timePass} */}
         </span>
       </div>
   )};
