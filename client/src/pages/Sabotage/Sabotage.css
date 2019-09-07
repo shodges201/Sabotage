@@ -27,6 +27,7 @@
 #hangman-word{
     color:blue;
     text-shadow: 5px 5px 0px rgb(130, 134, 55);
+    margin-right:30px;
 }
 
 #hangman{

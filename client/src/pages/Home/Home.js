@@ -10,7 +10,7 @@ class Home extends React.Component {
     title: "ZOBEJXKQ®",
     username: "",
     password: "",
-    formType: "sign up",
+    formType: "login",
   }
 
   componentDidMount(){
