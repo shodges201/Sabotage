@@ -1,8 +1,7 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import Form from "../../components/Form/Form";
-import FormAlert from '../../components/FormAlert/FormAlert.js'
-// import Scrambler from "../../components/Scrambler/Scrambler";
+import FormAlert from '../../components/FormAlert/FormAlert.js'// import Scrambler from "../../components/Scrambler/Scrambler";
 const API_URL = '/api/';
 
 class Home extends React.Component {
@@ -78,10 +77,14 @@ class Home extends React.Component {
               this.setState({error: true, message: "There was an error! Try again!"});
             }
             break;
+        
+        default:
+            this.setState({error: true, message: "There was an error! Try again!"});
+            break;
         }
       }
       else{
-        console.log("successs");
+        console.log("success");
         this.props.userState(true,data);
         console.log(this.state.success || this.state.error);
       }
@@ -130,7 +133,7 @@ class Home extends React.Component {
   }
 
   formRender = () => {
-    if(!this.state.loggedIn){
+    if(!this.props.loggedIn){
       if(this.state.formType === "sign up"){
         return (
           <>
@@ -160,7 +163,6 @@ class Home extends React.Component {
     }
     else{
       return;
-      //add instructions component
     }
   }
   

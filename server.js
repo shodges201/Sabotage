@@ -92,8 +92,6 @@ db.once('open', () => {
     }
     else if (change.operationType === 'update') {
       const user = change;
-      // console.log('user: ');
-      // console.log(user);
       console.log('updated');
       pusher.trigger(
         channel,
@@ -105,10 +103,3 @@ db.once('open', () => {
     }
   });
 });
-
-
-
-// // Start the API server
-// secondApp.listen(PORT, function() {
-//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-// });

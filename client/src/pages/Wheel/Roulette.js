@@ -1,5 +1,4 @@
 import React from "react";
-import NavTabs from "../../components/NavTabs/NavTabs";
 import PropTypes from 'prop-types';
 import './Roulette.css';
 
@@ -28,10 +27,13 @@ class Roulette extends React.Component {
       spinAngleStart: PropTypes.number,
       spinTimeTotal: PropTypes.number,
       onComplete: PropTypes.func,
+      values: PropTypes.array,
+      switchMode: PropTypes.func
     };
   
     static defaultProps = {
-      options:  ['Lose Points', 'Gain Points', 'Steal Points', 'Give Points', 'Wild'],
+      options:  ['Lose', 'Gain', 'Steal', 'Give', 'Re-Shuffle Keyboard'],
+      values: [Math.floor((Math.random() * 300) + 1), Math.floor((Math.random()*300)+1), Math.floor((Math.random()*300)+1), Math.floor((Math.random()*300)+1)],
       // baseSize: 275,
       baseSize: 350,
       spinAngleStart: Math.random() * 10 + 10,
@@ -65,7 +67,7 @@ class Roulette extends React.Component {
     }
   
     drawRouletteWheel() {
-      const { options, baseSize } = this.props;
+      const { options, baseSize, values } = this.props;
       let { startAngle, arc } = this.state;
   
   
@@ -105,7 +107,7 @@ class Roulette extends React.Component {
           ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
                         baseSize + Math.sin(angle + arc / 2) * textRadius);
           ctx.rotate(angle + arc / 2 + Math.PI / 2);
-          const text = options[i];
+          const text = i < 4 ? `${options[i]} ${values[i]} points` : options[i];
           ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
           ctx.restore();
         }
@@ -133,6 +135,7 @@ class Roulette extends React.Component {
         this.stopRotateWheel();
       } else {
         const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, spinTimeTotal);
+        console.log(spinAngle);
         this.setState({
           startAngle: this.state.startAngle + spinAngle * Math.PI / 180,
           spinTime: this.state.spinTime + 30,
@@ -143,10 +146,38 @@ class Roulette extends React.Component {
         })
       }
     }
+
+    hitAPIRoute(index){ 
+      const {values, switchMode} = this.props;
+      let value = 0;
+      if(index === 1){
+        value = values[index] * -1;
+      }
+      else if(index === 2){
+        value = values[index];
+      }
+      console.log(values);
+      console.log(index);
+      console.log(value);
+      const data = {
+        deduct: value
+      }
+      fetch("/api/score",{
+        method:'put',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(()=>{
+        setTimeout(() => {
+          switchMode(index < 4 ? false : true);
+        })
+      })
+    }
   
     stopRotateWheel() {
       let { startAngle, arc } = this.state;
-      const { options, baseSize } = this.props;
+      const { options, baseSize, values } = this.props;
   
       const canvas = this.refs.canvas;
       const ctx = canvas.getContext('2d');
@@ -156,22 +187,10 @@ class Roulette extends React.Component {
       const index = Math.floor((360 - degrees % 360) / arcd);
       ctx.save();
       ctx.font = 'bold 40px Helvetica, Arial';
-      const text = options[index]
+      const text = index < 4 ? `${options[index]} ${values[index]} points` : options[index];
       ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
       ctx.restore();
-      console.log(text)
-      if (text === "Lose Points") {
-        console.log("111");
-      } else if (text === "Gain Points") {
-        console.log("222");
-      } else if (text === "Steal Points") {
-        console.log("333");
-      } else if (text === "Give Points") {
-        console.log("444");
-      } else if (text === "Wild") {
-        console.log("555")
-      }
-      // this.props.onComplete(text);
+      this.hitAPIRoute(index);
     }
   
     easeOut(t, b, c, d) {
@@ -189,7 +208,6 @@ class Roulette extends React.Component {
   
       return (
           <div>
-              <NavTabs location="/roulette" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender} />
         <div className="roulette">
           <div className="roulette-container">
             <canvas ref="canvas" width={baseSize * 2} height={baseSize * 2} className="roulette-canvas"></canvas>
