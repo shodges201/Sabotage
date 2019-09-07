@@ -118,7 +118,12 @@ class Leaderboard extends React.Component {
         <div className="content">
 
           <h1 id="leaderboard-header">leaderboard</h1>
-          <span className="memo-w">check in on the top scorers or just your friends...</span>
+          <span className="memo-w">
+            check out user rankings in realtime<br/>
+            click to <span className="keywords">ADD</span> user to friend list<br/>
+            toggle view to show <span className="keywords">TOP SCORES</span> or <br/><span className="keywords">FRIENDS ONLY</span>.<br/> 
+            click <span className="keywords">RUIN</span> to deduct points from a <br/>friend for a small price
+          </span>
             
           <div>
             <Table>

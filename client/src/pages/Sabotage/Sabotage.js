@@ -10,7 +10,7 @@ class Sabotage extends React.Component {
     input: "",
     //switched user input
     encrypt: "",
-    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine","xray","zebra","rabbit","lair","curse","bend","swap","open","ankle","cold","four","top","reset","lapel","apple","bird","mist","drift","ultra","laser","grand","zipper","piano","crispy","auto","random"],
+    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine","xray","zebra","rabbit","lair","curse","bend","swap","open","ankle","cold","four","top","reset","lapel","apple","birdy","mist","drift","ultra","laser","grand","zipper","piano","crisp","auto","random","reach","class","lift","woke","forest","water","fire","exit","hope","sight","woman","bully","sleep","photo","smoke","paint","fuel",""],
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
@@ -92,7 +92,7 @@ class Sabotage extends React.Component {
           input: "",
           encrypt: ""
         })
-      }, 3000)
+      }, 1000)
     }
 
 
