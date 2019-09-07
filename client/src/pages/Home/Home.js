@@ -10,12 +10,14 @@ class Home extends React.Component {
     title: "ZOBEJXKQ®",
     username: "",
     password: "",
-    formType: "sign up"
+    formType: "sign up",
   }
 
   componentDidMount(){
+
     
   }
+
   
   decrypt_title = event => {
     event.preventDefault()
@@ -24,7 +26,7 @@ class Home extends React.Component {
   
   encrypt_title = event => {
     event.preventDefault();
-    this.setState({title:"ZOBEJXKQ®"});
+    this.setState({title: "ZOBEJXKQ®"});
   }
 
   handleInputChange = (event) => {
@@ -125,10 +127,11 @@ class Home extends React.Component {
       return(
         //add instructions component
         <div className="welcome-mat">
-          <p className="only-way">the only way to win is <i>not to play...</i></p>
+          <h3 className="only-way">the only way to win is <i>not to play...</i></h3>
+          <p>all <span className="keywords">screen time</span> is deducted from you score</p>
           <p>win points by playing <span className="keywords">sabotage</span></p>
-          <p><span className="keywords">spin the wheel</span> for a bonus</p>
-          <p>check the <span className="keywords">leaderboard</span> to see who else is playing</p>
+          <p><span className="keywords">spin the wheel</span> for a random bonus or penalty</p>
+          <p>check the <span className="keywords">leaderboard</span> to see live scores</p>
           <p><span className="keywords">add friends</span> and sabotage them!</p>
         </div>
       );
@@ -140,7 +143,10 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <NavTabs location="/" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender}/>
+        <NavTabs 
+          location="/" timePass={this.props.timePass} 
+          conditionalRender={this.props.conditionalRender} logout={this.props.logout}
+        />
         <div className="content">
           <h1> WELCOME TO <span id="true-north" onMouseEnter={this.decrypt_title} onMouseLeave={this.encrypt_title}>{this.state.title}</span></h1>
           <span className="memo-w">don't waste your time...</span>

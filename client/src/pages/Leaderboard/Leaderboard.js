@@ -111,7 +111,10 @@ class Leaderboard extends React.Component {
     // console.log(this.state.timerColor)
     return (
       <div>
-        <NavTabs location="/leaderboard" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender}/>
+        <NavTabs 
+          location="/leaderboard" timePass={this.props.timePass} 
+          conditionalRender={this.props.conditionalRender} logout={this.props.logout}
+        />
         <div className="content">
 
           <h1 id="leaderboard-header">leaderboard</h1>
@@ -135,7 +138,6 @@ class Leaderboard extends React.Component {
 
           <div id="time-left">
           </div>
-
         </div>  
       </div>
   )}

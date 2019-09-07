@@ -12,7 +12,8 @@ function Form(props){
               <input type="password" className="form-input" name="password" onChange={props.handleInputChange} required/><br/>
               <button type="submit" className="form-button">{props.title}</button>
             </form>
-            <span className="switch-link">{props.text}<button onClick={props.changeFormType} className="form-button switch-button">{props.notTitle}</button></span>
+            <br/>
+            <span className="switch-link">{props.text}<span className="arrows"> > > > </span><button onClick={props.changeFormType} className="form-button switch-button">{props.notTitle}</button></span>
         </div>
     );
 }

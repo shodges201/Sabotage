@@ -23,12 +23,12 @@ class NavTabs extends React.Component {
           {console.log(this.props)}
           {this.props.conditionalRender(
             (<ul className="nav nav-tabs">
-            <li className="nav-item">
-              <Link to="/" className={this.props.location === "/" ? "nav-link active" : "nav-link"}>
-                home
-              </Link>
-            </li>
-          </ul>),
+              <li className="nav-item">
+                <Link to="/" className={this.props.location === "/" ? "nav-link active" : "nav-link"}>
+                  home
+                </Link>
+              </li>
+            </ul>),
 
             (<ul className="nav nav-tabs">
               <li className="nav-item">
@@ -44,6 +44,11 @@ class NavTabs extends React.Component {
               <li className="nav-item">
                 <Link to="/leaderboard" className={this.props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
                   leaderboard
+                </Link>
+              </li>
+              <li className="logout-btn">
+                <Link to="/" onClick={this.props.logout} className="nav-link">
+                  logout
                 </Link>
               </li>
             </ul>

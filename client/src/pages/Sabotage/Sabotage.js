@@ -23,7 +23,7 @@ class Sabotage extends React.Component {
   shuffle = (a) => {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
+      j = Math.floor( Math.random() * (i + 1) );
       x = a[i];
       a[i] = a[j];
       a[j] = x;
@@ -49,10 +49,13 @@ class Sabotage extends React.Component {
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
     let rand = this.randomStringGenerate();
+    let deg = Math.floor(Math.random() * 20);
     this.setState({ 
       mixed: copy, 
-      word: rand 
+      word: rand,
+      rotate: deg
     })
+
   }
 
   componentWillUnmount() {
@@ -152,10 +155,12 @@ class Sabotage extends React.Component {
   }
   
   render(){
-    console.log(this.state.timerColor)
+    console.log(`rotate: ${this.state.rotate}`)
     return (
       <div>
-        <NavTabs location="/sabotage" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender} />
+        <NavTabs 
+          location="/sabotage" timePass={this.props.timePass} 
+          conditionalRender={this.props.conditionalRender} logout={this.props.logout}/>
         <div className="content">
 
           <h1>sabotage</h1>
@@ -163,7 +168,10 @@ class Sabotage extends React.Component {
             try to type the given word before time runs out<br/>
             unscramble the keyboard,
             find the pattern<br/>
-            use <span className="keywords">ARROW KEYS</span> and <span className="keywords">BACKSPACE</span> to add letters where you need<br/>
+            <i>pro tip:</i> use <span className="keywords">ARROW KEYS</span> and <span className="keywords">BACKSPACE</span> to insert / remove letters where you need<br/>
+            <br/>
+            time left: <span className="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
+            wins: <span className="time" > {this.state.wins}</span>{" "}
           </span>
           <input
             ref={(input) => { this.userInput = input; }} 
@@ -186,11 +194,9 @@ class Sabotage extends React.Component {
           
 
           {/* <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}> */}
-          <div id="hangman">
-            answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br/>
+          <div id="hangman" >
+            your word is <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br/>
             {/* Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}<br/> */}
-            time left: <span id="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
-            wins: <span id="time" > {this.state.wins}</span>{" "}
           </div>
 
           <p id="shadow-live">{this.state.encrypt}</p>
@@ -198,6 +204,8 @@ class Sabotage extends React.Component {
           <div className="hello">
             <p id="encrypt-live">{this.state.encrypt}</p>
           </div>
+
+          
         </div>
       </div>
 

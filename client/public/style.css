@@ -49,7 +49,7 @@ body{
 #shadow-live {
     font-size: 23rem;
     position: fixed;
-    z-index: 2;
+    z-index: -1;
     right: 30px;
     bottom: 30px;
     overflow-x: scroll;
@@ -68,13 +68,15 @@ body{
 a {
     text-decoration: none;
     color:rgb(47, 255, 99);
-    
+    font-size:20px;
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
 a:hover {
     text-decoration: none;
     /* color:rgb(35, 124, 57); */
     color:white;
+    text-shadow: none;
 }
 
 .current-page {
@@ -91,13 +93,14 @@ input{
 }
 
 #hangman {
-    position: absolute;
-    top:150px;
-    right:300px;
+    float:right;
+    font-size:20px;
+    z-index: 5;
 }
 
 #hangman-word {
-    color:blue;
+    color:rgb(130, 134, 55);
+    font-size:200px;
 }
 
 
@@ -136,7 +139,7 @@ input{
     background:none;
     border-bottom:none;
     color:white;
-    
+
 }
 
 #time-passed {
@@ -150,8 +153,10 @@ input{
 
 #home-form {
     float: left;
-    margin-left: 30%;
+    margin-left: 34%;
     margin-top: 10%;
+    color:white;
+    font-size:18px;
 }
 
 .form-input {
@@ -167,16 +172,18 @@ input{
     color:rgb(47, 255, 99);
     margin-left:-9px;
     font-size: 18px;
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
 .form-button:hover {
     color:white;
+    text-shadow: none;
 }
 
 
 
 .switch-button {
-    margin-left: 110px;
+    /* margin-left: 0px; */
 }
 
 
@@ -197,11 +204,41 @@ input{
     text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
+.red {
+    color:red
+}
+
 .only-way {
     font-size:30px;
+    margin-bottom:20px;
     /* color:white; */
 }
 
 h1 {
     color:white;
+}
+
+
+.logout-btn{
+    color:rgb(47, 255, 99);
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
+    font-size:20px;
+}
+
+.logout-btn:hover{
+    color:white;
+    text-shadow: none;
+}
+
+.arrows{
+    margin-left: 16px;
+    letter-spacing: 10px;
+}
+
+.switch-link{
+    font-size:16px;
+}
+
+h3 {
+    font-size:1.89em;
 }

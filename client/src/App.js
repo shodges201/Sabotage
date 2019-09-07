@@ -11,8 +11,7 @@ class App extends React.Component{
 
   state = {
     timePass: 0,
-    // currentUser: "5d7014a083aacbc2d669d4a8" //zubin
-    currentUser: "", //izzy,
+    currentUser: "", 
     loggedIn: false
   }
 
@@ -112,6 +111,21 @@ class App extends React.Component{
     });
   }
 
+  logout = () => {
+    this.setState({
+      loggedIn: false,
+      currentUser: "",
+      timePass: 0
+    });
+    clearInterval(this.interval)
+    fetch("/api/logout", {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
   render(){
     // console.log(this.state)
     return (
@@ -125,13 +139,26 @@ class App extends React.Component{
 
             (<div>
               <Route exact path="/" render={() => (
-                <Home timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState}/>
+                <Home 
+                  timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
+                  conditionalRender={this.conditionalRender} userState={this.userState}
+                  logout={this.logout}
+                />
               )} /> 
               <Route exact path="/sabotage" render={() => (
-                <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser} conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} userState={this.userState} updateScores={this.updateScores}/>
+                <Sabotage 
+                  timePass={this.state.timePass} currentUser={this.state.currentUser} 
+                  conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} 
+                  userState={this.userState} updateScores={this.updateScores}
+                  logout={this.logout}
+                />
               )} />
               <Route exact path="/leaderboard" render={() => (
-                <Leaderboard timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
+                <Leaderboard 
+                  timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
+                  conditionalRender={this.conditionalRender} userState={this.userState} 
+                  updateScores={this.updateScores} logout={this.logout}
+                />
               )} />
             </div>))}
         </div>
