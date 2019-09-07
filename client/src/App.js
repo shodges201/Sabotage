@@ -33,7 +33,7 @@ class App extends React.Component{
       console.log("data")
       console.log(data)
       let now = moment()
-      let login = moment(data.lastLogin)
+      let login = data.lastLogin
       let elapsed = now.diff(login,"seconds")
       console.log("now")
       console.log(now)
