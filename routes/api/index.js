@@ -22,8 +22,7 @@ router.get("/users", (req,res) => {
   })
 })
 
-
-// test NEW USER
+// NEW USER
 router.post('/new', (req, res) => {
   let password =  bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null);
     db.User.create({
@@ -93,7 +92,13 @@ router.put('/score', (req, res) => {
     });
   });
 
-// test DELETE USER
+router.put('/add', (req,res) => {
+  db.User.updateOne({_id:req.user_id},{})
+})
+
+
+
+// DELETE USER
 router.route('/:id')
     .delete((req, res) => {
         db.User.findById(req.params.id, (err, dbUser) => {

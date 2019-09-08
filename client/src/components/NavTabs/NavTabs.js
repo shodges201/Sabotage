@@ -65,11 +65,6 @@ class NavTabs extends React.Component {
                   sabotage
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link to="/roulette" className={this.props.location === "/roulette" ? "nav-link active" : "nav-link"}>
-                  roulette
-                </Link>
-              </li> */}
               <li className="nav-item">
                 <Link to="/leaderboard" className={this.props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
                   leaderboard
