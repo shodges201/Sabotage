@@ -48,7 +48,7 @@ router.post('/login', passport.authenticate("local"), (req,res) => {
   db.User.findOneAndUpdate({
     _id: req.user._id
   }, {
-    lastLogin: moment()
+    lastLogin: new Date
   }, (err, dbUser) => {
     if (err) {
       console.log('CREATE Error: ' + err);

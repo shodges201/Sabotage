@@ -32,9 +32,9 @@ class App extends React.Component{
       // console.log(data.username)
       console.log("data")
       console.log(data)
-      let now = moment()
-      let login = data.lastLogin
-      let elapsed = now.diff(login,"seconds")
+      let now = moment(new Date)
+      let login = new Date(data.lastLogin)
+      let elapsed = now.diff(login, "seconds")
       console.log("now")
       console.log(now)
       console.log("login")
