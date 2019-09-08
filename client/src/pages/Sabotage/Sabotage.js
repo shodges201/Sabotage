@@ -20,6 +20,7 @@ class Sabotage extends React.Component {
     timerColor: "linear-gradient(0deg, red 0%, gray 0%)",
     rotate: 0,
     wins: 0,
+    losses:0,
     mode: "guess",
     redirect: false
   }
@@ -78,6 +79,33 @@ class Sabotage extends React.Component {
       console.log("time out")
       clearInterval(this.wordInterval);
       this.props.updateScores(-100);
+      this.setState({losses:this.state.losses+1})
+      if (this.state.losses % 3 === 2) {
+        clearInterval(this.wordInterval);
+        setTimeout(() => {
+          this.setState({
+            timeLeft: 0,
+            mode: "roulette",
+            timerColor: "linear-gradient(0deg, red 0%, gray 0%)"  
+          });
+        }, 1000)
+      } else {
+        // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
+        setTimeout(() => {
+          this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+          let copy = this.state.alphabet.slice();
+          copy = this.shuffle(copy);
+          let rand = this.randomStringGenerate();
+          this.setState({
+            timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+            timeLeft: 45,
+            mixed: copy,
+            word: rand,
+            input: "",
+            encrypt: ""
+          })
+        }, 1000)
+      }
 
 
       // let reset = setTimeout(() => {
@@ -100,13 +128,13 @@ class Sabotage extends React.Component {
       //   timeLeft: 0
       // }));
 
-      setTimeout(() => {
-        this.setState({
-          timeLeft: 0,
-          mode: "roulette",
-          timerColor: "linear-gradient(0deg, red 0%, gray 0%)"
-        });
-      }, 1000)
+      // setTimeout(() => {
+      //   this.setState({
+      //     timeLeft: 0,
+      //     mode: "roulette",
+      //     timerColor: "linear-gradient(0deg, red 0%, gray 0%)"
+      //   });
+      // }, 1000)
     }
   }
 
@@ -153,7 +181,7 @@ class Sabotage extends React.Component {
     })
     console.log(this.state.wins);
     //change 0 to 4 for every 5 wins someone gets roulettes
-    if (this.state.wins % 5 === 0) {
+    if (this.state.wins % 5 === 3) {
       clearInterval(this.wordInterval);
       setTimeout(() => {
         this.setState({ mode: "roulette", wins: this.state.wins + 1 });
@@ -242,10 +270,10 @@ class Sabotage extends React.Component {
             <i>pro tip:</i> use <span className="keywords">ARROW KEYS</span> and <span className="keywords">BACKSPACE</span> to insert / remove letters where you want<br/>
             <br/>
             time left: <span className="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
-            wins: <span className="time" > {this.state.wins}</span>{" "}
+            wins: <span className="time" > {this.state.wins}</span>{`      `}  losses: <span className="time" > {this.state.losses}</span>{" "}
           </span>
           <input
-            ref={(input) => { this.userInput = input; }} 
+            ref={input => { this.userInput = input; }} 
             id="userInput"
             type="text"
             name="input"

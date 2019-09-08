@@ -39,8 +39,10 @@
     font-size:30px;
     color:rgb(47, 255, 99);
     text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
-    
+    margin-right:15px;
 }
+
+
 
 /* #outer{
     transform: rotate(120deg);
