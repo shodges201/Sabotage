@@ -13,6 +13,7 @@ class Roulette extends React.Component {
         startAngle: 0,
         spinTime: 0,
         arc: Math.PI / (props.options.length / 2),
+        redirect:false
       }
       this.spinTimer = null;
       this.handleOnClick = this.handleOnClick.bind(this);
@@ -32,12 +33,11 @@ class Roulette extends React.Component {
     };
   
     static defaultProps = {
-      options:  ['Lose', 'Gain', 'Steal', 'Give', 'Re-Shuffle Keyboard'],
-      values: [Math.floor((Math.random() * 300) + 1), Math.floor((Math.random()*300)+1), Math.floor((Math.random()*300)+1), Math.floor((Math.random()*300)+1)],
-      // baseSize: 275,
-      baseSize: 350,
+      options:  ['LOSE', 'WIN', 'LOSE', 'WIN', 'LOSE', 'WIN'],
+      values: [(Math.floor((Math.random()*15)+1)*100), (Math.floor((Math.random()*15)+1)*100), (Math.floor((Math.random()*15)+1)*100), (Math.floor((Math.random()*15)+1)*100), (Math.floor((Math.random()*15)+1)*100), (Math.floor((Math.random()*15)+1)*100)],
+      baseSize: 300,
       spinAngleStart: Math.random() * 10 + 10,
-      spinTimeTotal: Math.random() * 3 + 4 * 1000,
+      spinTimeTotal: Math.random() * 3 + 4 * 2000,
     };
   
     componentDidMount() {
@@ -65,11 +65,13 @@ class Roulette extends React.Component {
   
       return this.RGB2Color(red,green,blue);
     }
+
+    
   
     drawRouletteWheel() {
       const { options, baseSize, values } = this.props;
       let { startAngle, arc } = this.state;
-  
+      const colors = ['#0000FF', '#008080', '#FF0000', '#3CB371', '#FF8C00', '#8A2BE2']
   
       // const spinTimeout = null;
       // const spinTime = 0;
@@ -80,14 +82,15 @@ class Roulette extends React.Component {
       const canvas = this.refs.canvas;
       if (canvas.getContext) {
         const outsideRadius = baseSize - 10;
-        const textRadius = baseSize - 45;
-        const insideRadius = baseSize - 60;
+        const textRadius = baseSize - 60;
+        const insideRadius = baseSize - 85;
   
         ctx = canvas.getContext('2d');
         ctx.clearRect(0,0,600,600);
   
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgb(47, 255, 99)';
+        ctx.lineWidth = 10;
+        // ctx.lineHeight = 4;
   
         ctx.font = '20px Helvetica, Arial';
   
@@ -95,7 +98,8 @@ class Roulette extends React.Component {
           const angle = startAngle + i * arc;
           
   
-          ctx.fillStyle = this.getColor(i, options.length);
+          // ctx.fillStyle = this.getColor(i, options.length);
+          ctx.fillStyle = colors[i];  
   
           ctx.beginPath();
           ctx.arc(baseSize, baseSize, outsideRadius, angle, angle + arc, false);
@@ -103,17 +107,17 @@ class Roulette extends React.Component {
           ctx.fill();
   
           ctx.save();
-          ctx.fillStyle = 'black';
+          ctx.fillStyle = 'white';
           ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
                         baseSize + Math.sin(angle + arc / 2) * textRadius);
           ctx.rotate(angle + arc / 2 + Math.PI / 2);
-          const text = i < 4 ? `${options[i]} ${values[i]} points` : options[i];
+          const text = i < 6 ? `${options[i]} ${values[i]} PTS` : options[i];
           ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
           ctx.restore();
         }
   
         //Arrow
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'rgb(47, 255, 99)';
         ctx.beginPath();
         ctx.lineTo(baseSize + 10, baseSize - (outsideRadius + 20));
         ctx.lineTo(baseSize + 0, baseSize - (outsideRadius - 5));
@@ -170,8 +174,10 @@ class Roulette extends React.Component {
         body: JSON.stringify(data)
       }).then(()=>{
         setTimeout(() => {
-          switchMode(index < 4 ? false : true);
-        })
+          
+          this.props.goToLeaderboard()
+          // switchMode(index < 4 ? false : true);
+        }, 1500)
       })
     }
   
@@ -187,8 +193,8 @@ class Roulette extends React.Component {
       const index = Math.floor((360 - degrees % 360) / arcd);
       ctx.save();
       ctx.font = 'bold 40px Helvetica, Arial';
-      const text = index < 4 ? `${options[index]} ${values[index]} points` : options[index];
-      ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
+      const text = index < 6 ? `${options[index]} ${values[index]} PTS` : options[index];
+      ctx.fillText(text, baseSize - ctx.measureText(text).width/2, baseSize);
       ctx.restore();
       this.hitAPIRoute(index);
     }
@@ -207,16 +213,22 @@ class Roulette extends React.Component {
       const { baseSize } = this.props;
   
       return (
-          <div>
-        <div className="roulette">
-          <div className="roulette-container">
-            <canvas ref="canvas" width={baseSize * 2} height={baseSize * 2} className="roulette-canvas"></canvas>
+        <>
+          <div className="roulette">
+          <h1>roulette</h1> 
+          <span className="memo">
+            click <span className="keywords">SPIN</span> to receive a random <br/>point bonus or penalty
+          </span>
+            <div className="roulette-container">
+              <canvas ref="canvas" width={baseSize * 2} height={baseSize * 2} className="roulette-canvas"></canvas>
+            </div>
+            <div className="roulette-container">
+              <button onClick={this.handleOnClick} className="spin-btn" id="spin">spin</button>
+            </div>
           </div>
-          <div className="roulette-container">
-            <input type="button" value="spin" onClick={this.handleOnClick} className="button" id="spin" />
-          </div>
-        </div>
-        </div>
+
+          <div id="time-left" style={{background:"indigo"}}></div>
+        </>
       );
     }
   }

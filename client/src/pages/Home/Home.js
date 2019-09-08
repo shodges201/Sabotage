@@ -10,7 +10,7 @@ class Home extends React.Component {
     title: "ZOBEJXKQ®",
     username: "",
     password: "",
-    formType: "sign up",
+    formType: "login",
     error: false,
     success: false,
     message: ""
@@ -19,6 +19,7 @@ class Home extends React.Component {
   componentDidMount(){
     
   }
+
   
   decrypt_title = event => {
     event.preventDefault()
@@ -27,7 +28,7 @@ class Home extends React.Component {
   
   encrypt_title = event => {
     event.preventDefault();
-    this.setState({title:"ZOBEJXKQ®"});
+    this.setState({title: "ZOBEJXKQ®"});
   }
 
   handleInputChange = (event) => {
@@ -55,7 +56,7 @@ class Home extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    fetch(API_URL + 'new', {
+    fetch('/api/new', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -105,7 +106,7 @@ class Home extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    fetch(API_URL + 'login', {
+    fetch('/api/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -131,6 +132,7 @@ class Home extends React.Component {
   handleClose = () => {
     this.setState({success: false, error: false, message: ""});
   }
+
 
   formRender = () => {
     if(!this.props.loggedIn){
@@ -162,7 +164,18 @@ class Home extends React.Component {
       }
     }
     else{
-      return;
+      return(
+        //add instructions component
+        <div className="welcome-mat">
+          <h3 className="only-way">the only way to win is <i>not to play...</i></h3>
+          <p>all <span className="keywords" >screen time</span> is deducted from your score</p>
+          <p>win points by playing <span className="keywords">sabotage</span></p>
+          <p><span className="keywords">spin the wheel</span> for a random bonus or penalty</p>
+          <p>check the <span className="keywords">leaderboard</span> to see live scores</p>
+          <p><span className="keywords">add friends</span> and sabotage them!</p>
+        </div>
+      );
+
     }
   }
   
@@ -170,12 +183,17 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <NavTabs location="/" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender}/>
+        <NavTabs 
+          location="/" timePass={this.props.timePass} 
+          conditionalRender={this.props.conditionalRender} logout={this.props.logout} 
+        />
         <div className="content">
           <h1> WELCOME TO <span id="true-north" onMouseEnter={this.decrypt_title} onMouseLeave={this.encrypt_title}>{this.state.title}</span></h1>
-          {/* <h1> WELCOME TO <Scrambler>{this.state.title}</Scrambler></h1> */}
+          <span className="memo-w">don't waste your time...</span>
           {this.formRender()}
-          <FormAlert handleClose={this.handleClose} variant={this.state.success ? "success" : "error"} message={this.state.message} open={this.state.success || this.state.error}/>
+          <FormAlert 
+            handleClose={this.handleClose} variant={this.state.success ? "success" : "error"} 
+            message={this.state.message} open={this.state.success || this.state.error}/>
         </div>
       </div>
   )};

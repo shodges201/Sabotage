@@ -1,8 +1,8 @@
 .leaderboard {
     width: 30%;
     float:right;
-    margin-top:7%;
-    margin-right:29%;
+    margin-top:6%;
+    margin-right:30%;
     border-top:none;
     border-radius: 10px;
     color:white;
@@ -36,5 +36,6 @@
 }
 
 a {
-    text-shadow: 2px 2px 0px rgba(175, 175, 175, 0.233);
+    /* text-shadow: 2px 2px 0px rgba(175, 175, 175, 0.233); */
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }

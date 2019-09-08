@@ -8,7 +8,7 @@ function Table(props){
                     <th scope="col">POSITION</th>
                     <th scope="col">USER</th>
                     <th scope="col">SCORE</th>
-                    <th scope="col">RUIN</th>
+                    <th scope="col">{props.columnAction}</th>
                 </tr>
             </thead>
             <tbody>
