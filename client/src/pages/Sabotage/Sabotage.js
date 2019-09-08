@@ -1,7 +1,8 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import './Sabotage.css';
-const API_URL = '/api/';
+import Roulette from "../Wheel/Roulette";
+
 
 class Sabotage extends React.Component {
 
@@ -10,14 +11,15 @@ class Sabotage extends React.Component {
     input: "",
     //switched user input
     encrypt: "",
-    words: ["wood","grace","left","feet","group","quiet","climb","skip","pen","java","core","tram","eagle","nine","xray","zebra"],
-    word:"",
+    words: ["wood", "grace", "left", "feet", "group", "quiet", "climb", "skip", "pen", "java", "core", "tram", "eagle", "nine", "xray", "zebra"],
+    word: "",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
-    timeLeft:45,
+    timeLeft: 45,
     timerColor: "linear-gradient(0deg, red 0%, gray 0%)",
     rotate: 0,
-    wins: 0
+    wins: 0,
+    mode: "guess"
   }
 
   shuffle = (a) => {
@@ -42,16 +44,16 @@ class Sabotage extends React.Component {
     return str.length < max ? this.pad("0" + str, max) : str;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
     this.wordInterval = setInterval(() => this.eachWordTick(), 100);
     this.userInput.focus();
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
     let rand = this.randomStringGenerate();
-    this.setState({ 
-      mixed: copy, 
-      word: rand 
+    this.setState({
+      mixed: copy,
+      word: rand
     })
   }
 
@@ -73,29 +75,16 @@ class Sabotage extends React.Component {
       console.log("time out")
       clearInterval(this.wordInterval);
       this.props.updateScores(-100);
-      this.setState(state => ({ 
-        timeLeft:0
+      this.setState(state => ({
+        timeLeft: 0
       }));
     }
   }
 
-  // updateScores(incr) {
-  //   const data = {
-  //     deduct: incr
-  //   }
-  //   fetch(API_URL + "score", {
-  //     method: 'put',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  // }
-
   degreesToRadians = (num) => {
-    return num/Math.PI;
+    return num / Math.PI;
   }
-  
+
 
   convertToEncypted = (str) => {
     let newStr = '';
@@ -123,37 +112,42 @@ class Sabotage extends React.Component {
       [name]: value,
       encrypt: cipher
     });
-    if(cipher.toUpperCase() === this.state.word.toUpperCase()){
+    if (cipher.toUpperCase() === this.state.word.toUpperCase()) {
       this.guessedCorrect();
     }
   };
 
   guessedCorrect = () => {
     clearInterval(this.wordInterval);
-    this.props.updateScores(500)
+    this.props.updateScores(500);
     this.setState({
-      timerColor:"rgb(47,255,99)", 
-      wins: this.state.wins + 1
+      timerColor: "rgb(47,255,99)"
     })
-    if(this.state.wins % 5 === 4){
-      //Do something
+    console.log(this.state.wins);
+    //change 0 to 4 for every 5 wins someone gets roulettes
+    if (this.state.wins % 5 === 0) {
+      clearInterval(this.wordInterval);
+      setTimeout(() => {
+        this.setState({ mode: "roulette", wins: this.state.wins + 1 });
+      }, 3000)
     }
-    else{
+    else {
       // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
-      let reset = setTimeout(()=>{
-        this.wordInterval = setInterval(() => this.eachWordTick(), 100); 
+      setTimeout(() => {
+        this.wordInterval = setInterval(() => this.eachWordTick(), 100);
         let copy = this.state.alphabet.slice();
         copy = this.shuffle(copy);
         let rand = this.randomStringGenerate();
         this.setState({
           timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
           timeLeft: 45,
-          mixed: copy, 
+          mixed: copy,
           word: rand,
-          input:"",
-          encrypt:""
+          input: "",
+          encrypt: "",
+          wins: this.state.wins + 1
         })
-      },3000)
+      }, 3000)
     }
   }
 
@@ -164,53 +158,88 @@ class Sabotage extends React.Component {
       return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
     }
   }
-  
-  render(){
+
+  backtoGuessMode = (shuffle) => {
+    this.setState({ mode: "guess" });
+      let rand = this.randomStringGenerate();
+      if (shuffle) {
+        let copy = this.state.alphabet.slice();
+        copy = this.shuffle(copy);
+        this.setState({
+          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+          timeLeft: 45,
+          mixed: copy,
+          word: rand,
+          input: "",
+          encrypt: ""
+        });
+      }
+      else {
+        this.setState({
+          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+          timeLeft: 45,
+          word: rand,
+          input: "",
+          encrypt: ""
+        });
+      }
+
+    setTimeout(() => {
+      this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+    }, 1000);
+    
+  }
+
+  selectiveGameRender = () => {
+    if (this.state.mode === "guess") {
+      return (<>
+        <span className="memo">type the given word before time runs out...</span>
+        <input
+          ref={(input) => { this.userInput = input; }}
+          id="userInput"
+          type="text"
+          name="input"
+          value={this.state.input.toUpperCase()}
+          placeholder="your message"
+          onChange={this.handleInputChange}
+          autoComplete="off"
+        />
+
+        <div id="time-left" style={{ background: this.state.timerColor }}>
+        </div>
+
+        <div id="hangman">
+          answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br />
+          time left: <span id="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br />
+          wins: <span id="time" > {this.state.wins}</span>{" "}
+        </div>
+
+        <p id="shadow-live">{this.state.encrypt}</p>
+
+        <div className="hello">
+          <p id="encrypt-live">{this.state.encrypt}</p>
+        </div></>);
+    }
+    else {
+      return (
+        <Roulette switchMode={this.backtoGuessMode} />
+      )
+    }
+  }
+
+  render() {
     console.log(this.state.timerColor)
     return (
       <div>
         <NavTabs location="/sabotage" timePass={this.props.timePass} conditionalRender={this.props.conditionalRender} />
         <div className="content">
-
           <h1>sabotage</h1>
-          <span className="memo">type the given word before time runs out...</span>
-          <input
-            ref={(input) => { this.userInput = input; }} 
-            id="userInput"
-            type="text"
-            name="input"
-            value={this.state.input.toUpperCase()}
-            placeholder="your message"
-            onChange={this.handleInputChange}
-            autoComplete="off"
-          />
-
-          {/* <div id="time-left" style={{color: this.state.timerColor}}>
-            {`-${this.pad(this.state.timePass,10)}`}
-          </div> */}
-          
-          <div id="time-left" style={{background: this.state.timerColor}}>
-          </div>
-
-          
-
-          {/* <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}> */}
-          <div id="hangman">
-            answer: <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br/>
-            {/* Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}<br/> */}
-            time left: <span id="time" > {this.formatSeconds(this.state.timeLeft.toFixed(0))}</span>{" "}<br/>
-            wins: <span id="time" > {this.state.wins}</span>{" "}
-          </div>
-
-          <p id="shadow-live">{this.state.encrypt}</p>
-
-          <div className="hello">
-            <p id="encrypt-live">{this.state.encrypt}</p>
-          </div>
+          {this.selectiveGameRender()}
         </div>
       </div>
 
-    )}
+    )
+  }
 
 }
 

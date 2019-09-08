@@ -3,8 +3,22 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
+import Roulette from "./pages/Wheel/Roulette";
 const API_URL = '/api/';
 const deduct = -10;
+
+const handleOnComplete = (value) => {
+  console.log(value);
+};
+
+const options = [
+  "Lose Points",
+  "Gain Points",
+  "Steal Points",
+  "Give Ponts",
+  "Wild",
+];
+
 
 class App extends React.Component{
 
@@ -41,7 +55,7 @@ class App extends React.Component{
   }
 
   updateScores(amount) {
-    console.log('hitting api');
+    //console.log('hitting api');
     const data = {
       deduct: amount
     }
@@ -64,7 +78,7 @@ class App extends React.Component{
     }
   }
 
-  userState = (setState,data) => {
+  userState = (setState,data, cb) => {
     if(setState){
       this.interval = setInterval(() => this.constantTick(), 1000);
     }
@@ -75,6 +89,7 @@ class App extends React.Component{
       loggedIn: setState,
       currentUser: data.username
     });
+    return cb;
   }
 
   setRedirect = () => {
@@ -94,7 +109,6 @@ class App extends React.Component{
 
 
   render(){
-    console.log(this.state)
     return (
       <div>
       <Router>
@@ -110,6 +124,9 @@ class App extends React.Component{
               )} /> 
               <Route exact path="/sabotage" render={() => (
                 <Sabotage timePass={this.state.timePass} currentUser={this.state.currentUser} conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} userState={this.userState} updateScores={this.updateScores}/>
+              )} />
+              <Route exact path="/roulette" render={() => (
+                <Roulette options={options} baseSize={300} onComplete={handleOnComplete} timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
               )} />
               <Route exact path="/leaderboard" render={() => (
                 <Leaderboard timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState} updateScores={this.updateScores}/>
@@ -129,3 +146,10 @@ class App extends React.Component{
 }
 
 export default App;
+
+
+
+
+
+
+

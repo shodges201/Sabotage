@@ -29,12 +29,26 @@ router.post('/new', (req, res) => {
         password: password,
         score: req.body.score
     }, (err, dbUser) => {
+        console.log(JSON.stringify(err));
+        console.log(typeof(err));
         if (err) {
-            console.log('CREATE Error: ' + err);
-            res.status(500).send('Error');
+          console.log(err.code);
+          switch(err.code){
+            case 11000:
+              console.log('Repeat username: ' + err);
+              res.statusMessage ='Username Taken';
+              res.status(500).send('Username already taken'); 
+              break;
+            default:  
+              console.log('signup error: ' + err);
+              res.statusMessage ='Signup Error';
+              res.status(500).statusMessage('Signup Error').send('Signup Error'); 
+          }
+
         }
         else{
-          res.redirect("/login");
+          req.flash('success', 'signup worked');
+          res.redirect(307, "login");
         }
     });
     

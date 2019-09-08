@@ -8,8 +8,14 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 
+<<<<<<< HEAD
 
 // const PORT = process.env.PORT || 3001;
+=======
+const PORT = process.env.PORT || 9000;
+const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs'
+
+>>>>>>> 2e8412f999bfd86fed008a5e52d8ec91c7877994
 
 // Pusher module used to set up live mongoDB listen
 const pusher = new Pusher({
@@ -47,7 +53,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pointless", { useNewUrlParser: true });
-mongoose.connect('mongodb://localhost/saboDB?replicaSet=rs', { useNewUrlParser: true });
+mongoose.connect(URI, { useNewUrlParser: true });
 
 
 const db = mongoose.connection;
@@ -55,8 +61,8 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error:'));
 
 db.once('open', () => {
-  app.listen(9000, () => {
-    console.log('Node server running on port ' + 9000);
+  app.listen(PORT, () => {
+    console.log('Node server running on port ' + PORT);
   });
 
   const userCollection = db.collection('users');
@@ -91,8 +97,6 @@ db.once('open', () => {
     }
     else if (change.operationType === 'update') {
       const user = change;
-      // console.log('user: ');
-      // console.log(user);
       console.log('updated');
       pusher.trigger(
         channel,
@@ -104,10 +108,3 @@ db.once('open', () => {
     }
   });
 });
-
-
-
-// // Start the API server
-// secondApp.listen(PORT, function() {
-//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-// });

@@ -10,6 +10,7 @@ class NavTabs extends React.Component {
       return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
     }
   }
+  
 
   componentDidMount(){
     console.log(this.props.conditionalRender(1, 2));
@@ -20,7 +21,6 @@ class NavTabs extends React.Component {
   render() {
     return (
       <div>
-          {console.log(this.props)}
           {this.props.conditionalRender(
             (<ul className="nav nav-tabs">
             <li className="nav-item">

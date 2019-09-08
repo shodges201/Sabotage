@@ -20,14 +20,19 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@material-ui/core": "^4.4.0",
+    "@material-ui/icons": "^4.2.1",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "express": "^4.16.3",
     "express-session": "^1.16.2",
+<<<<<<< HEAD
     "fs": "0.0.1-security",
     "history": "^4.9.0",
+=======
+>>>>>>> 2e8412f999bfd86fed008a5e52d8ec91c7877994
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "passport": "^0.4.0",
