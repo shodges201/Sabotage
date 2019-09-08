@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
-import Roulette from "./pages/Wheel/Roulette";
+import Roulette from "./pages/Roulette/Roulette";
 // const API_URL = '/api/';
 const moment = require('moment');
 // const API_URL = '/api/';

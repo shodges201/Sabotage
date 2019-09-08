@@ -15,7 +15,8 @@ class Leaderboard extends React.Component {
     this.state = {
       users: [],
       user: '',
-      score: 0 
+      score: 0,
+      toggle: "top"
     }
     // this.getUsers = this.getUsers.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -106,6 +107,19 @@ class Leaderboard extends React.Component {
     }));
   }
 
+  addFriend(id) {
+    const data = {
+      id: id
+    };
+    fetch('/api/add', {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(console.log);
+  }
+
   
   render(){
     // console.log(this.state.timerColor)
@@ -126,7 +140,7 @@ class Leaderboard extends React.Component {
           </span>
             
           <div>
-            <Table>
+            <Table columnAction={this.state.toggle=="top" ? "ADD" : "RUIN"}>
               {this.state.users.map(user => {
                 return(
                   <TableEntry
@@ -135,6 +149,7 @@ class Leaderboard extends React.Component {
                     username={user.username}
                     score={user.score}
                     onUserClick={this.deleteUser}
+                    tableAction={this.state.toggle=="top" ? this.addFriend : this.sabotage}
                   />
                 )
               })}

@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import './Sabotage.css';
-import Roulette from "../Wheel/Roulette";
+import Roulette from "../Roulette/Roulette";
 
 
 class Sabotage extends React.Component {
@@ -181,7 +181,7 @@ class Sabotage extends React.Component {
     })
     console.log(this.state.wins);
     //change 0 to 4 for every 5 wins someone gets roulettes
-    if (this.state.wins % 5 === 3) {
+    if (this.state.wins % 5 === 2) {
       clearInterval(this.wordInterval);
       setTimeout(() => {
         this.setState({ mode: "roulette", wins: this.state.wins + 1 });

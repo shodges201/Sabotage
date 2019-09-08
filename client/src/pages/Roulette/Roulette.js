@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './Roulette.css';
 
@@ -178,7 +177,7 @@ class Roulette extends React.Component {
           
           this.props.goToLeaderboard()
           // switchMode(index < 4 ? false : true);
-        }, 1000)
+        }, 1500)
       })
     }
   
@@ -228,7 +227,7 @@ class Roulette extends React.Component {
             </div>
           </div>
 
-          <div id="time-left" style={{background:"dimgray"}}></div>
+          <div id="time-left" style={{background:"indigo"}}></div>
         </>
       );
     }
