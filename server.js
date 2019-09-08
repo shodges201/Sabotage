@@ -8,14 +8,9 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 
-<<<<<<< HEAD
-
-// const PORT = process.env.PORT || 3001;
-=======
 const PORT = process.env.PORT || 9000;
 const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs'
 
->>>>>>> 2e8412f999bfd86fed008a5e52d8ec91c7877994
 
 // Pusher module used to set up live mongoDB listen
 const pusher = new Pusher({
