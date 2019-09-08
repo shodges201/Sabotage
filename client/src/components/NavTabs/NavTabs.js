@@ -35,23 +35,6 @@ class NavTabs extends React.Component {
     }
   }
   
-  // formatSeconds = (seconds) => {
-  //   let hh = (seconds / 3600).toFixed()
-  //   let mm = ((seconds - (3600 * hh)) / 60).toFixed()
-  //   let ss = (seconds - (3600 * hh) - (60 * mm))
-  //   if (hh > 10 && mm > 10) {
-  //     return ss < 10 ? `${hh}:${mm}:0${ss}` : `${hh}:${mm}:${ss}`;
-  //   } else if (hh > 10 && mm > 0) {
-  //     return ss < 10 ? `${hh}:0${mm}:0${ss}` : `${hh}:0${mm}:${ss}`;
-  //   } else if (hh > 0 && mm > 10) {
-  //     return ss < 10 ? `0${hh}:${mm}:0${ss}` : `0${hh}:${mm}:${ss}`;
-  //   } else if (hh > 0 && mm > 0) {
-  //     return ss < 10 ? `0${hh}:0${mm}:0${ss}` : `0${hh}:0${mm}:${ss}`;
-  //   } else {
-  //     return ss < 10 ? `00:00:0${ss}` : `00:00:${ss}`;
-      
-  //   }
-  // }
 
   componentDidMount(){
     // console.log(this.props.conditionalRender(1, 2));
@@ -62,7 +45,6 @@ class NavTabs extends React.Component {
   render() {
     return (
       <div>
-          {console.log(this.props)}
           {this.props.conditionalRender(
             (<ul className="nav nav-tabs">
               <li className="nav-item">
@@ -83,6 +65,11 @@ class NavTabs extends React.Component {
                   sabotage
                 </Link>
               </li>
+              {/* <li className="nav-item">
+                <Link to="/roulette" className={this.props.location === "/roulette" ? "nav-link active" : "nav-link"}>
+                  roulette
+                </Link>
+              </li> */}
               <li className="nav-item">
                 <Link to="/leaderboard" className={this.props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
                   leaderboard

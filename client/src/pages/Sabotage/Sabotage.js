@@ -1,7 +1,9 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import './Sabotage.css';
-const API_URL = '/api/';
+import Roulette from "../Wheel/Roulette";
+
 
 class Sabotage extends React.Component {
 
@@ -10,14 +12,16 @@ class Sabotage extends React.Component {
     input: "",
     //switched user input
     encrypt: "",
-    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine","xray","zebra","rabbit","lair","curse","bend","swap","open","ankle","cold","four","top","reset","lapel","apple","birdy","mist","drift","ultra","laser","grand","zipper","piano","crisp","auto","random","reach","class","lift","woke","forest","water","fire","exit","hope","sight","woman","bully","sleep","photo","smoke","paint","fuel",""],
+    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine","xray","zebra","rabbit","lair","curse","bend","swap","open","ankle","cold","four","top","reset","lapel","apple","birdy","mist","drift","ultra","laser","grand","zipper","piano","crisp","auto","random","reach","class","lift","woke","forest","water","fire","exit","hope","sight","woman","bully","sleep","photo","smoke","paint","fuel","coyote","bugs"],
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
-    timeLeft:45,
+    timeLeft: 45,
     timerColor: "linear-gradient(0deg, red 0%, gray 0%)",
     rotate: 0,
-    wins: 0
+    wins: 0,
+    mode: "guess",
+    redirect: false
   }
 
   shuffle = (a) => {
@@ -42,18 +46,16 @@ class Sabotage extends React.Component {
     return str.length < max ? this.pad("0" + str, max) : str;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
     this.wordInterval = setInterval(() => this.eachWordTick(), 100);
     this.userInput.focus();
     let copy = this.state.alphabet.slice();
     copy = this.shuffle(copy);
     let rand = this.randomStringGenerate();
-    // let deg = Math.floor(Math.random() * 20);
-    this.setState({ 
-      mixed: copy, 
+    this.setState({
+      mixed: copy,
       word: rand
-      // rotate: deg
     })
 
   }
@@ -76,34 +78,42 @@ class Sabotage extends React.Component {
       console.log("time out")
       clearInterval(this.wordInterval);
       this.props.updateScores(-100);
-      // this.setState(state => ({ 
-      //   timeLeft:0
+
+
+      // let reset = setTimeout(() => {
+      //   this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+      //   let copy = this.state.alphabet.slice();
+      //   copy = this.shuffle(copy);
+      //   let rand = this.randomStringGenerate();
+      //   this.setState({
+      //     timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+      //     timeLeft: 45,
+      //     mixed: copy,
+      //     word: rand,
+      //     input: "",
+      //     encrypt: ""
+      //   })
+      // }, 1000)
+
+
+      // this.setState(state => ({
+      //   timeLeft: 0
       // }));
-      let reset = setTimeout(() => {
-        this.wordInterval = setInterval(() => this.eachWordTick(), 100);
-        let copy = this.state.alphabet.slice();
-        copy = this.shuffle(copy);
-        let rand = this.randomStringGenerate();
+
+      setTimeout(() => {
         this.setState({
-          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
-          timeLeft: 45,
-          mixed: copy,
-          word: rand,
-          input: "",
-          encrypt: ""
-        })
+          timeLeft: 0,
+          mode: "roulette",
+          timerColor: "linear-gradient(0deg, red 0%, gray 0%)"
+        });
       }, 1000)
     }
-
-
-
-
   }
 
   degreesToRadians = (num) => {
-    return num/Math.PI;
+    return num / Math.PI;
   }
-  
+
   convertToEncypted = (str) => {
     let newStr = '';
     str = str.split('');
@@ -130,37 +140,42 @@ class Sabotage extends React.Component {
       [name]: value,
       encrypt: cipher
     });
-    if(cipher.toUpperCase() === this.state.word.toUpperCase()){
+    if (cipher.toUpperCase() === this.state.word.toUpperCase()) {
       this.guessedCorrect();
     }
   };
 
   guessedCorrect = () => {
     clearInterval(this.wordInterval);
-    this.props.updateScores(500)
+    this.props.updateScores(500);
     this.setState({
-      timerColor:"rgb(47,255,99)", 
-      wins: this.state.wins + 1
+      timerColor: "rgb(47,255,99)"
     })
-    if(this.state.wins % 5 === 4){
-      //Do something
+    console.log(this.state.wins);
+    //change 0 to 4 for every 5 wins someone gets roulettes
+    if (this.state.wins % 5 === 0) {
+      clearInterval(this.wordInterval);
+      setTimeout(() => {
+        this.setState({ mode: "roulette", wins: this.state.wins + 1 });
+      }, 3000)
     }
-    else{
+    else {
       // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
-      let reset = setTimeout(()=>{
-        this.wordInterval = setInterval(() => this.eachWordTick(), 100); 
+      setTimeout(() => {
+        this.wordInterval = setInterval(() => this.eachWordTick(), 100);
         let copy = this.state.alphabet.slice();
         copy = this.shuffle(copy);
         let rand = this.randomStringGenerate();
         this.setState({
           timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
           timeLeft: 45,
-          mixed: copy, 
+          mixed: copy,
           word: rand,
-          input:"",
-          encrypt:""
+          input: "",
+          encrypt: "",
+          wins: this.state.wins + 1
         })
-      },3000)
+      }, 3000)
     }
   }
 
@@ -171,16 +186,54 @@ class Sabotage extends React.Component {
       return seconds % 60 < 10 ? `${(seconds / 60).toFixed()}:0${seconds % 60}` : `${(seconds / 60).toFixed()}:${seconds % 60}`;
     }
   }
-  
-  render(){
-    console.log(`rotate: ${this.state.rotate}`)
-    return (
-      <div>
-        <NavTabs 
-          location="/sabotage" timePass={this.props.timePass} 
-          conditionalRender={this.props.conditionalRender} logout={this.props.logout}/>
-        <div className="content">
 
+  backtoGuessMode = (shuffle) => {
+    this.setState({ mode: "guess" });
+      let rand = this.randomStringGenerate();
+      if (shuffle) {
+        let copy = this.state.alphabet.slice();
+        copy = this.shuffle(copy);
+        this.setState({
+          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+          timeLeft: 45,
+          mixed: copy,
+          word: rand,
+          input: "",
+          encrypt: ""
+        });
+      }
+      else {
+        this.setState({
+          timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
+          timeLeft: 45,
+          word: rand,
+          input: "",
+          encrypt: ""
+        });
+      }
+
+    setTimeout(() => {
+      this.wordInterval = setInterval(() => this.eachWordTick(), 100);
+    }, 1000);
+    
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/leaderboard' />
+    }
+  }
+
+  selectiveGameRender = () => {
+    if (this.state.mode === "guess") {
+      return (
+        <>
           <h1>sabotage</h1>
           <span className="memo">
             try to type the given word before time runs out<br/>
@@ -201,20 +254,11 @@ class Sabotage extends React.Component {
             onChange={this.handleInputChange}
             autoComplete="off"
           />
-
-          {/* <div id="time-left" style={{color: this.state.timerColor}}>
-            {`-${this.pad(this.state.timePass,10)}`}
-          </div> */}
           
-          <div id="time-left" style={{background: this.state.timerColor}}>
-          </div>
+          <div id="time-left" style={{background: this.state.timerColor}}></div>
 
-          
-
-          {/* <div id="hangman" style={{transform: `rotate(${Math.sin(this.degreesToRadians(this.state.rotate))}deg)`}}> */}
           <div id="hangman" >
             your word is <span id="hangman-word">{this.state.word.toUpperCase()}</span>{" "}<br/>
-            {/* Time Passed: <span id="time-passed" >{this.props.timePass}</span>{" "}<br/> */}
           </div>
 
           <p id="shadow-live">{this.state.encrypt}</p>
@@ -222,12 +266,30 @@ class Sabotage extends React.Component {
           <div className="hello">
             <p id="encrypt-live">{this.state.encrypt}</p>
           </div>
+        </>
+      );
+    } else {
+      return (
+        <Roulette switchMode={this.backtoGuessMode} goToLeaderboard={this.setRedirect}/>
+      )
+    }
+  }
 
-          
+  render() {
+    console.log(this.state.timerColor)
+    return (
+      <div>
+        <NavTabs 
+          location="/sabotage" timePass={this.props.timePass} 
+          conditionalRender={this.props.conditionalRender} logout={this.props.logout}/>
+        <div className="content">
+          {this.selectiveGameRender()}
+          {this.renderRedirect()}
         </div>
       </div>
 
-    )}
+    )
+  }
 
 }
 

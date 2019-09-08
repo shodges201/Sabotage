@@ -7,6 +7,7 @@ const routes = require("./routes");
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
+var flash = require('connect-flash');
 
 // const PORT = process.env.PORT || 3001;
 
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 
 // Serve up static assets (usually on heroku)
@@ -90,8 +92,6 @@ db.once('open', () => {
     }
     else if (change.operationType === 'update') {
       const user = change;
-      // console.log('user: ');
-      // console.log(user);
       console.log('updated');
       pusher.trigger(
         channel,
@@ -103,10 +103,3 @@ db.once('open', () => {
     }
   });
 });
-
-
-
-// // Start the API server
-// secondApp.listen(PORT, function() {
-//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-// });

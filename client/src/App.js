@@ -3,9 +3,24 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Sabotage from "./pages/Sabotage/Sabotage";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
+import Roulette from "./pages/Wheel/Roulette";
 // const API_URL = '/api/';
 const moment = require('moment');
+// const API_URL = '/api/';
 const deduct = -10;
+
+const handleOnComplete = (value) => {
+  console.log(value);
+};
+
+const options = [
+  "Lose Points",
+  "Gain Points",
+  "Steal Points",
+  "Give Ponts",
+  "Wild",
+];
+
 
 class App extends React.Component{
 
@@ -75,7 +90,7 @@ class App extends React.Component{
   }
 
   updateScores(amount) {
-    console.log('hitting api');
+    //console.log('hitting api');
     const data = {
       deduct: amount
     }
@@ -98,7 +113,7 @@ class App extends React.Component{
     }
   }
 
-  userState = (setState,data) => {
+  userState = (setState,data, cb) => {
     if(setState){
       this.interval = setInterval(() => this.constantTick(), 1000);
     }
@@ -109,6 +124,7 @@ class App extends React.Component{
       loggedIn: setState,
       currentUser: data.username
     });
+    return cb;
   }
 
   logout = () => {
@@ -127,14 +143,15 @@ class App extends React.Component{
   }
 
   render(){
-    // console.log(this.state)
     return (
       <div>
       <Router>
         <div className="wrapper">
           {this.conditionalRender(
             <Route exact path="/" render={() => (
-              <Home timePass={this.state.timePass} loggedIn={this.state.loggedIn} conditionalRender={this.conditionalRender} userState={this.userState}/>
+              <Home 
+                timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
+                conditionalRender={this.conditionalRender} userState={this.userState}/>
             )} />, 
 
             (<div>
@@ -153,6 +170,13 @@ class App extends React.Component{
                   logout={this.logout}
                 />
               )} />
+              <Route exact path="/roulette" render={() => (
+                <Roulette 
+                  options={options} baseSize={300} onComplete={handleOnComplete} 
+                  timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
+                  conditionalRender={this.conditionalRender} userState={this.userState} 
+                  updateScores={this.updateScores}/>
+              )} />
               <Route exact path="/leaderboard" render={() => (
                 <Leaderboard 
                   timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
@@ -169,3 +193,10 @@ class App extends React.Component{
 }
 
 export default App;
+
+
+
+
+
+
+
