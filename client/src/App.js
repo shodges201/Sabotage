@@ -85,10 +85,10 @@ class App extends React.Component{
     })
   }
   renderRedirect = () => {
-    if (this.state.redirect) {
+    if (!this.state.loggedIn) {
         console.log(this.state.username)
         console.log(this.state.loggedIn)
-      return <Redirect to='/' />
+      return <Redirect to='/leaderboard' />
     }
   }
 
