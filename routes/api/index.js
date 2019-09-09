@@ -1,11 +1,8 @@
 const router = require("express").Router();
 const db = require("../../models");
-// const words = require("./words");
 const bcrypt = require("bcrypt-nodejs");
 const passport = require("../../config/passport");
-const moment = require("moment")
-// Book routes
-// router.use("/words", words);
+const moment = require("moment");
 
 router.get("/user", (req,res) => {
   res.json(req.user || "")

@@ -1,7 +1,7 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
-const api = require('./routes/api');
 const Pusher = require('pusher');
 const routes = require("./routes");
 const app = express();
@@ -9,7 +9,9 @@ const passport = require("passport");
 const session = require("express-session");
 
 const PORT = process.env.PORT || 9000;
-const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs'
+const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs';
+
+
 
 
 // Pusher module used to set up live mongoDB listen

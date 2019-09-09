@@ -47,7 +47,7 @@ class App extends React.Component{
       // console.log(data.username)
       console.log("data")
       console.log(data)
-      let now = moment(new Date)
+      let now = moment(new Date());
       let login = new Date(data.lastLogin)
       let elapsed = now.diff(login, "seconds")
       console.log("now")
@@ -67,6 +67,7 @@ class App extends React.Component{
         this.interval = setInterval(() => this.constantTick(), 1000);
       }
     }).catch(err => {
+
       throw err;
     })
 

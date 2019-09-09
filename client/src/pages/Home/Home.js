@@ -1,7 +1,7 @@
 import React from "react";
 import NavTabs from "../../components/NavTabs/NavTabs";
 import Form from "../../components/Form/Form";
-import FormAlert from '../../components/FormAlert/FormAlert.js'// import Scrambler from "../../components/Scrambler/Scrambler";
+import FormAlert from '../../components/FormAlert/FormAlert.js';
 const API_URL = '/api/';
 
 class Home extends React.Component {
@@ -91,6 +91,7 @@ class Home extends React.Component {
       }
       })
       .catch(err => {
+        this.setState({error: true, message: "There was an error! Try again!"});
         throw err;
     });
   }
@@ -100,8 +101,6 @@ class Home extends React.Component {
     if (!this.state.username) {
       return;
     }
-    // console.log(this.state.username);
-    // console.log(this.state.password);
     const oldUser = {
       username: this.state.username,
       password: this.state.password
@@ -124,9 +123,9 @@ class Home extends React.Component {
           this.props.userState(true,data);
         }
     }).catch(err => {
+        this.setState({error: true, message: "There was an error! Try again!"});
         console.log(err);
     })
-    console.log(this.state);
   }
 
   handleClose = () => {
