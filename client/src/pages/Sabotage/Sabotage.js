@@ -12,7 +12,16 @@ class Sabotage extends React.Component {
     input: "",
     //switched user input
     encrypt: "",
-    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine","xray","zebra","rabbit","lair","curse","bend","swap","open","ankle","cold","four","top","reset","lapel","apple","birdy","mist","drift","ultra","laser","grand","zipper","piano","crisp","auto","random","reach","class","lift","woke","forest","water","fire","exit","hope","sight","woman","bully","sleep","photo","smoke","paint","fuel","coyote","bugs"],
+    // 150 total words
+    words: ["wood","grace","left","feet","group","quiet","climb","skip","java","core","tram","eagle","nine", "frown", "vice", "mongo",
+    "xray","zebra","rabbit","liar","curse","bend","swap","open","ankle","cold","four","top", "crypt", "summer", "bomb", "crop", "car",
+    "reset","lapel","apple","birdy","mist","drift","ultra","laser","grand","zipper","piano","crisp","auto", "decoy", "slum", "yodel",
+    "random","reach","class","lift","woke","forest","water","fire","exit","hope","sight","woman","bully","sleep", "yarn", "where","trap","beat",
+    "photo","smoke","paint","fuel","coyote","bugs","chaos","gnat","energy","queue","coffee", "qwerty", "wasp", "smell", "style","jeep",
+    "ski","cover","html", "jolly", "leak", "moss", "radar", "cops", "rear", "yuck", "zap", "lap", "click", "refer", "lull", "wave",
+    "dig","break", "depot", "rise", "time", "run", "red", "green", "fruit", "go", "never", "ghost", "gauge", "noon", "zip", "magic", "ebb", "flow",
+    "zoom", "east","gray", "yeast", "ray", "vex", "pizza", "mount", "jazz", "steed", "catch", "venti", "pump", "skate", "board", "palace", "taint", 
+    "oh", "node", "deploy", "fang", "guppy", "finite", "blue", "blew", "tense", "germ", "nasal", "navy", "yard", "table","lazy","beet"],
     word:"",
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     mixed: [],
