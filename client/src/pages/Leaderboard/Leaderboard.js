@@ -39,9 +39,7 @@ class Leaderboard extends React.Component {
       console.log(data)
       this.setState({
         users: data.sort(compare)
-      }).catch(err => {
-        console.log(err);
-      })
+      });
     });
   }
 
@@ -128,9 +126,9 @@ class Leaderboard extends React.Component {
           <h1 id="leaderboard-header">leaderboard</h1>
           <span className="memo-w">
             check out user rankings in <span className="keywords">REALTIME</span><br/>
-            click to <span className="keywords">ADD</span> user to friend list<br/>
+            {/* click to <span className="keywords">ADD</span> user to friend list<br/>
             toggle view to show <span className="keywords">TOP SCORES</span> or <br/><span className="keywords">FRIENDS ONLY</span>.<br/> 
-            click <span className="keywords">RUIN</span> to deduct points from a <br/>friend for a small price
+            click <span className="keywords">RUIN</span> to deduct points from a <br/>friend for a small price */}
           </span>
             
           <div>

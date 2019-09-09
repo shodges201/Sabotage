@@ -106,35 +106,6 @@ class Sabotage extends React.Component {
           })
         }, 1000)
       }
-
-
-      // let reset = setTimeout(() => {
-      //   this.wordInterval = setInterval(() => this.eachWordTick(), 100);
-      //   let copy = this.state.alphabet.slice();
-      //   copy = this.shuffle(copy);
-      //   let rand = this.randomStringGenerate();
-      //   this.setState({
-      //     timerColor: `"linear-gradient(0deg, red 0%, gray 0%)"`,
-      //     timeLeft: 45,
-      //     mixed: copy,
-      //     word: rand,
-      //     input: "",
-      //     encrypt: ""
-      //   })
-      // }, 1000)
-
-
-      // this.setState(state => ({
-      //   timeLeft: 0
-      // }));
-
-      // setTimeout(() => {
-      //   this.setState({
-      //     timeLeft: 0,
-      //     mode: "roulette",
-      //     timerColor: "linear-gradient(0deg, red 0%, gray 0%)"
-      //   });
-      // }, 1000)
     }
   }
 
@@ -181,7 +152,7 @@ class Sabotage extends React.Component {
     })
     console.log(this.state.wins);
     //change 0 to 4 for every 5 wins someone gets roulettes
-    if (this.state.wins % 5 === 2) {
+    if (this.state.wins >= 0) {
       clearInterval(this.wordInterval);
       setTimeout(() => {
         this.setState({ mode: "roulette", wins: this.state.wins + 1 });

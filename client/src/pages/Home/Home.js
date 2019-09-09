@@ -171,7 +171,7 @@ class Home extends React.Component {
           <p>win points by playing <span className="keywords">sabotage</span></p>
           <p><span className="keywords">spin the wheel</span> for a random bonus or penalty</p>
           <p>check the <span className="keywords">leaderboard</span> to see live scores</p>
-          <p><span className="keywords">add friends</span> and sabotage them!</p>
+          {/* <p><span className="keywords">add friends</span> and sabotage them!</p> */}
         </div>
       );
 

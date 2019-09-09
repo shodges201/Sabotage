@@ -9,7 +9,8 @@ router.get("/user", (req,res) => {
     res.json(req.user);
   }
   else{
-    res.status(503).send('No Current User');
+    res.statusMessage = 'No Current User';
+    res.status(503).end();
   }
 })
 
