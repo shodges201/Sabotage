@@ -13,14 +13,14 @@ const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs
 
 
 // Pusher module used to set up live mongoDB listen
-const pusher = new Pusher({
-  appId: '855391',
-  key: 'b2809c73fbc28accc074',
-  secret: '65ea3c21e522a4fc45a7',
-  cluster: 'us2',
-  encrypted: true,
-});
-const channel = 'users';
+// const pusher = new Pusher({
+//   appId: '855391',
+//   key: 'b2809c73fbc28accc074',
+//   secret: '65ea3c21e522a4fc45a7',
+//   cluster: 'us2',
+//   encrypted: true,
+// });
+// const channel = 'users';
 
 
 app.use((req, res, next) => {
@@ -55,51 +55,51 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Connection Error:'));
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log('Node server running on port ' + PORT);
-  });
+// db.once('open', () => {
+//   app.listen(PORT, () => {
+//     console.log('Node server running on port ' + PORT);
+//   });
 
-  const userCollection = db.collection('users');
-  const changeStream = userCollection.watch();
+//   const userCollection = db.collection('users');
+//   const changeStream = userCollection.watch();
 
-  // userCollection.find({}, (err,data) => {
-  //   console.log(data)
-  // })
+//   // userCollection.find({}, (err,data) => {
+//   //   console.log(data)
+//   // })
 
-  // changeStream.on("load")
+//   // changeStream.on("load")
 
-  changeStream.on('change', (change) => {
-    console.log(change);
+//   changeStream.on('change', (change) => {
+//     console.log(change);
 
-    if (change.operationType === 'insert') {
-      const user = change.fullDocument;
-      console.log('inserted');
-      pusher.trigger(
-        channel,
-        'inserted', {
-          id: user._id,
-          username: user.username,
-          score: user.score
-        }
-      );
-    } else if (change.operationType === 'delete') {
-      pusher.trigger(
-        channel,
-        'deleted',
-        change.documentKey._id
-      );
-    }
-    else if (change.operationType === 'update') {
-      const user = change;
-      console.log('updated');
-      pusher.trigger(
-        channel,
-        'updated', {
-          id: user.documentKey._id,
-          score: user.updateDescription.updatedFields.score
-        }
-      );
-    }
-  });
-});
+//     if (change.operationType === 'insert') {
+//       const user = change.fullDocument;
+//       console.log('inserted');
+//       pusher.trigger(
+//         channel,
+//         'inserted', {
+//           id: user._id,
+//           username: user.username,
+//           score: user.score
+//         }
+//       );
+//     } else if (change.operationType === 'delete') {
+//       pusher.trigger(
+//         channel,
+//         'deleted',
+//         change.documentKey._id
+//       );
+//     }
+//     else if (change.operationType === 'update') {
+//       const user = change;
+//       console.log('updated');
+//       pusher.trigger(
+//         channel,
+//         'updated', {
+//           id: user.documentKey._id,
+//           score: user.updateDescription.updatedFields.score
+//         }
+//       );
+//     }
+//   });
+// });
