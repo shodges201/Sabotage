@@ -48,14 +48,8 @@ class App extends React.Component{
       console.log("data")
       console.log(data)
       let now = moment(new Date());
-      let login = new Date(data.lastLogin)
-      let elapsed = now.diff(login, "seconds")
-      console.log("now")
-      console.log(now)
-      console.log("login")
-      console.log(login)
-      console.log("elapsed")
-      console.log(elapsed)
+      let login = new Date(data.lastLogin);
+      let elapsed = now.diff(login, "seconds");
       if(data.username){
         this.setState({
           currentUser:data.username,
@@ -67,8 +61,8 @@ class App extends React.Component{
         this.interval = setInterval(() => this.constantTick(), 1000);
       }
     }).catch(err => {
-
-      throw err;
+      console.log(err);
+      //throw err;
     })
 
     

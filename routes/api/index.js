@@ -5,7 +5,12 @@ const passport = require("../../config/passport");
 const moment = require("moment");
 
 router.get("/user", (req,res) => {
-  res.json(req.user || "")
+  if(req.user){
+    res.json(req.user);
+  }
+  else{
+    res.status(503).send('No Current User');
+  }
 })
 
 router.get("/users", (req,res) => {

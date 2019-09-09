@@ -39,7 +39,9 @@ class Leaderboard extends React.Component {
       console.log(data)
       this.setState({
         users: data.sort(compare)
-      });
+      }).catch(err => {
+        console.log(err);
+      })
     });
   }
 
@@ -75,7 +77,9 @@ class Leaderboard extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newUser)
-    }).then(console.log);
+    }).then(console.log).catch((err) =>{
+      console.log(err);
+    })
   }
 
   deleteUser(id) {
