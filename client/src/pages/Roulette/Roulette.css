@@ -1,0 +1,26 @@
+.roulette {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+.roulette-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.spin-btn {
+  margin-top:10px;
+  border:none;
+  background: none;
+  color: rgb(47, 255, 99);
+  text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
+  font-size: 20px;
+
+}
+
+.spin-btn:hover {
+  color: white;
+  text-shadow: none;
+}
