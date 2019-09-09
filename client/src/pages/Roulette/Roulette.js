@@ -13,10 +13,7 @@ class Roulette extends React.Component {
       startAngle: 0,
       spinTime: 0,
       arc: Math.PI / (props.options.length / 2),
-      redirect: false,
-      spinAngleStart: Math.random() * 10 + 10,
-      spinTimeTotal: Math.random() * 3 + 4 * 2504,
-      values: [(Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100)]
+      redirect: false
     }
     this.spinTimer = null;
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -37,18 +34,13 @@ class Roulette extends React.Component {
 
   static defaultProps = {
     options: ['WIN', 'LOSE', 'WIN', 'LOSE', 'WIN', 'LOSE', 'WIN'],
-    // values: [(Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100)],
+    values: [(Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100)],
     baseSize: 300,
-    // spinAngleStart: Math.random() * 10 + 10,
-    // spinTimeTotal: Math.random() * 3 + 4 * 2504,
+    spinAngleStart: Math.random() * 10 + 10,
+    spinTimeTotal: Math.random() * 3 + 4 * 2504
   };
 
   componentDidMount() {
-    this.setState({
-      spinAngleStart: Math.random() * 10 + 10,
-      spinTimeTotal: Math.random() * 3 + 4 * 2504,
-      values: [(Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100)]
-    })
     this.drawRouletteWheel();
   }
 
@@ -141,12 +133,12 @@ class Roulette extends React.Component {
   }
 
   rotate() {
-    // const { spinAngleStart, spinTimeTotal } = this.props;
+    const { spinAngleStart, spinTimeTotal } = this.props;
     if (this.state.spinTime > 2800) {
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
-      const spinAngle = this.state.spinAngleStart - this.easeOut(this.state.spinTime, 0, this.state.spinAngleStart, this.state.spinTimeTotal);
+      const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, spinTimeTotal);
       console.log(spinAngle);
       this.setState({
         startAngle: this.state.startAngle + spinAngle * Math.PI / 180,
