@@ -6,6 +6,7 @@
     position: absolute;
     right: 100px;
     bottom: 100px;
+<<<<<<< HEAD
 } */
 
 body{
@@ -175,10 +176,15 @@ input{
 
 .form-button:hover {
     color:white;
+=======
+>>>>>>> 962ceb667ce1456016e4e3665cc2c378bbe6d071
 }
 
 
 
+<<<<<<< HEAD
 .switch-button {
     margin-left: 110px;
 }
+=======
+>>>>>>> 962ceb667ce1456016e4e3665cc2c378bbe6d071
