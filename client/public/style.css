@@ -3,7 +3,7 @@ body{
     background: rgb(0, 128, 128);
     /* background: rgb(144, 184, 186); */
     /* background: rgb(175, 51, 59); */
-    
+    /* -ms-overflow-style: none; */
 }
 
 .content {
@@ -17,8 +17,10 @@ body{
     z-index: 3;
     right: 30px;
     bottom: 30px;
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
+    /* -ms-overflow-style: none; */
+    /* overflow: -moz-scrollbars-none; */
 }
 .goodbye {
     position: fixed;
@@ -59,6 +61,9 @@ body{
     white-space: nowrap;
     color:rgba(41, 41, 41, 0.247);
     font-style:italic;
+    overflow: hidden;
+    overflow: -moz-scrollbars-none;
+    /* -ms-overflow-style: none; */
 }
 
 #true-north {
@@ -244,4 +249,6 @@ h1 {
 h3 {
     font-size:1.89em;
 }
+
+
 

@@ -45,11 +45,18 @@ that is updated every 10 seconds.
 ## ROULETTE WHEEL
 
 After 3 wins or 2 losses, you will be given a chance to significantly improve or demolish 
-your score. 
+your score.
+
+![Roulette Wheel](roulettewheel.png)
 
 ## BUILT WITH
 
 * [React.js](https://reactjs.org/) - Javascript Library
+* [Pusher](https://bit.ly/2lKgIrW) - Realtime Communication 
+* [MongoDB](https://www.mongodb.com/) - Database
+* [Material-ui](https://material-ui.com/) - React Components 
+
+
 
 
 

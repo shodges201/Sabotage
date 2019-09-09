@@ -1,0 +1,26 @@
+table thead tr{
+    display:block;
+    -ms-overflow-style: none;
+}
+
+table th,table td{
+    width:40%;
+    -ms-overflow-style: none;
+}
+
+
+table tbody{
+  display:block;
+  height:500px;
+  overflow: scroll;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+table {
+  -ms-overflow-style: none;
+}
+
+table tbody::-webkit-scrollbar {
+    width: 0 !important;
+  }

@@ -1,9 +1,10 @@
 import React from "react";
+import "./Table.css";
 
 function Table(props){
     return(
-        <table className="table table-hover leaderboard">
-            <thead>
+        <table className="table table-hover">
+            <thead className="table-head">
                 <tr>
                     <th scope="col">POSITION</th>
                     <th scope="col">USER</th>
@@ -11,7 +12,7 @@ function Table(props){
                     {/* <th scope="col">{props.columnAction}</th> */}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="tbody">
                 {props.children}
             </tbody>
         </table>

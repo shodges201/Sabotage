@@ -131,7 +131,7 @@ class Leaderboard extends React.Component {
             click <span className="keywords">RUIN</span> to deduct points from a <br/>friend for a small price */}
           </span>
             
-          <div>
+          <div className="leaderboard">
             {/* <Table columnAction={this.state.toggle=="top" ? "ADD" : "RUIN"}> */}
             <Table columnAction={this.state.toggle=="top" ? "ADD" : "RUIN"}>
               {this.state.users.map(user => {
