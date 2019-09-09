@@ -21,7 +21,7 @@ const options = [
   "Wild",
 ];
 
-const regex = /\//;
+const regex =/\/(?!leaderboard|roulette|sabotage)/;
 
 
 class App extends React.Component{
@@ -152,7 +152,7 @@ class App extends React.Component{
             )} />, 
 
             (<div>
-              <Route exact path="/" render={() => (
+              <Route path={regex} render={() => (
                 <Home 
                   timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
                   conditionalRender={this.conditionalRender} userState={this.userState}

@@ -48,7 +48,6 @@ class Sabotage extends React.Component {
   }
 
   componentDidMount() {
-    // this.wordInterval = setInterval(() => this.eachWordTick(), 1000);
     this.wordInterval = setInterval(() => this.eachWordTick(), 100);
     this.userInput.focus();
     let copy = this.state.alphabet.slice();
@@ -152,7 +151,7 @@ class Sabotage extends React.Component {
     })
     console.log(this.state.wins);
     //change 0 to 4 for every 5 wins someone gets roulettes
-    if (this.state.wins >= 0) {
+    if (this.state.wins === 2) {
       clearInterval(this.wordInterval);
       setTimeout(() => {
         this.setState({ mode: "roulette", wins: this.state.wins + 1 });

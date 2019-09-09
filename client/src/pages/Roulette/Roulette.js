@@ -9,11 +9,15 @@ class Roulette extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      spinAngleStart: 0,
       startAngle: 0,
       spinTime: 0,
-      arc: Math.PI / (props.options.length / 2),
-      redirect: false
+      arc: Math.PI / (7 / 2),
+      redirect: false,
+      options: ['WIN', 'LOSE', 'WIN', 'LOSE', 'WIN', 'LOSE', 'WIN'],
+      values: [(Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100)],
+      baseSize: 300,
+      spinAngleStart: (Math.random() * 10 + 10),
+      spinTimeTotal: (Math.random() * 3 + 4 * 2504) 
     }
     this.spinTimer = null;
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -21,6 +25,7 @@ class Roulette extends React.Component {
     this.rotate = this.rotate.bind(this);
   }
 
+  /*
   static propTypes = {
     className: PropTypes.string,
     options: PropTypes.array,
@@ -39,8 +44,14 @@ class Roulette extends React.Component {
     spinAngleStart: Math.random() * 10 + 10,
     spinTimeTotal: Math.random() * 3 + 4 * 2504
   };
+  */
 
   componentDidMount() {
+    this.setState({
+      values: [(Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 150) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100), (Math.floor((Math.random() * 15) + 1) * 100)],
+      spinAngleStart: Math.random() * 10 + 10,
+      spinTimeTotal: Math.random() * 3 + 4 * 2504      
+    })
     this.drawRouletteWheel();
   }
 
@@ -67,10 +78,16 @@ class Roulette extends React.Component {
   }
 
 
+  shuffleOptions = (ops) => {
+    //gets random word from this.state.words
+    // let str = options[Math.floor((Math.random() * this.state.words.length))];
+    const newArr = ops.map(i => ops[Math.floor((Math.random() * ops.length))])
+    return newArr;
+  }
 
   drawRouletteWheel() {
-    const { options, baseSize, values } = this.props;
-    let { startAngle, arc } = this.state;
+    // const { options, baseSize, values } = this.props;
+    let { startAngle, arc, baseSize, options, values } = this.state;
     const colors = ['#0000FF', '#008080', '#FF0000', '#3CB371', '#FF8C00', '#8A2BE2', '#8B0000']
 
     // const spinTimeout = null;
@@ -93,7 +110,6 @@ class Roulette extends React.Component {
       // ctx.lineHeight = 4;
 
       ctx.font = '20px Helvetica, Arial';
-
       for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
 
@@ -133,16 +149,15 @@ class Roulette extends React.Component {
   }
 
   rotate() {
-    const { spinAngleStart, spinTimeTotal } = this.props;
-    if (this.state.spinTime > 2800) {
+    const { spinAngleStart, spinTimeTotal, spinTime, startAngle } = this.state;
+    if (spinTime > 2800) {
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
-      const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, spinTimeTotal);
-      console.log(spinAngle);
+      const spinAngle = spinAngleStart - this.easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
       this.setState({
-        startAngle: this.state.startAngle + spinAngle * Math.PI / 180,
-        spinTime: this.state.spinTime + 30,
+        startAngle: startAngle + spinAngle * Math.PI / 180,
+        spinTime: spinTime + 30,
       }, () => {
         this.drawRouletteWheel();
         clearTimeout(this.spinTimer);
@@ -152,7 +167,8 @@ class Roulette extends React.Component {
   }
 
   hitAPIRoute(index) {
-    const { values, switchMode } = this.props;
+    // const { values, switchMode } = this.props;
+    const { values } = this.state;
     let value = 0;
     if (index % 2 == 0) {
       value = values[index];
@@ -182,8 +198,8 @@ class Roulette extends React.Component {
   }
 
   stopRotateWheel() {
-    let { startAngle, arc } = this.state;
-    const { options, baseSize, values } = this.props;
+    let { startAngle, arc, baseSize, options, values } = this.state;
+    // const { options, baseSize, values } = this.props;
 
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext('2d');
@@ -210,7 +226,7 @@ class Roulette extends React.Component {
   }
 
   render() {
-    const { baseSize } = this.props;
+    const { baseSize } = this.state;
 
     return (
       <>
