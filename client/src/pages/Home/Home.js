@@ -177,6 +177,14 @@ class Home extends React.Component {
 
     }
   }
+
+  onRedirect = (locName) => {
+    console.log('clicked');
+    if(document.location.pathname === locName){
+      console.log('redirected');
+      this.forceUpdate();
+    }
+  }
   
 
   render() {
@@ -185,7 +193,7 @@ class Home extends React.Component {
         <NavTabs 
           location="/" timePass={this.props.timePass} 
           conditionalRender={this.props.conditionalRender} logout={this.props.logout} 
-        />
+          onRedirect={this.onRedirect} />
         <div className="content">
           <h1> WELCOME TO <span id="true-north" onMouseEnter={this.decrypt_title} onMouseLeave={this.encrypt_title}>{this.state.title}</span></h1>
           <span className="memo-w">don't waste your time...</span>

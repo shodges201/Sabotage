@@ -21,7 +21,7 @@ const options = [
   "Wild",
 ];
 
-const regex =/\/(?!leaderboard|roulette|sabotage)/;
+const regex =/\/(?!leaderboard|sabotage)/;
 
 
 class App extends React.Component{
@@ -148,7 +148,8 @@ class App extends React.Component{
             <Route path="/" render={() => (
               <Home 
                 timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
-                conditionalRender={this.conditionalRender} userState={this.userState}/>
+                conditionalRender={this.conditionalRender} userState={this.userState}
+                onRedirect={this.onRedirect}/>
             )} />, 
 
             (<div>
@@ -156,7 +157,7 @@ class App extends React.Component{
                 <Home 
                   timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
                   conditionalRender={this.conditionalRender} userState={this.userState}
-                  logout={this.logout}
+                  logout={this.logout} onRedirect={this.onRedirect}
                 />
               )} />
               <Route exact path="/sabotage" render={() => (
@@ -164,21 +165,14 @@ class App extends React.Component{
                   timePass={this.state.timePass} currentUser={this.state.currentUser} 
                   conditionalRender={this.conditionalRender} loggedIn={this.state.loggedIn} 
                   userState={this.userState} updateScores={this.updateScores}
-                  logout={this.logout}
+                  logout={this.logout} onRedirect={this.onRedirect}
                 />
-              )} />
-              <Route exact path="/roulette" render={() => (
-                <Roulette 
-                  options={options} baseSize={300} onComplete={handleOnComplete} 
-                  timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
-                  conditionalRender={this.conditionalRender} userState={this.userState} 
-                  updateScores={this.updateScores}/>
               )} />
               <Route exact path="/leaderboard" render={() => (
                 <Leaderboard 
                   timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
                   conditionalRender={this.conditionalRender} userState={this.userState} 
-                  updateScores={this.updateScores} logout={this.logout}
+                  updateScores={this.updateScores} logout={this.logout} onRedirect={this.onRedirect}
                 />
               )} />
             </div>))}

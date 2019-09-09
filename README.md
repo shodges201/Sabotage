@@ -47,7 +47,7 @@ that is updated every 10 seconds.
 After 3 wins or 2 losses, you will be given a chance to significantly improve or demolish 
 your score.
 
-![Roulette Wheel](roulettewheel.png)
+![Roulette Wheel](/client/public/images/roulettewheel.png "Roulette Wheel")
 
 ## BUILT WITH
 
@@ -55,6 +55,7 @@ your score.
 * [Pusher](https://bit.ly/2lKgIrW) - Realtime Communication 
 * [MongoDB](https://www.mongodb.com/) - Database
 * [Material-ui](https://material-ui.com/) - React Components 
+
 
 
 

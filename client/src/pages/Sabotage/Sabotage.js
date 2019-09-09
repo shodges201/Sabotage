@@ -147,7 +147,9 @@ class Sabotage extends React.Component {
     clearInterval(this.wordInterval);
     this.props.updateScores(500);
     this.setState({
-      timerColor: "rgb(47,255,99)"
+      timerColor: "rgb(47,255,99)",
+      input: "",
+      encrypt: ""
     })
     console.log(this.state.wins);
     //change 0 to 4 for every 5 wins someone gets roulettes
@@ -273,13 +275,22 @@ class Sabotage extends React.Component {
     }
   }
 
+  onRedirect = (locName) => {
+    console.log('clicked');
+    if(document.location.pathname === locName){
+      console.log('redirected');
+      this.forceUpdate();
+    }
+  }
+
   render() {
     console.log(this.state.timerColor)
     return (
       <div>
         <NavTabs 
           location="/sabotage" timePass={this.props.timePass} 
-          conditionalRender={this.props.conditionalRender} logout={this.props.logout}/>
+          conditionalRender={this.props.conditionalRender} logout={this.props.logout}
+          onRedirect={this.onRedirect}/>
         <div className="content">
           {this.selectiveGameRender()}
           {this.renderRedirect()}

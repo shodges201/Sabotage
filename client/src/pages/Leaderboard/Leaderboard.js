@@ -26,6 +26,7 @@ class Leaderboard extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.onRedirect);
     this.getUsers();
   }
 
@@ -112,6 +113,14 @@ class Leaderboard extends React.Component {
     // }).then(console.log);
   }
 
+  onRedirect = (locName) => {
+    console.log('clicked');
+    if(document.location.pathname === locName){
+      console.log('redirected');
+      this.getUsers();
+    }
+  }
+
   
   render(){
     // console.log(this.state.timerColor)
@@ -120,6 +129,7 @@ class Leaderboard extends React.Component {
         <NavTabs 
           location="/leaderboard" timePass={this.props.timePass} 
           conditionalRender={this.props.conditionalRender} logout={this.props.logout}
+          onRedirect={this.onRedirect}
         />
         <div className="content">
 

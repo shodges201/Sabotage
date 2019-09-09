@@ -40,15 +40,13 @@ class NavTabs extends React.Component {
     // console.log(this.props.conditionalRender(1, 2));
   }
 
-  
-  
   render() {
     return (
       <div>
           {this.props.conditionalRender(
             (<ul className="nav nav-tabs">
               <li className="nav-item">
-                <Link to="/" className={this.props.location === "/" ? "nav-link active" : "nav-link"}>
+                <Link to="/" onClick={() => this.props.onRedirect('/')} className={this.props.location === "/" ? "nav-link active" : "nav-link"}>
                   home
                 </Link>
               </li>
@@ -56,17 +54,17 @@ class NavTabs extends React.Component {
 
             (<ul className="nav nav-tabs">
               <li className="nav-item">
-                <Link to="/" className={this.props.location === "/" ? "nav-link active" : "nav-link"}>
+                <Link to="/" onClick={() => this.props.onRedirect('/')} className={this.props.location === "/" ? "nav-link active" : "nav-link"}>
                   home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/sabotage" className={this.props.location === "/sabotage" ? "nav-link active" : "nav-link"}>
+                <Link to="/sabotage" onClick={() => this.props.onRedirect('/sabotage')} className={this.props.location === "/sabotage" ? "nav-link active" : "nav-link"}>
                   sabotage
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/leaderboard" className={this.props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
+                <Link to="/leaderboard" onClick={() => this.props.onRedirect('/leaderboard')} className={this.props.location === "/leaderboard" ? "nav-link active" : "nav-link"}>
                   leaderboard
                 </Link>
               </li>
