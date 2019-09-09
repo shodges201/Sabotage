@@ -53,8 +53,8 @@ class Roulette extends React.Component {
   
     getColor(item, maxitem) {
       const phase = 0;
-      const center = 128;
-      const width = 128;
+      const center = 500;
+      const width = 250;
       const frequency = Math.PI*2/maxitem;
   
       const red   = Math.sin(frequency*item+2+phase) * width + center;

@@ -1,4 +1,4 @@
-a {
+/* a {
     text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
@@ -6,4 +6,179 @@ a {
     position: absolute;
     right: 100px;
     bottom: 100px;
+} */
+
+body{
+    /* background: rgb(10, 146, 187); */
+    background: rgb(0, 128, 128);
+    /* background: rgb(144, 184, 186); */
+    /* background: rgb(175, 51, 59); */
+}
+
+.content {
+    padding:20px;
+    position: relative;
+}
+
+.hello {
+    position: fixed;
+    padding: 30px;
+    z-index: 3;
+    right: 30px;
+    bottom: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.goodbye {
+    position: fixed;
+    padding: 30px;
+    z-index: 3;
+    right: 30px;
+    top: 300px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#encrypt-live,#decrypt-live {
+    font-size: 50px;
+    /* height: 80px; */
+    /* white-space: nowrap; */
+    color:rgb(47, 255, 99);
+    text-align: right;
+}
+
+
+
+#decrypt-live {
+    color: rgb(255, 0, 55);
+}
+
+
+
+#shadow-live {
+    font-size: 23rem;
+    position: fixed;
+    z-index: 2;
+    right: 30px;
+    bottom: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /* height: 80px; */
+    white-space: nowrap;
+    color:rgba(41, 41, 41, 0.247);
+    font-style:italic;
+}
+
+#true-north {
+    color:rgb(47, 255, 99);
+}
+
+a {
+    text-decoration: none;
+    color:rgb(47, 255, 99);
+    
+}
+
+a:hover {
+    text-decoration: none;
+    /* color:rgb(35, 124, 57); */
+    color:white;
+}
+
+.current-page {
+    color:black;
+    /* color:white; */
+}
+
+input{
+    margin-right: 10px;
+    border:1px lightgray solid;
+    border-radius: 4px;
+    padding-left:5px;
+    background: none;
+}
+
+#hangman {
+    position: absolute;
+    top:150px;
+    right:300px;
+}
+
+#hangman-word {
+    color:blue;
+}
+
+
+#time-left {
+    color:white;
+    /* font-size:60px; */
+    position:fixed;
+    top: 0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    transition-property:background;
+    transition-duration:2s;
+}
+
+
+.memo,.memo-w {
+    position: absolute;
+    top:100px;
+    left: 100px;
+    font-style: italic;
+    color: black;
+}
+
+.memo-w {
+    color: white;
+}
+
+
+
+.nav-tabs .nav-link.active {
+    background:none;
+    border-bottom:none;
+    color:white;
+}
+
+#time-passed {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+}
+
+
+
+#home-form {
+    float: left;
+    margin-left: 30%;
+    margin-top: 10%;
+}
+
+.form-input {
+    border:white solid 1px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width:300px;
+}
+
+.form-button {
+    background: none;
+    border:none;
+    color:rgb(47, 255, 99);
+    margin-left:-9px;
+    font-size: 18px;
+}
+
+.form-button:hover {
+    color:white;
+}
+
+
+
+.switch-button {
+    margin-left: 110px;
 }

@@ -1,12 +1,9 @@
 body{
-<<<<<<< HEAD
-    background: lightgray;
-=======
     /* background: rgb(10, 146, 187); */
     background: rgb(0, 128, 128);
     /* background: rgb(144, 184, 186); */
     /* background: rgb(175, 51, 59); */
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
+    
 }
 
 .content {
@@ -39,6 +36,7 @@ body{
     /* white-space: nowrap; */
     color:rgb(47, 255, 99);
     text-align: right;
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
 
@@ -52,58 +50,34 @@ body{
 #shadow-live {
     font-size: 23rem;
     position: fixed;
-    z-index: 2;
+    z-index: -1;
     right: 30px;
     bottom: 30px;
     overflow-x: scroll;
     overflow-y: hidden;
     /* height: 80px; */
     white-space: nowrap;
-<<<<<<< HEAD
-    color:rgba(175, 175, 175, 0.7);
-=======
     color:rgba(41, 41, 41, 0.247);
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
     font-style:italic;
 }
 
 #true-north {
     color:rgb(47, 255, 99);
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
 a {
     text-decoration: none;
-<<<<<<< HEAD
-    /* color:rgb(47, 255, 99); */
-    color: black;
-}
-
-a:hover {
-    /* text-decoration: none;
-    color:rgb(35, 124, 57); */
-    -webkit-background-clip: text;
-	color: white;
-	-webkit-text-fill-color: transparent;
-  	background-image: -webkit-gradient(linear, left top, right top, from(#ea8711), to(#d96363));
-	background-image: -webkit-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79); 
-	background-image:    -moz-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79);
-	background-image:     -ms-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79); 
-    background-image:      -o-linear-gradient(left, #ea8711, #d96363, #73a6df, #9085fb, #52ca79);
-    font-style: italic;
-    text-decoration: underline;
-=======
     color:rgb(47, 255, 99);
-    
+    font-size:20px;
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
 a:hover {
     text-decoration: none;
     /* color:rgb(35, 124, 57); */
     color:white;
-<<<<<<< HEAD
->>>>>>> bba6bda8cce4dc53b5df117ba639e3446736a583
-=======
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
+    text-shadow: none;
 }
 
 .current-page {
@@ -120,13 +94,14 @@ input{
 }
 
 #hangman {
-    position: absolute;
-    top:150px;
-    right:300px;
+    float:right;
+    font-size:20px;
+    z-index: 5;
 }
 
 #hangman-word {
-    color:blue;
+    color:rgb(130, 134, 55);
+    font-size:200px;
 }
 
 
@@ -149,7 +124,10 @@ input{
     top:100px;
     left: 100px;
     font-style: italic;
-    color: black;
+    color: white;
+    line-height: 2;
+    font-size:20px;
+    width:450px;
 }
 
 .memo-w {
@@ -162,6 +140,7 @@ input{
     background:none;
     border-bottom:none;
     color:white;
+
 }
 
 #time-passed {
@@ -171,14 +150,14 @@ input{
     color: white;
 }
 
-<<<<<<< HEAD
-=======
 
 
 #home-form {
     float: left;
-    margin-left: 30%;
+    margin-left: 39%;
     margin-top: 10%;
+    color:white;
+    font-size:18px;
 }
 
 .form-input {
@@ -186,6 +165,7 @@ input{
     border-radius: 3px;
     margin-bottom: 10px;
     width:300px;
+    color:white;
 }
 
 .form-button {
@@ -194,15 +174,71 @@ input{
     color:rgb(47, 255, 99);
     margin-left:-9px;
     font-size: 18px;
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
 .form-button:hover {
     color:white;
+    text-shadow: none;
 }
 
 
 
-.switch-button {
-    margin-left: 110px;
+
+
+
+.welcome-mat {
+    padding: 20px;
+    float: left;
+    margin-left: 32%;
+    margin-top: 10%;
+    font-size:24px;
+    color:white;
 }
->>>>>>> 2ba5ee59de1058079fb989158d3ebd743cac73ca
+
+
+.keywords {
+    color:rgb(47, 255, 99);
+    /* font-weight: bold; */
+    font-style: italic;
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
+}
+
+.red {
+    color:red
+}
+
+.only-way {
+    font-size:30px;
+    margin-bottom:20px;
+    /* color:white; */
+}
+
+h1 {
+    color:white;
+}
+
+
+.logout-btn{
+    color:rgb(47, 255, 99);
+    text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
+    font-size:20px;
+}
+
+.logout-btn:hover{
+    color:white;
+    text-shadow: none;
+}
+
+.arrows{
+    margin-left: 16px;
+    letter-spacing: 10px;
+}
+
+.switch-link{
+    font-size:16px;
+}
+
+h3 {
+    font-size:1.89em;
+}
