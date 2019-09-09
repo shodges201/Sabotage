@@ -3,7 +3,6 @@ import NavTabs from "../../components/NavTabs/NavTabs";
 import Table from "../../components/Table/Table";
 import TableEntry from "../../components/TableEntry/TableEntry";
 import './Leaderboard.css';
-import Pusher from 'pusher-js';
 const API_URL = '/api/';
 const compare = (a, b) =>  b.score - a.score;
 
@@ -27,15 +26,6 @@ class Leaderboard extends React.Component {
   }
 
   componentDidMount() {
-    this.pusher = new Pusher('b2809c73fbc28accc074', {
-      cluster: 'us2',
-      encrypted: true,
-    });
-    this.channel = this.pusher.subscribe('users');
-
-    this.channel.bind('inserted', this.addUser);
-    this.channel.bind('deleted', this.removeUser);
-    this.channel.bind('updated', this.updateUser);
     this.getUsers();
   }
 

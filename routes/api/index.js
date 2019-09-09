@@ -45,7 +45,6 @@ router.post('/new', (req, res) => {
 
         }
         else{
-          req.flash('success', 'signup worked');
           res.redirect(307, "login");
         }
     });
