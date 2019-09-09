@@ -130,6 +130,7 @@ class Leaderboard extends React.Component {
           </span>
             
           <div>
+            {/* <Table columnAction={this.state.toggle=="top" ? "ADD" : "RUIN"}> */}
             <Table columnAction={this.state.toggle=="top" ? "ADD" : "RUIN"}>
               {this.state.users.map(user => {
                 return(
@@ -139,7 +140,7 @@ class Leaderboard extends React.Component {
                     username={user.username}
                     score={user.score}
                     onUserClick={this.deleteUser}
-                    tableAction={this.state.toggle=="top" ? this.addFriend : this.sabotage}
+                    // tableAction={this.state.toggle=="top" ? this.addFriend : this.sabotage}
                   />
                 )
               })}
