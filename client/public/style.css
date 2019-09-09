@@ -180,23 +180,6 @@ input{
 .form-button:hover {
     color:white;
     text-shadow: none;
-<<<<<<< HEAD
-}
-
-
-
-
-
-
-.welcome-mat {
-    padding: 20px;
-    float: left;
-    margin-left: 32%;
-    margin-top: 10%;
-    font-size:24px;
-    color:white;
-=======
->>>>>>> 962ceb667ce1456016e4e3665cc2c378bbe6d071
 }
 
 
@@ -207,18 +190,6 @@ input{
     text-shadow: 2px 2px 0px rgba(67, 67, 67, 0.301);
 }
 
-<<<<<<< HEAD
-.red {
-    color:red
-}
-
-.only-way {
-    font-size:30px;
-    margin-bottom:20px;
-    /* color:white; */
-}
-
-=======
 .switch-button {
     /* margin-left: 0px; */
 }
@@ -251,7 +222,6 @@ input{
     /* color:white; */
 }
 
->>>>>>> 962ceb667ce1456016e4e3665cc2c378bbe6d071
 h1 {
     color:white;
 }
@@ -279,9 +249,5 @@ h1 {
 
 h3 {
     font-size:1.89em;
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> 962ceb667ce1456016e4e3665cc2c378bbe6d071
