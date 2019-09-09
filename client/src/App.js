@@ -21,6 +21,8 @@ const options = [
   "Wild",
 ];
 
+const regex = /\//;
+
 
 class App extends React.Component{
 
@@ -61,8 +63,7 @@ class App extends React.Component{
         this.interval = setInterval(() => this.constantTick(), 1000);
       }
     }).catch(err => {
-      console.log(err);
-      //throw err;
+      
     })
 
     
@@ -100,6 +101,7 @@ class App extends React.Component{
 
   conditionalRender = (option1, option2) => {
     //console.log(this.state.loggedIn);
+
     if(!this.state.loggedIn){
       return option1;
     }
@@ -143,7 +145,7 @@ class App extends React.Component{
       <Router>
         <div className="wrapper">
           {this.conditionalRender(
-            <Route exact path="/" render={() => (
+            <Route path="/" render={() => (
               <Home 
                 timePass={this.state.timePass} loggedIn={this.state.loggedIn} 
                 conditionalRender={this.conditionalRender} userState={this.userState}/>
@@ -156,7 +158,7 @@ class App extends React.Component{
                   conditionalRender={this.conditionalRender} userState={this.userState}
                   logout={this.logout}
                 />
-              )} /> 
+              )} />
               <Route exact path="/sabotage" render={() => (
                 <Sabotage 
                   timePass={this.state.timePass} currentUser={this.state.currentUser} 
