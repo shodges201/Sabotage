@@ -101,13 +101,13 @@ class Leaderboard extends React.Component {
     const data = {
       id: id
     };
-    fetch('/api/add', {
-      method: 'put',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(console.log);
+    // fetch('/api/add', {
+    //   method: 'put',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // }).then(console.log);
   }
 
   
