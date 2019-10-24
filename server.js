@@ -7,6 +7,7 @@ const routes = require("./routes");
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
+require('dotenv').config();
 
 const PORT = process.env.PORT || 9000;
 const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs'
@@ -14,10 +15,10 @@ const URI = process.env.MONGODB_URI || 'mongodb://localhost/saboDB?replicaSet=rs
 
 // Pusher module used to set up live mongoDB listen
 const pusher = new Pusher({
-  appId: '855391',
-  key: 'b2809c73fbc28accc074',
-  secret: '65ea3c21e522a4fc45a7',
-  cluster: 'us2',
+  appId: process.env.PUSHER_ID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
+  cluster: process.env.PUSHER_CLUSTER,
   encrypted: true,
 });
 const channel = 'users';
